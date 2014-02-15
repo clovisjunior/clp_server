@@ -2,52 +2,68 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: maquinaInstance, field: 'localizacaoFisica', 'error')} ">
-	<label for="localizacaoFisica">
+
+<div class="control-group">
+	<label class="control-label" for="localizacaoFisica">
 		<g:message code="maquina.localizacaoFisica.label" default="Localizacao Fisica" />
-		
 	</label>
-	<g:textField name="localizacaoFisica" value="${maquinaInstance?.localizacaoFisica}"/>
+	<div class="controls">
+		<g:textField name="localizacaoFisica" value="${maquinaInstance?.localizacaoFisica}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: maquinaInstance, field: 'ip', 'error')} required">
-	<label for="ip">
+
+
+<div class="control-group">
+	<label class="control-label" for="ip">
 		<g:message code="maquina.ip.label" default="Ip" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="ip" required="" value="${maquinaInstance?.ip}"/>
+	<div class="controls">
+		<g:textField name="ip" required="" value="${maquinaInstance?.ip}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: maquinaInstance, field: 'modelo', 'error')} required">
-	<label for="modelo">
+
+
+<div class="control-group">
+	<label class="control-label" for="modelo">
 		<g:message code="maquina.modelo.label" default="Modelo" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="modelo" required="" value="${maquinaInstance?.modelo}"/>
+	<div class="controls">
+		<g:textField name="modelo" required="" value="${maquinaInstance?.modelo}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: maquinaInstance, field: 'identificador', 'error')} required">
-	<label for="identificador">
+
+
+<div class="control-group">
+	<label class="control-label" for="identificador">
 		<g:message code="maquina.identificador.label" default="Identificador" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="identificador" required="" value="${maquinaInstance?.identificador}"/>
+	<div class="controls">
+		<g:textField name="identificador" required="" value="${maquinaInstance?.identificador}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: maquinaInstance, field: 'departamento', 'error')} required">
-	<label for="departamento">
+
+
+<div class="control-group">
+	<label class="control-label" for="departamento">
 		<g:message code="maquina.departamento.label" default="Departamento" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="departamento" name="departamento.id" from="${com.projeto.clp.Departamento.list()}" optionKey="id" required="" value="${maquinaInstance?.departamento?.id}" class="many-to-one"/>
+	<div class="controls">
+		<g:select id="departamento" name="departamento.id" from="${com.projeto.clp.Departamento.list()}" optionKey="id" required="" value="${maquinaInstance?.departamento?.id}" class="many-to-one"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: maquinaInstance, field: 'portas', 'error')} ">
-	<label for="portas">
+
+
+<div class="control-group">
+	<label class="control-label" for="portas">
 		<g:message code="maquina.portas.label" default="Portas" />
-		
 	</label>
-	
+	<div class="controls">
+		
 <ul class="one-to-many">
 <g:each in="${maquinaInstance?.portas?}" var="p">
     <li><g:link controller="maquinaPorta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
@@ -57,5 +73,7 @@
 </li>
 </ul>
 
+	</div>
 </div>
+
 

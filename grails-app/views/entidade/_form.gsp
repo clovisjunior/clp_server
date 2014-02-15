@@ -2,36 +2,46 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: entidadeInstance, field: 'nome', 'error')} ">
-	<label for="nome">
+
+<div class="control-group">
+	<label class="control-label" for="nome">
 		<g:message code="entidade.nome.label" default="Nome" />
-		
 	</label>
-	<g:textField name="nome" value="${entidadeInstance?.nome}"/>
+	<div class="controls">
+		<g:textField name="nome" required="" value="${entidadeInstance?.nome}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: entidadeInstance, field: 'usuario', 'error')} ">
-	<label for="usuario">
-		<g:message code="entidade.usuario.label" default="Usuário" />
-		
+
+
+<div class="control-group">
+	<label class="control-label" for="usuario">
+		<g:message code="entidade.usuario.label" default="Usuario" />
 	</label>
-	<g:textField name="usuario" value="${entidadeInstance?.usuario}"/>
+	<div class="controls">
+		<g:textField name="usuario" maxlength="15" required="" value="${entidadeInstance?.usuario}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: entidadeInstance, field: 'senha', 'error')} ">
-	<label for="senha">
+
+
+<div class="control-group">
+	<label class="control-label" for="senha">
 		<g:message code="entidade.senha.label" default="Senha" />
-		
 	</label>
-	<g:passwordField name="senha" value="${entidadeInstance?.senha}"/>
+	<div class="controls">
+		<g:field type="password" name="senha" maxlength="15" required="" value="${entidadeInstance?.senha}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: entidadeInstance, field: 'unidadesNegocios', 'error')} ">
-	<label for="unidadesNegocios">
+
+
+<div class="control-group">
+	<label class="control-label" for="unidadesNegocios">
 		<g:message code="entidade.unidadesNegocios.label" default="Unidades Negocios" />
-		
 	</label>
-	
+	<div class="controls">
+		
 <ul class="one-to-many">
 <g:each in="${entidadeInstance?.unidadesNegocios?}" var="u">
     <li><g:link controller="unidadeDeNegocio" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
@@ -41,5 +51,7 @@
 </li>
 </ul>
 
+	</div>
 </div>
+
 

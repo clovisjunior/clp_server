@@ -15,6 +15,6 @@ class Departamento {
     }
 	
 	String toString(){
-		"${nome} [${unidadeNegocio?.nome}"
+		"${nome} [${unidadeNegocio?.nome}]"
 	}
 }

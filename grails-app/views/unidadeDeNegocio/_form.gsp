@@ -1,36 +1,25 @@
 <%@ page import="com.projeto.clp.UnidadeDeNegocio" %>
 
-<div class="fieldcontain ${hasErrors(bean: unidadeDeNegocioInstance, field: 'entidade', 'error')} required">
-	<label for="entidade">
-		<g:message code="unidadeDeNegocio.entidade.label" default="Entidade" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="entidade" name="entidade.id" from="${com.projeto.clp.Entidade.list()}" optionKey="id" required="" value="${unidadeDeNegocioInstance?.entidade?.id}" class="many-to-one"/>
-</div>
 
-<div class="fieldcontain ${hasErrors(bean: unidadeDeNegocioInstance, field: 'nome', 'error')} ">
-	<label for="nome">
+
+
+<div class="control-group">
+	<label class="control-label" for="nome">
 		<g:message code="unidadeDeNegocio.nome.label" default="Nome" />
-		
 	</label>
-	<g:textField name="nome" value="${unidadeDeNegocioInstance?.nome}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: unidadeDeNegocioInstance, field: 'endereco', 'error')} ">
-	<label for="endereco">
-		<g:message code="unidadeDeNegocio.endereco.label" default="Endereco" />
-		
-	</label>
-	<g:textField name="endereco" value="${unidadeDeNegocioInstance?.endereco}"/>
+	<div class="controls">
+		<g:textField name="nome" required="" value="${unidadeDeNegocioInstance?.nome}"/>
+	</div>
 </div>
 
 
-<div class="fieldcontain ${hasErrors(bean: unidadeDeNegocioInstance, field: 'departamentos', 'error')} ">
-	<label for="departamentos">
+
+<div class="control-group">
+	<label class="control-label" for="departamentos">
 		<g:message code="unidadeDeNegocio.departamentos.label" default="Departamentos" />
-		
 	</label>
-	
+	<div class="controls">
+		
 <ul class="one-to-many">
 <g:each in="${unidadeDeNegocioInstance?.departamentos?}" var="d">
     <li><g:link controller="departamento" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
@@ -40,4 +29,29 @@
 </li>
 </ul>
 
+	</div>
 </div>
+
+
+
+<div class="control-group">
+	<label class="control-label" for="endereco">
+		<g:message code="unidadeDeNegocio.endereco.label" default="Endereco" />
+	</label>
+	<div class="controls">
+		<g:textField name="endereco" value="${unidadeDeNegocioInstance?.endereco}"/>
+	</div>
+</div>
+
+
+
+<div class="control-group">
+	<label class="control-label" for="entidade">
+		<g:message code="unidadeDeNegocio.entidade.label" default="Entidade" />
+	</label>
+	<div class="controls">
+		<g:select id="entidade" name="entidade.id" from="${com.projeto.clp.Entidade.list()}" optionKey="id" required="" value="${unidadeDeNegocioInstance?.entidade?.id}" class="many-to-one"/>
+	</div>
+</div>
+
+

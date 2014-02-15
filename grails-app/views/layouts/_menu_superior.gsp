@@ -18,7 +18,7 @@
 
 	<!-- Dropdown -->
 	<li class="dropdown dd-1 visible-desktop">
-		<a href="" data-toggle="dropdown" class="glyphicons shield"><i></i>Get Help <span class="caret"></span></a>
+		<a href="" data-toggle="dropdown" class="glyphicons shield"><i></i>Ajuda <span class="caret"></span></a>
 		<ul class="dropdown-menu pull-right">
 
 			<li class="dropdown submenu">
@@ -59,27 +59,27 @@
 
 	<!-- Profile / Logout menu -->
 	<li class="account dropdown dd-1">
-		<a data-toggle="dropdown" href="my_account.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-light" class="glyphicons logout lock"><span class="hidden-phone">username</span><i></i></a>
+		<a data-toggle="dropdown" href="#" class="glyphicons logout lock"><span class="hidden-phone">joao.pulo</span><i></i></a>
 		<ul class="dropdown-menu pull-right">
 			<li>
-				<a href="my_account.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-light" class="glyphicons cogwheel">Settings<i></i></a>
-			</li>
-			<li>
-				<a href="my_account.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-light" class="glyphicons camera">My Photos<i></i></a>
+				<a href="#" class="glyphicons cogwheel">Configurações<i></i></a>
 			</li>
 			<li class="profile">
 				<span> 
-					<span class="heading">Profile
-						<a href="my_account.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-light" class="pull-right">edit</a>
-				</span> <span class="img"></span> <span class="details"> <a
-						href="my_account.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-light">Mosaic Pro</a> contact@mosaicpro.biz
+					<span class="heading">Perfil
+						<a href="#" class="pull-right">editar</a>
+					</span> 
+					<span class="img"></span> 
+					<span class="detalhes"> 
+						<a href="#">João do Pulo</a> 
+						joao@pulo.com
 				</span> 
 				<span class="clearfix"></span>
 				</span>
 			</li>
 			<li>
 				<span> 
-					<a class="btn btn-default btn-mini pull-right" href="login.html?lang=en&amp;layout_type=fluid&amp;menu_position=menu-left&amp;style=style-light">Sign Out</a>
+					<a class="btn btn-default btn-mini pull-right" href="#">Logout</a>
 				</span>
 			</li>
 		</ul>

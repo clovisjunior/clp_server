@@ -6,33 +6,70 @@
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#create-usuarioMovel" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-			</ul>
+	
+		<div class="heading-buttons">
+			<h2><g:message code="default.create.label" args="[entityName]" /></h2>
+			
+			<div class="buttons pull-right">
+				<g:link action="index" class="btn btn-default btn-icon glyphicons circle_arrow_left">
+					<i></i>	<g:message code="default.back.label" default="Voltar"/>
+				</g:link>
+			</div>
+			<div class="clearfix"></div>
 		</div>
-		<div id="create-usuarioMovel" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+		
+		<div class="separator bottom"></div>
+		
+		<div class="innerLR">
+		
+			<!-- Mensagem -->
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="alert ${flash.messageTypeClass}">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong><g:message default="Atenção !" code="alert.warning"/></strong> ${flash.message}
+				</div>
 			</g:if>
 			<g:hasErrors bean="${usuarioMovelInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${usuarioMovelInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
+				<div class="alert alert-error">
+					<g:eachError bean="${usuarioMovelInstance}" var="error">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong><g:message error="${error}"/></strong>
+					</g:eachError>
+				</div>
 			</g:hasErrors>
-			<g:form url="[resource:usuarioMovelInstance, action:'save']" >
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
+			<!-- //END Mensagem -->
+			
+			<g:form url="[resource:usuarioMovelInstance, action:'save']"  class="form-horizontal" style="margin-bottom: 0;">
+				<!-- Widget -->
+				<div class="widget">
+					<!-- Widget heading -->
+					<div class="widget-head">
+						<h4 class="heading"><g:message code="default.create.head.label"/></h4>
+					</div>
+					<!-- // Widget heading END -->
+			
+					<div class="widget-body">
+					
+						<!-- Row -->
+						<div class="row-fluid">
+							<g:render template="form"/>
+						</div>
+						
+						<hr class="separator" />
+				
+						<!-- Form actions -->
+						<div class="form-actions">
+							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i><g:message code="default.button.save.label" default="Salvar"/></button>
+							<g:link action="index" class="btn btn-icon btn-default glyphicons circle_remove">
+								<i></i><g:message code="default.button.cancel.label" default="Cancelar"/>
+							</g:link>
+						</div>
+					</div>
+					<!-- // Widget heading END -->
+				</div>
+				
 			</g:form>
+			
 		</div>
 	</body>
 </html>
