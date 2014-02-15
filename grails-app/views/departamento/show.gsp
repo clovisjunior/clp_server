@@ -75,6 +75,17 @@
 							</li>
 							</g:if>
 						
+							<g:if test="${departamentoInstance?.usuariosMoveis}">
+							<li class="fieldcontain">
+								<span id="usuariosMoveis-label" class="property-label"><g:message code="departamento.usuariosMoveis.label" default="Usuarios Moveis" /></span>
+								
+									<g:each in="${departamentoInstance.usuariosMoveis}" var="u">
+									<span class="property-value" aria-labelledby="usuariosMoveis-label"><g:link controller="usuarioMovel" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></span>
+									</g:each>
+								
+							</li>
+							</g:if>
+						
 						</ol>
 						
 						<hr class="separator" />

@@ -44,3 +44,23 @@
 </div>
 
 
+
+<div class="control-group">
+	<label class="control-label" for="usuariosMoveis">
+		<g:message code="departamento.usuariosMoveis.label" default="Usuarios Moveis" />
+	</label>
+	<div class="controls">
+		
+<ul class="one-to-many">
+<g:each in="${departamentoInstance?.usuariosMoveis?}" var="u">
+    <li><g:link controller="usuarioMovel" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="usuarioMovel" action="create" params="['departamento.id': departamentoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'usuarioMovel.label', default: 'UsuarioMovel')])}</g:link>
+</li>
+</ul>
+
+	</div>
+</div>
+
+
