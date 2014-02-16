@@ -40,6 +40,7 @@
 						<g:link action="index" controller="entidade">
 							<span>Entidade</span>
 						</g:link>
+					</li>
 					<li class="">
 						<g:link action="index" controller="unidadeDeNegocio">
 							<span>Unidade de Negócio</span>
