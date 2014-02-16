@@ -56,7 +56,7 @@ class EntidadeController {
             notFound()
             return
         }
-
+		
         if (entidadeInstance.hasErrors()) {
             respond entidadeInstance.errors, view:'edit'
             return

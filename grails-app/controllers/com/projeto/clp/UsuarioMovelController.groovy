@@ -29,7 +29,7 @@ class UsuarioMovelController {
             notFound()
             return
         }
-
+		
         if (usuarioMovelInstance.hasErrors()) {
             respond usuarioMovelInstance.errors, view:'create'
             return
@@ -56,6 +56,10 @@ class UsuarioMovelController {
             notFound()
             return
         }
+		
+		if(!params.maquinas){
+			usuarioMovelInstance.maquinas = null
+		}
 
         if (usuarioMovelInstance.hasErrors()) {
             respond usuarioMovelInstance.errors, view:'edit'

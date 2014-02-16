@@ -24,10 +24,8 @@
 <g:each in="${departamentoInstance?.maquinas?}" var="m">
     <li><g:link controller="maquina" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="maquina" action="create" params="['departamento.id': departamentoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'maquina.label', default: 'Maquina')])}</g:link>
-</li>
 </ul>
+<g:link controller="maquina" action="create" params="['departamento.id': departamentoInstance?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'maquina.label', default: 'Maquina')])}</g:link>
 
 	</div>
 </div>
@@ -55,10 +53,8 @@
 <g:each in="${departamentoInstance?.usuariosMoveis?}" var="u">
     <li><g:link controller="usuarioMovel" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="usuarioMovel" action="create" params="['departamento.id': departamentoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'usuarioMovel.label', default: 'UsuarioMovel')])}</g:link>
-</li>
 </ul>
+<g:link controller="usuarioMovel" action="create" params="['departamento.id': departamentoInstance?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'usuarioMovel.label', default: 'UsuarioMovel')])}</g:link>
 
 	</div>
 </div>

@@ -40,8 +40,16 @@
 	<label class="control-label" for="maquinas">
 		<g:message code="usuarioMovel.maquinas.label" default="Maquinas" />
 	</label>
+	<div class="controls uniformjs">
+	
+		<g:each in="${com.projeto.clp.Maquina.list()}" var="maquina" status="i">
+			<label class="checkbox">
+				<g:checkBox class="checkbox" name="maquinas" value="${maquina?.id}" checked="${usuarioMovelInstance?.maquinas?.contains(maquina)}"/>${maquina}
+			</label>
+		</g:each>
+	</div>
 	<div class="controls">
-		<g:select name="maquinas" from="${com.projeto.clp.Maquina.list()}" multiple="multiple" optionKey="id" size="5" value="${usuarioMovelInstance?.maquinas*.id}" class="many-to-many"/>
+		<g:link controller="maquina" action="create" params="['departamento.id': usuarioMovelInstance?.departamento?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'maquina.label', default: 'Maquina')])}</g:link>
 	</div>
 </div>
 

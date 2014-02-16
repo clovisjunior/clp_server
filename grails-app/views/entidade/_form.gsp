@@ -46,10 +46,8 @@
 <g:each in="${entidadeInstance?.unidadesNegocios?}" var="u">
     <li><g:link controller="unidadeDeNegocio" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="unidadeDeNegocio" action="create" params="['entidade.id': entidadeInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'unidadeDeNegocio.label', default: 'UnidadeDeNegocio')])}</g:link>
-</li>
 </ul>
+<g:link controller="unidadeDeNegocio" action="create" params="['entidade.id': entidadeInstance?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'unidadeDeNegocio.label', default: 'UnidadeDeNegocio')])}</g:link>
 
 	</div>
 </div>

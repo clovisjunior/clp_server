@@ -14,7 +14,7 @@
 			
 			<div class="buttons pull-right">
 				<g:link action="index" class="btn btn-default btn-icon glyphicons circle_arrow_left">
-					<i></i>	<g:message code="default.back.label" default="Voltar"/>
+					<i></i>	<g:message code="default.list.label" default="Listagem"/>
 				</g:link>
 			</div>
 			<div class="clearfix"></div>
@@ -78,6 +78,7 @@
 						<!-- Form actions -->
 						<div class="form-actions">
 							<g:form url="[resource:${propertyName}, action:'delete']" method="DELETE">
+								<g:link class="btn btn-primary btn-icon glyphicons circle_plus" action="create"><i></i> <g:message code="default.add.label" default="Adicionar" args="[entityName]"/></g:link>
 								<g:link class="btn btn-icon btn-primary glyphicons pencil" action="edit" resource="\${${propertyName}}"><i></i><g:message code="default.button.edit.label" default="Editar" /></g:link>
 								<button class="btn btn-icon btn-danger glyphicons delete" type="submit"  onclick="return confirm('\${message(code: 'default.button.delete.confirm.message', default: 'Tem certeza?')}');" ><i></i><g:message code="default.button.delete.label" default="Deletar"/></button>
 							</g:form>

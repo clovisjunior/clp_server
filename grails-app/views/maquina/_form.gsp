@@ -68,10 +68,8 @@
 <g:each in="${maquinaInstance?.portas?}" var="p">
     <li><g:link controller="maquinaPorta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="maquinaPorta" action="create" params="['maquina.id': maquinaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'maquinaPorta.label', default: 'MaquinaPorta')])}</g:link>
-</li>
 </ul>
+<g:link controller="maquinaPorta" action="create" params="['maquina.id': maquinaInstance?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'maquinaPorta.label', default: 'MaquinaPorta')])}</g:link>
 
 	</div>
 </div>

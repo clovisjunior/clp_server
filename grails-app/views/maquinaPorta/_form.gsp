@@ -7,7 +7,7 @@
 	<label class="control-label" for="apenasLeitura">
 		<g:message code="maquinaPorta.apenasLeitura.label" default="Apenas Leitura" />
 	</label>
-	<div class="controls">
+	<div class="controls uniformjs">
 		<g:checkBox name="apenasLeitura" value="${maquinaPortaInstance?.apenasLeitura}" />
 	</div>
 </div>
