@@ -10,9 +10,25 @@
 			<g:renderException exception="${exception}" />
 		</g:if>
 		<g:else>
-			<ul class="errors">
-				<li>An error has occurred</li>
-			</ul>
+			<!-- Box -->
+			<div class="hero-unit well">
+			<h1>Ouch! <span>erro 404</span></h1>
+			<hr class="separator" />
+				<!-- Row -->
+				<div class="row-fluid row-merge">
+				
+					<!-- Column -->
+					<div class="span12">
+						<div class="innerAll center">
+							<p>A página solicitada não foi encontrada :(</p>
+						</div>
+					</div>
+					<!-- // Column END -->
+					
+				</div>
+				<!-- // Row END -->
+				
+			</div>
 		</g:else>
 	</body>
 </html>
