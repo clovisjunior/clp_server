@@ -60,6 +60,10 @@ class UsuarioMovelController {
 		if(!params.maquinas){
 			usuarioMovelInstance.maquinas = null
 		}
+		
+		if(!params.dispositivosMoveis){
+			usuarioMovelInstance.dispositivosMoveis = null
+		}
 
         if (usuarioMovelInstance.hasErrors()) {
             respond usuarioMovelInstance.errors, view:'edit'

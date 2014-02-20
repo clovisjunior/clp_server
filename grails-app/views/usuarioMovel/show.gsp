@@ -73,6 +73,17 @@
 							</li>
 							</g:if>
 						
+							<g:if test="${usuarioMovelInstance?.dispositivosMoveis}">
+							<li class="fieldcontain">
+								<span id="dispositivosMoveis-label" class="property-label"><g:message code="usuarioMovel.dispositivosMoveis.label" default="Dispositivos Moveis" /></span>
+								
+									<g:each in="${usuarioMovelInstance.dispositivosMoveis}" var="d">
+									<span class="property-value" aria-labelledby="dispositivosMoveis-label"><g:link controller="dispositivoMovel" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
+									</g:each>
+								
+							</li>
+							</g:if>
+						
 							<g:if test="${usuarioMovelInstance?.maquinas}">
 							<li class="fieldcontain">
 								<span id="maquinas-label" class="property-label"><g:message code="usuarioMovel.maquinas.label" default="Maquinas" /></span>

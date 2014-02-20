@@ -24,7 +24,6 @@
 </div>
 
 
-
 <div class="control-group">
 	<label class="control-label" for="departamento">
 		<g:message code="usuarioMovel.departamento.label" default="Departamento" />
@@ -35,13 +34,29 @@
 </div>
 
 
+<div class="control-group">
+	<label class="control-label" for="dispositivosMoveis">
+		<g:message code="usuarioMovel.dispositivosMoveis.label" default="Dispositivos Moveis" />
+	</label>
+	<div class="controls uniformjs">
+
+		<g:each in="${com.projeto.clp.DispositivoMovel.list()}" var="dispositivoMovel" status="i">
+			<label class="checkbox">
+				<g:checkBox class="checkbox" name="dispositivosMoveis" value="${dispositivoMovel?.id}" checked="${usuarioMovelInstance?.dispositivosMoveis?.contains(dispositivoMovel)}"/>${dispositivoMovel}
+			</label>
+		</g:each>
+	</div>
+	<div class="controls">
+		<g:link controller="dispositivoMovel" action="create" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'dispositivoMovel.label', default: 'Dispositivo Movel')])}</g:link>
+	</div>
+</div>
 
 <div class="control-group">
 	<label class="control-label" for="maquinas">
 		<g:message code="usuarioMovel.maquinas.label" default="Maquinas" />
 	</label>
 	<div class="controls uniformjs">
-	
+
 		<g:each in="${com.projeto.clp.Maquina.list()}" var="maquina" status="i">
 			<label class="checkbox">
 				<g:checkBox class="checkbox" name="maquinas" value="${maquina?.id}" checked="${usuarioMovelInstance?.maquinas?.contains(maquina)}"/>${maquina}
@@ -52,5 +67,6 @@
 		<g:link controller="maquina" action="create" params="['departamento.id': usuarioMovelInstance?.departamento?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'maquina.label', default: 'Maquina')])}</g:link>
 	</div>
 </div>
+
 
 

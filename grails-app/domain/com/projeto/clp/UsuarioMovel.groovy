@@ -7,11 +7,12 @@ class UsuarioMovel {
 	
 	Departamento departamento
 	Set maquinas
-	//Set dispositivosMoveis
+	Set dispositivosMoveis
 	
 	static belongsTo = [departamento: Departamento]
-	static hasMany = [maquinas: Maquina
-					 //, dispositivosMoveis: DispositivoMovel
+	static hasMany = [
+						maquinas: Maquina,
+						dispositivosMoveis: DispositivoMovel
 					 ]
 
     static constraints = {

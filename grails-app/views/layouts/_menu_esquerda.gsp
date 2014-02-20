@@ -57,13 +57,18 @@
 						</g:link>
 					</li>
 					<li class="">
+						<g:link action="index" controller="dispositivoMovel">
+							<span>Dispositivo Móvel</span>
+						</g:link>
+					</li>
+					<li class="">
 						<g:link action="index" controller="maquina">
 							<span>Máquina</span>
 						</g:link>
 					</li>
 
 				</ul> 
-				<span class="count">5</span>
+				<span class="count">6</span>
 			</li>
 
 
