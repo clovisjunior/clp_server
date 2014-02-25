@@ -46,29 +46,29 @@
 					<div class="row-fluid">
 						<ol class="property-list entidade">
 						
+							<g:if test="${entidadeInstance?.username}">
+							<li class="fieldcontain">
+								<span id="username-label" class="property-label"><g:message code="entidade.username.label" default="Username" /></span>
+								
+									<span class="property-value" aria-labelledby="username-label"><g:fieldValue bean="${entidadeInstance}" field="username"/></span>
+								
+							</li>
+							</g:if>
+						
+							<g:if test="${entidadeInstance?.email}">
+							<li class="fieldcontain">
+								<span id="email-label" class="property-label"><g:message code="entidade.email.label" default="Email" /></span>
+								
+									<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${entidadeInstance}" field="email"/></span>
+								
+							</li>
+							</g:if>
+						
 							<g:if test="${entidadeInstance?.nome}">
 							<li class="fieldcontain">
 								<span id="nome-label" class="property-label"><g:message code="entidade.nome.label" default="Nome" /></span>
 								
 									<span class="property-value" aria-labelledby="nome-label"><g:fieldValue bean="${entidadeInstance}" field="nome"/></span>
-								
-							</li>
-							</g:if>
-						
-							<g:if test="${entidadeInstance?.usuario}">
-							<li class="fieldcontain">
-								<span id="usuario-label" class="property-label"><g:message code="entidade.usuario.label" default="Usuario" /></span>
-								
-									<span class="property-value" aria-labelledby="usuario-label"><g:fieldValue bean="${entidadeInstance}" field="usuario"/></span>
-								
-							</li>
-							</g:if>
-						
-							<g:if test="${entidadeInstance?.senha}">
-							<li class="fieldcontain">
-								<span id="senha-label" class="property-label"><g:message code="entidade.senha.label" default="Senha" /></span>
-								
-									<span class="property-value" aria-labelledby="senha-label"><g:fieldValue bean="${entidadeInstance}" field="senha"/></span>
 								
 							</li>
 							</g:if>

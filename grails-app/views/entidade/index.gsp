@@ -37,12 +37,11 @@
 				<thead >
 					<tr>
 					
+						<g:sortableColumn property="username" title="${message(code: 'entidade.username.label', default: 'Username')}" />
+					
+						<g:sortableColumn property="email" title="${message(code: 'entidade.email.label', default: 'Email')}" />
+					
 						<g:sortableColumn property="nome" title="${message(code: 'entidade.nome.label', default: 'Nome')}" />
-					
-						<g:sortableColumn property="usuario" title="${message(code: 'entidade.usuario.label', default: 'Usuario')}" />
-					
-						<g:sortableColumn property="senha" title="${message(code: 'entidade.senha.label', default: 'Senha')}" />
-					
 					
 						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
 					</tr>
@@ -51,11 +50,11 @@
 				<g:each in="${entidadeInstanceList}" status="i" var="entidadeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
+						<td>${fieldValue(bean: entidadeInstance, field: "username")}</td>
+					
+						<td>${fieldValue(bean: entidadeInstance, field: "email")}</td>
+					
 						<td>${fieldValue(bean: entidadeInstance, field: "nome")}</td>
-					
-						<td>${fieldValue(bean: entidadeInstance, field: "usuario")}</td>
-					
-						<td>${fieldValue(bean: entidadeInstance, field: "senha")}</td>
 					
 						<td class="center">
 							<g:link action="edit" id="${entidadeInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>

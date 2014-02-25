@@ -59,7 +59,9 @@
 
 	<!-- Profile / Logout menu -->
 	<li class="account dropdown dd-1">
-		<a data-toggle="dropdown" href="#" class="glyphicons logout lock"><span class="hidden-phone">joao.pulo</span><i></i></a>
+		<a data-toggle="dropdown" href="#" class="glyphicons logout lock">
+			<span class="hidden-phone"><sec:loggedInUserInfo field="username"/></span><i></i>
+		</a>
 		<ul class="dropdown-menu pull-right">
 			<li>
 				<a href="#" class="glyphicons cogwheel">Configurações<i></i></a>
@@ -71,15 +73,14 @@
 					</span> 
 					<span class="img"></span> 
 					<span class="detalhes"> 
-						<a href="#">João do Pulo</a> 
-						joao@pulo.com
+						<a href="#"><sec:loggedInUserInfo field="username"/></a> 
 				</span> 
 				<span class="clearfix"></span>
 				</span>
 			</li>
 			<li>
 				<span> 
-					<a class="btn btn-default btn-mini pull-right" href="#">Logout</a>
+					 <g:link controller="logout" class="btn btn-default btn-mini pull-right">Sair</g:link>
 				</span>
 			</li>
 		</ul>

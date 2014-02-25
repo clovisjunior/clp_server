@@ -4,6 +4,24 @@
 
 
 <div class="control-group">
+	<label class="control-label" for="username">
+		<g:message code="entidade.username.label" default="Username" />
+	</label>
+	<div class="controls">
+		<g:textField name="username" required="" value="${entidadeInstance?.username}" disabled="disabled"/>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="email">
+		<g:message code="entidade.email.label" default="Email" />
+	</label>
+	<div class="controls">
+		<g:field type="email" name="email" required="" value="${entidadeInstance?.email}"/>
+	</div>
+</div>
+
+<div class="control-group">
 	<label class="control-label" for="nome">
 		<g:message code="entidade.nome.label" default="Nome" />
 	</label>
@@ -11,29 +29,6 @@
 		<g:textField name="nome" required="" value="${entidadeInstance?.nome}"/>
 	</div>
 </div>
-
-
-
-<div class="control-group">
-	<label class="control-label" for="usuario">
-		<g:message code="entidade.usuario.label" default="Usuario" />
-	</label>
-	<div class="controls">
-		<g:textField name="usuario" maxlength="15" required="" value="${entidadeInstance?.usuario}"/>
-	</div>
-</div>
-
-
-
-<div class="control-group">
-	<label class="control-label" for="senha">
-		<g:message code="entidade.senha.label" default="Senha" />
-	</label>
-	<div class="controls">
-		<g:field type="password" name="senha" maxlength="15" required="" value="${entidadeInstance?.senha}"/>
-	</div>
-</div>
-
 
 
 <div class="control-group">

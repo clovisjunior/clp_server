@@ -3,7 +3,9 @@ package com.projeto.clp
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured;
 import grails.transaction.Transactional
+
 
 @Transactional(readOnly = true)
 class EntidadeController {
@@ -19,6 +21,7 @@ class EntidadeController {
         respond entidadeInstance
     }
 
+	@Secured(['ROLE_ADMIN'])
     def create() {
         respond new Entidade(params)
     }
@@ -73,6 +76,7 @@ class EntidadeController {
         }
     }
 
+	@Secured(['ROLE_ADMIN'])
     @Transactional
     def delete(Entidade entidadeInstance) {
 

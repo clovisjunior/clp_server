@@ -72,7 +72,6 @@
 		<!-- Main Theme Stylesheet :: CSS -->
 		<link href="${resource(dir: 'common/theme/css', file: 'style-light.css')}" rel="stylesheet" />
 		
-		
 		<!-- LESS.js Library -->
 		<script	src="${resource(dir: 'common/theme/scripts/plugins/system', file: 'less.min.js')}"></script>
 			

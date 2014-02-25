@@ -113,3 +113,29 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.rememberMe.persistent = true
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.projeto.clp.Usuario'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.projeto.clp.UsuarioPapel'
+grails.plugin.springsecurity.authority.className = 'com.projeto.clp.Papel'
+grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.interceptUrlMap = [
+	'/js/**':					['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/css/**':					['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/images/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/administrador/**': 		['ROLE_ADMIN'],
+	'/departamento/**': 		['ROLE_USER'],
+	'/dispositivoMovel/**': 	['ROLE_USER'],
+	'/entidade/**': 			['ROLE_USER', 'ROLE_ADMIN'],
+	'/maquina/**': 				['ROLE_USER'],
+	'/unidadeDeNegocio/**': 	['ROLE_USER'],
+	'/maquinaPorta/**': 		['ROLE_USER'],
+	'/usuarioMovel/**': 		['ROLE_USER'],
+	'/*':            			['ROLE_USER', 'ROLE_ADMIN'],
+	'/login/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/logout/**':				['IS_AUTHENTICATED_ANONYMOUSLY']
+]
+

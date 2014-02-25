@@ -9,7 +9,7 @@
 		<span class="profile">
 			<p>
 				Bem vindo 
-				<a	href="#">joao.pulo</a>
+				<a	href="#"><sec:loggedInUserInfo field="username"/></a>
 			</p> 
 			<a class="img" href="#">
 				<img src="${resource(dir: 'common/theme/images', file: 'avatar-style-light.jpg')}" alt="Avatar" /></a> 
