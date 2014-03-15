@@ -39,6 +39,9 @@
 					<div class="innerAll left">
 						<p> <g:message code="security.denied.message"/> :(</p>
 					</div>
+					<div class="innerAll left">
+						<p> <g:link url="${createLink(uri: '/')}">Voltar</g:link></p>
+					</div>
 				</div>
 				<!-- // Column END -->
 				

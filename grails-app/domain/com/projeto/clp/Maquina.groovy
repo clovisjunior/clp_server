@@ -6,19 +6,21 @@ class Maquina {
 	String ip
 	String modelo
 	String identificador
+	Integer porta = new Integer(502)
 	
 	Departamento departamento
 	
-	Set portas
+	Set escravos
 	
 	static belongsTo = [departamento: Departamento]
-	static hasMany = [portas: MaquinaPorta]
+	static hasMany = [escravos: EscravoMaquina]
 
     static constraints = {
 		localizacaoFisica nullable: true, blank: true
 		ip nullable: false, blank: false
 		modelo nullable: false, blank: false
 		identificador nullable: false, blank: false, unique: true
+		porta range: 0..65535
     }
 	
 	String toString(){

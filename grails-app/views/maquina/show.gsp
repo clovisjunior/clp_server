@@ -82,6 +82,15 @@
 							</li>
 							</g:if>
 						
+							<g:if test="${maquinaInstance?.porta}">
+							<li class="fieldcontain">
+								<span id="porta-label" class="property-label"><g:message code="maquina.porta.label" default="Porta" /></span>
+								
+									<span class="property-value" aria-labelledby="porta-label"><g:fieldValue bean="${maquinaInstance}" field="porta"/></span>
+								
+							</li>
+							</g:if>
+						
 							<g:if test="${maquinaInstance?.departamento}">
 							<li class="fieldcontain">
 								<span id="departamento-label" class="property-label"><g:message code="maquina.departamento.label" default="Departamento" /></span>
@@ -91,12 +100,12 @@
 							</li>
 							</g:if>
 						
-							<g:if test="${maquinaInstance?.portas}">
+							<g:if test="${maquinaInstance?.escravos}">
 							<li class="fieldcontain">
-								<span id="portas-label" class="property-label"><g:message code="maquina.portas.label" default="Portas" /></span>
+								<span id="escravos-label" class="property-label"><g:message code="maquina.escravos.label" default="Escravos" /></span>
 								
-									<g:each in="${maquinaInstance.portas}" var="p">
-									<span class="property-value" aria-labelledby="portas-label"><g:link controller="maquinaPorta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+									<g:each in="${maquinaInstance.escravos}" var="e">
+									<span class="property-value" aria-labelledby="escravos-label"><g:link controller="escravoMaquina" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
 									</g:each>
 								
 							</li>

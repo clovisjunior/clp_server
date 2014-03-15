@@ -45,6 +45,8 @@
 					
 						<g:sortableColumn property="identificador" title="${message(code: 'maquina.identificador.label', default: 'Identificador')}" />
 					
+						<g:sortableColumn property="porta" title="${message(code: 'maquina.porta.label', default: 'Porta')}" />
+					
 						<th><g:message code="maquina.departamento.label" default="Departamento" /></th>
 					
 					
@@ -62,6 +64,8 @@
 						<td>${fieldValue(bean: maquinaInstance, field: "modelo")}</td>
 					
 						<td>${fieldValue(bean: maquinaInstance, field: "identificador")}</td>
+					
+						<td>${fieldValue(bean: maquinaInstance, field: "porta")}</td>
 					
 						<td>${fieldValue(bean: maquinaInstance, field: "departamento")}</td>
 					

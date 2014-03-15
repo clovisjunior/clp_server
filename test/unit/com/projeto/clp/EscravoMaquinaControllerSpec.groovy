@@ -5,9 +5,9 @@ package com.projeto.clp
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(MaquinaPortaController)
-@Mock(MaquinaPorta)
-class MaquinaPortaControllerSpec extends Specification {
+@TestFor(EscravoMaquinaController)
+@Mock(EscravoMaquina)
+class EscravoMaquinaControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class MaquinaPortaControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.maquinaPortaInstanceList
-            model.maquinaPortaInstanceCount == 0
+            !model.escravoMaquinaInstanceList
+            model.escravoMaquinaInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,31 +30,31 @@ class MaquinaPortaControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.maquinaPortaInstance!= null
+            model.escravoMaquinaInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
-            def maquinaPorta = new MaquinaPorta()
-            maquinaPorta.validate()
-            controller.save(maquinaPorta)
+            def escravoMaquina = new EscravoMaquina()
+            escravoMaquina.validate()
+            controller.save(escravoMaquina)
 
         then:"The create view is rendered again with the correct model"
-            model.maquinaPortaInstance!= null
+            model.escravoMaquinaInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            maquinaPorta = new MaquinaPorta(params)
+            escravoMaquina = new EscravoMaquina(params)
 
-            controller.save(maquinaPorta)
+            controller.save(escravoMaquina)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/maquinaPorta/show/1'
+            response.redirectedUrl == '/escravoMaquina/show/1'
             controller.flash.message != null
-            MaquinaPorta.count() == 1
+            EscravoMaquina.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -66,11 +66,11 @@ class MaquinaPortaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def maquinaPorta = new MaquinaPorta(params)
-            controller.show(maquinaPorta)
+            def escravoMaquina = new EscravoMaquina(params)
+            controller.show(escravoMaquina)
 
         then:"A model is populated containing the domain instance"
-            model.maquinaPortaInstance == maquinaPorta
+            model.escravoMaquinaInstance == escravoMaquina
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -82,11 +82,11 @@ class MaquinaPortaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def maquinaPorta = new MaquinaPorta(params)
-            controller.edit(maquinaPorta)
+            def escravoMaquina = new EscravoMaquina(params)
+            controller.edit(escravoMaquina)
 
         then:"A model is populated containing the domain instance"
-            model.maquinaPortaInstance == maquinaPorta
+            model.escravoMaquinaInstance == escravoMaquina
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -94,28 +94,28 @@ class MaquinaPortaControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/maquinaPorta/index'
+            response.redirectedUrl == '/escravoMaquina/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def maquinaPorta = new MaquinaPorta()
-            maquinaPorta.validate()
-            controller.update(maquinaPorta)
+            def escravoMaquina = new EscravoMaquina()
+            escravoMaquina.validate()
+            controller.update(escravoMaquina)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.maquinaPortaInstance == maquinaPorta
+            model.escravoMaquinaInstance == escravoMaquina
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            maquinaPorta = new MaquinaPorta(params).save(flush: true)
-            controller.update(maquinaPorta)
+            escravoMaquina = new EscravoMaquina(params).save(flush: true)
+            controller.update(escravoMaquina)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/maquinaPorta/show/$maquinaPorta.id"
+            response.redirectedUrl == "/escravoMaquina/show/$escravoMaquina.id"
             flash.message != null
     }
 
@@ -124,23 +124,23 @@ class MaquinaPortaControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/maquinaPorta/index'
+            response.redirectedUrl == '/escravoMaquina/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def maquinaPorta = new MaquinaPorta(params).save(flush: true)
+            def escravoMaquina = new EscravoMaquina(params).save(flush: true)
 
         then:"It exists"
-            MaquinaPorta.count() == 1
+            EscravoMaquina.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(maquinaPorta)
+            controller.delete(escravoMaquina)
 
         then:"The instance is deleted"
-            MaquinaPorta.count() == 0
-            response.redirectedUrl == '/maquinaPorta/index'
+            EscravoMaquina.count() == 0
+            response.redirectedUrl == '/escravoMaquina/index'
             flash.message != null
     }
 }

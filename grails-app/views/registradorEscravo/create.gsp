@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'maquinaPorta.label', default: 'MaquinaPorta')}" />
+		<g:set var="entityName" value="${message(code: 'registradorEscravo.label', default: 'RegistradorEscravo')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -29,9 +29,9 @@
 					<strong><g:message default="Atenção !" code="alert.warning"/></strong> ${flash.message}
 				</div>
 			</g:if>
-			<g:hasErrors bean="${maquinaPortaInstance}">
+			<g:hasErrors bean="${registradorEscravoInstance}">
 				<div class="alert alert-error">
-					<g:eachError bean="${maquinaPortaInstance}" var="error">
+					<g:eachError bean="${registradorEscravoInstance}" var="error">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						<strong><g:message error="${error}"/></strong>
 					</g:eachError>
@@ -39,7 +39,7 @@
 			</g:hasErrors>
 			<!-- //END Mensagem -->
 			
-			<g:form url="[resource:maquinaPortaInstance, action:'save']"  class="form-horizontal" style="margin-bottom: 0;">
+			<g:form url="[resource:registradorEscravoInstance, action:'save']"  class="form-horizontal" style="margin-bottom: 0;">
 				<!-- Widget -->
 				<div class="widget">
 					<!-- Widget heading -->

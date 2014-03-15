@@ -48,6 +48,17 @@
 
 
 <div class="control-group">
+	<label class="control-label" for="porta">
+		<g:message code="maquina.porta.label" default="Porta" />
+	</label>
+	<div class="controls">
+		<g:textField name="porta" required="" value="${fieldValue(bean: maquinaInstance, field: 'porta')}"/>
+	</div>
+</div>
+
+
+
+<div class="control-group">
 	<label class="control-label" for="departamento">
 		<g:message code="maquina.departamento.label" default="Departamento" />
 	</label>
@@ -59,17 +70,17 @@
 
 
 <div class="control-group">
-	<label class="control-label" for="portas">
-		<g:message code="maquina.portas.label" default="Portas" />
+	<label class="control-label" for="escravos">
+		<g:message code="maquina.escravos.label" default="Escravos" />
 	</label>
 	<div class="controls">
 		
 <ul class="one-to-many">
-<g:each in="${maquinaInstance?.portas?}" var="p">
-    <li><g:link controller="maquinaPorta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+<g:each in="${maquinaInstance?.escravos?}" var="e">
+    <li><g:link controller="escravoMaquina" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>
-<g:link controller="maquinaPorta" action="create" params="['maquina.id': maquinaInstance?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'maquinaPorta.label', default: 'MaquinaPorta')])}</g:link>
+<g:link controller="escravoMaquina" action="create" params="['maquina.id': maquinaInstance?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'escravoMaquina.label', default: 'EscravoMaquina')])}</g:link>
 
 	</div>
 </div>
