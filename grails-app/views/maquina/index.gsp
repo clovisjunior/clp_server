@@ -41,13 +41,13 @@
 					
 						<g:sortableColumn property="ip" title="${message(code: 'maquina.ip.label', default: 'Ip')}" />
 					
+						<g:sortableColumn property="isEncapsulado" title="${message(code: 'maquina.isEncapsulado.label', default: 'Is Encapsulado')}" />
+					
 						<g:sortableColumn property="modelo" title="${message(code: 'maquina.modelo.label', default: 'Modelo')}" />
 					
 						<g:sortableColumn property="identificador" title="${message(code: 'maquina.identificador.label', default: 'Identificador')}" />
 					
 						<g:sortableColumn property="porta" title="${message(code: 'maquina.porta.label', default: 'Porta')}" />
-					
-						<th><g:message code="maquina.departamento.label" default="Departamento" /></th>
 					
 					
 						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
@@ -61,13 +61,13 @@
 					
 						<td>${fieldValue(bean: maquinaInstance, field: "ip")}</td>
 					
+						<td><g:formatBoolean boolean="${maquinaInstance.isEncapsulado}" /></td>
+					
 						<td>${fieldValue(bean: maquinaInstance, field: "modelo")}</td>
 					
 						<td>${fieldValue(bean: maquinaInstance, field: "identificador")}</td>
 					
 						<td>${fieldValue(bean: maquinaInstance, field: "porta")}</td>
-					
-						<td>${fieldValue(bean: maquinaInstance, field: "departamento")}</td>
 					
 						<td class="center">
 							<g:link action="edit" id="${maquinaInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>

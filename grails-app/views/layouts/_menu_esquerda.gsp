@@ -41,6 +41,8 @@
 							<span>Entidade</span>
 						</g:link>
 					</li>
+					
+					<sec:access expression="hasRole('ROLE_USER')">
 					<li class="">
 						<g:link action="index" controller="unidadeDeNegocio">
 							<span>Unidade de Negócio</span>
@@ -66,6 +68,7 @@
 							<span>Máquina</span>
 						</g:link>
 					</li>
+					</sec:access>
 
 				</ul> 
 				<span class="count">6</span>

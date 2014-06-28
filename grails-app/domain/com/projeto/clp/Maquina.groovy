@@ -7,6 +7,7 @@ class Maquina {
 	String modelo
 	String identificador
 	Integer porta = new Integer(502)
+	Boolean isEncapsulado = Boolean.FALSE;
 	
 	Departamento departamento
 	
@@ -18,9 +19,10 @@ class Maquina {
     static constraints = {
 		localizacaoFisica nullable: true, blank: true
 		ip nullable: false, blank: false
+		isEncapsulado nullable: false 
 		modelo nullable: false, blank: false
 		identificador nullable: false, blank: false, unique: true
-		porta range: 0..65535
+		porta min:0, max: 65535
     }
 	
 	String toString(){

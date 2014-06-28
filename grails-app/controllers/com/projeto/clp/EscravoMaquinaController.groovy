@@ -40,7 +40,7 @@ class EscravoMaquinaController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'escravoMaquinaInstance.label', default: 'EscravoMaquina'), escravoMaquinaInstance.id])
-                redirect escravoMaquinaInstance
+                redirect controller: "maquina", action: "show", id: escravoMaquinaInstance?.maquina?.id
             }
             '*' { respond escravoMaquinaInstance, [status: CREATED] }
         }

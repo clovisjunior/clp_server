@@ -39,7 +39,7 @@
 			</g:hasErrors>
 			<!-- //END Mensagem -->
 			
-			<g:form url="[resource:maquinaInstance, action:'update']" method="PUT"  class="form-horizontal" style="margin-bottom: 0;">
+			<g:form url="[resource:maquinaInstance, action:'update']" method="PUT" class="form-horizontal" style="margin-bottom: 0;">
 				<g:hiddenField name="version" value="${maquinaInstance?.version}" />
 				
 				<!-- Widget -->
@@ -65,7 +65,9 @@
 							<g:link action="index" class="btn btn-icon btn-default glyphicons circle_remove">
 								<i></i><g:message code="default.button.cancel.label" default="Cancelar"/>
 							</g:link>
+							
 						</div>
+						
 					</div>
 					<!-- // Widget heading END -->
 				</div>

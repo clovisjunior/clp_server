@@ -6,6 +6,27 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'maquina.label', default: 'Maquina')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<g:javascript>
+			function showSpinner() {
+			   $('spinner').show(); 
+			}
+			
+			function hideSpinner() {
+			   $('spinner').hide();
+			}
+			
+			function addEscravo(id, maquina){
+				var identificador = document.getElementById('identificador' + id).value;
+				var descricao = document.getElementById('descricao' + id).value;
+				
+				<g:remoteFunction action="addEscravoMaquina" update="teste_conexao" 
+								  controller="maquina"
+								  id="\' + maquina + \'"
+								  params="\'dados=\' + id + \'|\' + identificador + \'|\' + descricao"/>
+				
+				return false;
+			}
+		</g:javascript>
 	</head>
 	<body>
 	
@@ -64,6 +85,15 @@
 							</li>
 							</g:if>
 						
+							<g:if test="${maquinaInstance?.isEncapsulado}">
+							<li class="fieldcontain">
+								<span id="isEncapsulado-label" class="property-label"><g:message code="maquina.isEncapsulado.label" default="Is Encapsulado" /></span>
+								
+									<span class="property-value" aria-labelledby="isEncapsulado-label"><g:formatBoolean boolean="${maquinaInstance?.isEncapsulado}" /></span>
+								
+							</li>
+							</g:if>
+						
 							<g:if test="${maquinaInstance?.modelo}">
 							<li class="fieldcontain">
 								<span id="modelo-label" class="property-label"><g:message code="maquina.modelo.label" default="Modelo" /></span>
@@ -100,17 +130,6 @@
 							</li>
 							</g:if>
 						
-							<g:if test="${maquinaInstance?.escravos}">
-							<li class="fieldcontain">
-								<span id="escravos-label" class="property-label"><g:message code="maquina.escravos.label" default="Escravos" /></span>
-								
-									<g:each in="${maquinaInstance.escravos}" var="e">
-									<span class="property-value" aria-labelledby="escravos-label"><g:link controller="escravoMaquina" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
-									</g:each>
-								
-							</li>
-							</g:if>
-						
 						</ol>
 						
 						<hr class="separator" />
@@ -121,9 +140,85 @@
 								<g:link class="btn btn-primary btn-icon glyphicons circle_plus" action="create"><i></i> <g:message code="default.add.label" default="Adicionar" args="[entityName]"/></g:link>
 								<g:link class="btn btn-icon btn-primary glyphicons pencil" action="edit" resource="${maquinaInstance}"><i></i><g:message code="default.button.edit.label" default="Editar" /></g:link>
 								<button class="btn btn-icon btn-danger glyphicons delete" type="submit"  onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Tem certeza?')}');" ><i></i><g:message code="default.button.delete.label" default="Deletar"/></button>
+								
+								<g:remoteLink action="testeConexao" class="btn btn-icon btn-default glyphicons link" id="${maquinaInstance.id}" update="[success:'teste_conexao']">
+									<i></i><g:message code="default.button.testar.conexao.label" default="Testar Conexão"/>
+								</g:remoteLink>
+								<span id="teste_conexao"></span>
 							</g:form>
 						</div>
 						
+					</div>
+				</div>
+			</div>
+			
+			<div class="widget widget-tabs widget-tabs-double-2">
+				<div class="widget-head">
+					<ul>
+						<li class="active"><a class="glyphicons list" href="#tabEscravos" data-toggle="tab"><i></i><span>Escravos</span></a></li>
+						<li><a class="glyphicons search" href="#tabPesquisar" data-toggle="tab"><i></i><span>Pesquisar</span></a></li>
+					</ul>
+				</div>
+				<div class="widget-body">
+					<div class="tab-content">
+						<div id="tabEscravos" class="tab-pane active widget-body-regular">
+							
+							<table class="table table-bordered table-condensed table-striped table-vertical-center checkboxs js-table-sortable">
+								<thead >
+									<tr>
+										<g:sortableColumn property="escravoId" title="${message(code: 'escravoMaquina.escravoId.label', default: 'Escravo Id')}" />
+									
+										<g:sortableColumn property="identificador" title="${message(code: 'escravoMaquina.identificador.label', default: 'Identificador')}" />
+									
+										<g:sortableColumn property="descricao" title="${message(code: 'escravoMaquina.descricao.label', default: 'Descricao')}" />
+									
+										<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<g:each in="${maquinaInstance?.escravos}" status="i" var="escravoMaquinaInstance">
+										<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+										
+											<td>${fieldValue(bean: escravoMaquinaInstance, field: "escravoId")}</td>
+										
+											<td>${fieldValue(bean: escravoMaquinaInstance, field: "identificador")}</td>
+										
+											<td>${fieldValue(bean: escravoMaquinaInstance, field: "descricao")}</td>
+										
+											<td class="center">
+												<g:link controller="escravoMaquina" action="edit" id="${escravoMaquinaInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+											</td>
+										</tr>
+									</g:each>
+								</tbody>
+							</table>
+							
+							<hr class="separator" />
+				
+							<!-- Form actions -->
+							<div class="form-actions">
+								<g:link class="btn btn-primary btn-icon glyphicons circle_plus" action="create" controller="escravoMaquina" params="['maquina.id': maquinaInstance.id]">
+									<i></i> <g:message code="default.add.label" default="Adicionar" args="['Escravo']"/>
+								</g:link>
+							</div>
+							
+						</div>
+						
+						<div id="tabPesquisar" class="tab-pane widget-body-regular">
+							<g:remoteLink action="listarEscravos" class="btn btn-icon btn-default glyphicons search" id="${maquinaInstance.id}" 
+										  update="[success:'list_escravos']" onLoading="showSpinner();" onLoaded="hideSpinner();">
+								<i></i><g:message code="default.button.testar.conexao.label" default="Pesquisar Escravos"/>
+							</g:remoteLink>
+							
+							<hr class="separator" />
+							
+							<div id="list_escravos"></div>
+							
+							<div id="spinner" style="display: none;">
+							   <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Pesquisando ..." width="16" height="16" />
+							</div>
+							
+						</div>
 					</div>
 				</div>
 			</div>

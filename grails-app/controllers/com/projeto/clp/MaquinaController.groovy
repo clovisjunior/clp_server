@@ -1,14 +1,17 @@
 package com.projeto.clp
 
-
-
 import static org.springframework.http.HttpStatus.*
+
+import java.util.Set;
+
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class MaquinaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	
+	def modbusService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -40,7 +43,7 @@ class MaquinaController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'maquinaInstance.label', default: 'Maquina'), maquinaInstance.id])
-                redirect maquinaInstance
+                redirect action: "show", resource: maquinaInstance
             }
             '*' { respond maquinaInstance, [status: CREATED] }
         }
@@ -67,7 +70,7 @@ class MaquinaController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Maquina.label', default: 'Maquina'), maquinaInstance.id])
-                redirect maquinaInstance
+                redirect action: "show", resource: maquinaInstance
             }
             '*'{ respond maquinaInstance, [status: OK] }
         }
@@ -101,4 +104,47 @@ class MaquinaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def testeConexao(){
+		Maquina maquina = Maquina.get(params.id)
+		
+		render modbusService.testarConexao(maquina)
+	}
+	
+	def listarEscravos(){
+		Maquina maquina = Maquina.get(params.id)
+		
+		def escravosId = modbusService.pesquisarEscravos(maquina)
+		
+		def escravos = []
+		
+		escravosId.each {
+			escravos << new EscravoMaquina(maquina: maquina, escravoId: it)
+		}
+		
+		render(template: "list_escravos", model: [escravoMaquinaList: escravos])
+	}
+	
+	def addEscravoMaquina(){
+		
+		Maquina maquina = Maquina.get(params.id)
+		println params.dados?.split('\\|')
+		def escravoId = params.dados?.split('\\|')[0]
+		def identificador = params.dados?.split('\\|')[1]
+		def descricao = params.dados?.split('\\|')[2]
+		
+		EscravoMaquina escravoMaquina = EscravoMaquina.findByMaquinaAndEscravoId(maquina, escravoId)
+		
+		if(escravoMaquina == null){ 
+			escravoMaquina = new EscravoMaquina(escravoId: escravoId, identificador: identificador, descricao: descricao, maquina: maquina)
+		}
+		else{
+			escravoMaquina.identificador = identificador
+			escravoMaquina.descricao = descricao
+		}
+		
+		escravoMaquina.save(flush: true)
+		
+		render ""
+	}
 }

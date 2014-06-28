@@ -29,7 +29,7 @@ class BootStrap {
 		
 		Departamento departamento = Departamento.get(1)
 
-		Maquina maquina = new Maquina(localizacaoFisica: 'Piso L3', ip: '192.168.0.2', modelo: 'XPTO', porta: 502, departamento: departamento, identificador: 'CLP_9019')
+		Maquina maquina = new Maquina(localizacaoFisica: 'Piso L3', ip: '192.168.0.7', modelo: 'XPTO', porta: 502, departamento: departamento, identificador: 'CLP_9019')
 		maquina.save(flush: true)
 
     }
