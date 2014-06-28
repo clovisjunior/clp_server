@@ -17,20 +17,22 @@ import com.projeto.clp.Maquina
 @Transactional
 class ModbusService {
 
-	def testarConexao(Maquina maquina){
+	boolean testarConexao(Maquina maquina){
 		
 		def master = init(maquina)
 
         try {
             master.init()
-			return "Conexão OK"
+			return true
         }
 		catch(ModbusInitException e){
-			return "Falha na Conexão"
+			return false
 		}
         finally {
             master.destroy()
         }
+		
+		return false
 	}
 	
 	def pesquisarEscravos(Maquina maquina){

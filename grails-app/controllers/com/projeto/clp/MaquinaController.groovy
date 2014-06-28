@@ -108,27 +108,51 @@ class MaquinaController {
 	def testeConexao(){
 		Maquina maquina = Maquina.get(params.id)
 		
-		render modbusService.testarConexao(maquina)
+		if(modbusService.testarConexao(maquina)){
+			render "Conexão OK"
+		}
+		else{
+			render "Falha na Conexão"
+		}
 	}
 	
 	def listarEscravos(){
 		Maquina maquina = Maquina.get(params.id)
+		
+		def escravos = maquina?.escravos.sort{x, y -> x.escravoId.equals(y.escravoId) ? 0 : x.escravoId < y.escravoId ? -1 : 1}
+		
+		render(template: "list_escravos", model: [escravos: escravos])
+	}
+	
+	
+	def listarEscravosPesquisa(){
+		Maquina maquina = Maquina.get(params.id)
+		
+		if(!modbusService.testarConexao(maquina)){
+			render "Falha na Conexão"
+			return
+		}
 		
 		def escravosId = modbusService.pesquisarEscravos(maquina)
 		
 		def escravos = []
 		
 		escravosId.each {
-			escravos << new EscravoMaquina(maquina: maquina, escravoId: it)
+			
+			def escravo = EscravoMaquina.findByMaquinaAndEscravoId(maquina, it)
+			if(escravo == null){
+				escravo = new EscravoMaquina(maquina: maquina, escravoId: it)
+			}
+			
+			escravos << escravo
 		}
 		
-		render(template: "list_escravos", model: [escravoMaquinaList: escravos])
+		render(template: "list_escravos_pesquisa", model: [escravoMaquinaList: escravos])
 	}
 	
 	def addEscravoMaquina(){
 		
 		Maquina maquina = Maquina.get(params.id)
-		println params.dados?.split('\\|')
 		def escravoId = params.dados?.split('\\|')[0]
 		def identificador = params.dados?.split('\\|')[1]
 		def descricao = params.dados?.split('\\|')[2]
