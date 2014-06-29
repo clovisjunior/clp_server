@@ -62,7 +62,7 @@
 						<!-- Form actions -->
 						<div class="form-actions">
 							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i><g:message code="default.button.update.label" default="Atualizar"/></button>
-							<g:link action="index" class="btn btn-icon btn-default glyphicons circle_remove">
+							<g:link controller="maquina" action="show" id="${escravoMaquinaInstance?.maquina?.id}" class="btn btn-icon btn-default glyphicons circle_remove">
 								<i></i><g:message code="default.button.cancel.label" default="Cancelar"/>
 							</g:link>
 						</div>

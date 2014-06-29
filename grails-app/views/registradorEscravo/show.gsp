@@ -1,5 +1,6 @@
 
 <%@ page import="com.projeto.clp.RegistradorEscravo" %>
+
 <!DOCTYPE html>
 <html>
 	<head>

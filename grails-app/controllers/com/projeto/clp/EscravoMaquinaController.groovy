@@ -9,6 +9,8 @@ import grails.transaction.Transactional
 class EscravoMaquinaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	
+	def modbusService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -101,4 +103,23 @@ class EscravoMaquinaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def lerDadoRegistrador() {
+		
+		def registrador = new RegistradorEscravo(params)
+		
+		def resultado = modbusService.lerDadoRegistrador(registrador)
+		
+		render template: "resultado_leitura", model: [registrador: registrador, resultado: resultado]
+	}
+	
+	def adicionarRegistrador() {
+		def registrador = new RegistradorEscravo(params)
+		
+		registrador.save flush: true
+		
+		def escravo = EscravoMaquina.get(params."escravoMaquina.id")
+		
+		render template: "registradores", model: [escravoMaquinaInstance: escravo]
+	}
 }

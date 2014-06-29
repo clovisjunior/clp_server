@@ -8,15 +8,15 @@ class RegistradorEscravo {
 	EscravoMaquina escravoMaquina
 	Integer tipo
 	Integer tipoDado
-	Integer offset = new Integer(0)
+	Integer endereco = new Integer(0)
 	
 	static belongsTo = [escravoMaquina: EscravoMaquina]
 
     static constraints = {
-		offset range: 0..65535 
+		endereco range: 0..65535 
     }
 	
 	String toString(){
-		"${tipo} - ${tipoDado} offset: ${offset} [${escravoMaquina?.identificador}]"
+		"Endereco: ${endereco}, Tipo: ${RegistradorType.get(tipo).descricao}, Tipo Dado: ${DadoType.get(tipoDado).descricao}, Escravo:  [${escravoMaquina?.identificador}]"
 	}
 }

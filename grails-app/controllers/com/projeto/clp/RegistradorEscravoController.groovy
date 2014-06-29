@@ -25,6 +25,7 @@ class RegistradorEscravoController {
 
     @Transactional
     def save(RegistradorEscravo registradorEscravoInstance) {
+		
         if (registradorEscravoInstance == null) {
             notFound()
             return
@@ -40,7 +41,7 @@ class RegistradorEscravoController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'registradorEscravoInstance.label', default: 'RegistradorEscravo'), registradorEscravoInstance.id])
-                redirect registradorEscravoInstance
+                redirect controller: "escravoMaquina", action: "show", id: registradorEscravoInstance?.escravoMaquina?.id
             }
             '*' { respond registradorEscravoInstance, [status: CREATED] }
         }
@@ -67,7 +68,7 @@ class RegistradorEscravoController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'RegistradorEscravo.label', default: 'RegistradorEscravo'), registradorEscravoInstance.id])
-                redirect registradorEscravoInstance
+                redirect controller: "escravoMaquina", action: "show", id: registradorEscravoInstance?.escravoMaquina?.id
             }
             '*'{ respond registradorEscravoInstance, [status: OK] }
         }

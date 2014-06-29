@@ -1,9 +1,9 @@
-<%@ page import="com.projeto.clp.RegistradorEscravo" %>
+<%@ page import="com.projeto.clp.Alarme" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'registradorEscravo.label', default: 'RegistradorEscravo')}" />
+		<g:set var="entityName" value="${message(code: 'alarme.label', default: 'Alarme')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -29,9 +29,9 @@
 					<strong><g:message default="Atenção !" code="alert.warning"/></strong> ${flash.message}
 				</div>
 			</g:if>
-			<g:hasErrors bean="${registradorEscravoInstance}">
+			<g:hasErrors bean="${alarmeInstance}">
 				<div class="alert alert-error">
-					<g:eachError bean="${registradorEscravoInstance}" var="error">
+					<g:eachError bean="${alarmeInstance}" var="error">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						<strong><g:message error="${error}"/></strong>
 					</g:eachError>
@@ -39,8 +39,8 @@
 			</g:hasErrors>
 			<!-- //END Mensagem -->
 			
-			<g:form url="[resource:registradorEscravoInstance, action:'update']" method="PUT"  class="form-horizontal" style="margin-bottom: 0;">
-				<g:hiddenField name="version" value="${registradorEscravoInstance?.version}" />
+			<g:form url="[resource:alarmeInstance, action:'update']" method="PUT"  class="form-horizontal" style="margin-bottom: 0;">
+				<g:hiddenField name="version" value="${alarmeInstance?.version}" />
 				
 				<!-- Widget -->
 				<div class="widget">
@@ -62,7 +62,7 @@
 						<!-- Form actions -->
 						<div class="form-actions">
 							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i><g:message code="default.button.update.label" default="Atualizar"/></button>
-							<g:link controller="escravoMaquina" action="show" id="${registradorEscravoInstance?.escravoMaquina?.id}" class="btn btn-icon btn-default glyphicons circle_remove">
+							<g:link action="index" class="btn btn-icon btn-default glyphicons circle_remove">
 								<i></i><g:message code="default.button.cancel.label" default="Cancelar"/>
 							</g:link>
 						</div>

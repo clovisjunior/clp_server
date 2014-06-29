@@ -20,6 +20,10 @@ enum RegistradorType{
 	static RegistradorType[] list(){
 		[COIL_STATUS, INPUT_STATUS, HOLDING_REGISTER, INPUT_REGISTER]
 	}
+	
+	static get(Integer id){
+		return values().find{it.id == id}
+	}
 
 	public String descricao(){
 		return descricao

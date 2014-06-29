@@ -73,9 +73,17 @@
 				</ul> 
 				<span class="count">6</span>
 			</li>
-
-
+			
+			<sec:access expression="hasRole('ROLE_USER')">
+			<li class="glyphicons warning_sign">
+				<g:link action="index" controller="alarme">
+					<i></i><span>Alarmes</span>
+				</g:link>
+			</li>
+			</sec:access>
 		</ul>
+		
+		
 
 		<div class="clearfix"></div>
 		<!-- // Regular Size Menu END -->

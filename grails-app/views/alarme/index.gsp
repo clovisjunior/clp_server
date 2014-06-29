@@ -1,10 +1,10 @@
 
-<%@ page import="com.projeto.clp.RegistradorEscravo" %>
+<%@ page import="com.projeto.clp.Alarme" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'registradorEscravo.label', default: 'RegistradorEscravo')}" />
+		<g:set var="entityName" value="${message(code: 'alarme.label', default: 'Alarme')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -37,32 +37,36 @@
 				<thead >
 					<tr>
 					
-						<g:sortableColumn property="endereco" title="${message(code: 'registradorEscravo.endereco.label', default: 'Endereco')}" />
+						<th><g:message code="alarme.maquina.label" default="Maquina" /></th>
 					
-						<th><g:message code="registradorEscravo.escravoMaquina.label" default="Escravo Maquina" /></th>
+						<th><g:message code="alarme.registradorEscravo.label" default="Registrador Escravo" /></th>
 					
-						<g:sortableColumn property="tipo" title="${message(code: 'registradorEscravo.tipo.label', default: 'Tipo')}" />
+						<th><g:message code="alarme.escravoMaquina.label" default="Escravo Maquina" /></th>
 					
-						<g:sortableColumn property="tipoDado" title="${message(code: 'registradorEscravo.tipoDado.label', default: 'Tipo Dado')}" />
+						<g:sortableColumn property="maximo" title="${message(code: 'alarme.maximo.label', default: 'Maximo')}" />
+					
+						<g:sortableColumn property="minimo" title="${message(code: 'alarme.minimo.label', default: 'Minimo')}" />
 					
 					
 						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${registradorEscravoInstanceList}" status="i" var="registradorEscravoInstance">
+				<g:each in="${alarmeInstanceList}" status="i" var="alarmeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td>${fieldValue(bean: registradorEscravoInstance, field: "endereco")}</td>
+						<td>${fieldValue(bean: alarmeInstance, field: "maquina")}</td>
 					
-						<td>${fieldValue(bean: registradorEscravoInstance, field: "escravoMaquina")}</td>
+						<td>${fieldValue(bean: alarmeInstance, field: "registradorEscravo")}</td>
 					
-						<td>${fieldValue(bean: registradorEscravoInstance, field: "tipo")}</td>
+						<td>${fieldValue(bean: alarmeInstance, field: "escravoMaquina")}</td>
 					
-						<td>${fieldValue(bean: registradorEscravoInstance, field: "tipoDado")}</td>
+						<td>${fieldValue(bean: alarmeInstance, field: "maximo")}</td>
+					
+						<td>${fieldValue(bean: alarmeInstance, field: "minimo")}</td>
 					
 						<td class="center">
-							<g:link action="edit" id="${registradorEscravoInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+							<g:link action="edit" id="${alarmeInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>
@@ -71,7 +75,7 @@
 			
 			<div class="separator bottom"></div>
 			
-			<custom:paginate total="${registradorEscravoInstanceCount ?: 0}"/>
+			<custom:paginate total="${alarmeInstanceCount ?: 0}"/>
 			
 		</div>
 	</body>

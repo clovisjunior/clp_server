@@ -1,5 +1,8 @@
-
 <%@ page import="com.projeto.clp.EscravoMaquina" %>
+<%@ page import="com.projeto.clp.RegistradorEscravo" %>
+<%@ page import="type.RegistradorType" %>
+<%@ page import="type.DadoType" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -50,7 +53,7 @@
 							<li class="fieldcontain">
 								<span id="escravoId-label" class="property-label"><g:message code="escravoMaquina.escravoId.label" default="Escravo Id" /></span>
 								
-									<span class="property-value" aria-labelledby="escravoId-label"><g:fieldValue bean="${escravoMaquinaInstance}" field="escravoId"/></span>
+								<span class="property-value" aria-labelledby="escravoId-label"><g:fieldValue bean="${escravoMaquinaInstance}" field="escravoId"/></span>
 								
 							</li>
 							</g:if>
@@ -68,7 +71,7 @@
 							<li class="fieldcontain">
 								<span id="descricao-label" class="property-label"><g:message code="escravoMaquina.descricao.label" default="Descricao" /></span>
 								
-									<span class="property-value" aria-labelledby="descricao-label"><g:fieldValue bean="${escravoMaquinaInstance}" field="descricao"/></span>
+								<span class="property-value" aria-labelledby="descricao-label"><g:fieldValue bean="${escravoMaquinaInstance}" field="descricao"/></span>
 								
 							</li>
 							</g:if>
@@ -78,17 +81,6 @@
 								<span id="maquina-label" class="property-label"><g:message code="escravoMaquina.maquina.label" default="Maquina" /></span>
 								
 									<span class="property-value" aria-labelledby="maquina-label"><g:link controller="maquina" action="show" id="${escravoMaquinaInstance?.maquina?.id}">${escravoMaquinaInstance?.maquina?.encodeAsHTML()}</g:link></span>
-								
-							</li>
-							</g:if>
-						
-							<g:if test="${escravoMaquinaInstance?.registradores}">
-							<li class="fieldcontain">
-								<span id="registradores-label" class="property-label"><g:message code="escravoMaquina.registradores.label" default="Registradores" /></span>
-								
-									<g:each in="${escravoMaquinaInstance.registradores}" var="r">
-									<span class="property-value" aria-labelledby="registradores-label"><g:link controller="registradorEscravo" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
-									</g:each>
 								
 							</li>
 							</g:if>
@@ -109,8 +101,117 @@
 					</div>
 				</div>
 			</div>
+			
+			<!-- Widget -->
+			<div class="widget">
+				<!-- Widget heading -->
+				<div class="widget-head">
+					<h4 class="heading"><g:message code="escravo.registrador.head.label"/></h4>
+				</div>
+				<!-- // Widget heading END -->
 		
+				<div class="widget-body">
+		
+					<div id="list_registradores">
+						<g:render template="registradores" model="[escravoMaquinaInstance: escravoMaquinaInstance]"></g:render>
+					</div>
+					
+				</div>
+			</div>
+		
+			<div class="row-fluid">
+				<div class="span6">
+				
+					<!-- Widget -->
+					<div class="widget">
+						<!-- Widget heading -->
+						<div class="widget-head">
+							<h4 class="heading"><g:message code="escravo.registrador.novo.head.label"/></h4>
+						</div>
+						<!-- // Widget heading END -->
+				
+						<div class="widget-body">
+						
+							<g:formRemote name="registradorForm" 
+									 	  update="registrador_leitura_resultado"
+										  url="[controller: 'escravoMaquina', action:'lerDadoRegistrador']"  
+										  class="form-horizontal" style="margin-bottom: 0;">
+										  
+								<g:hiddenField name="escravoMaquina.id" value="${escravoMaquinaInstance.id}"/>
+						
+								<div class="control-group">
+									<label class="control-label" for="escravoMaquina">
+										<g:message code="registradorEscravo.escravoMaquina.label" default="Escravo Maquina" />
+									</label>
+									<div class="controls">
+										<g:textField name="escravoMaquina" value="${escravoMaquinaInstance}" disabled="disabled"/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="endereco">
+										<g:message code="registradorEscravo.endereco.label" default="Endereco" />
+									</label>
+									<div class="controls">
+										<g:textField name="endereco" required="" value=""/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="tipo">
+										<g:message code="registradorEscravo.tipo.label" default="Tipo" />
+									</label>
+									<div class="controls">
+										<g:select id="tipo" name="tipo" from="${RegistradorType.list()}"
+								                  optionKey="id" optionValue="descricao" value=""/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="tipoDado">
+										<g:message code="registradorEscravo.tipoDado.label" default="Tipo Dado" />
+									</label>
+									<div class="controls">
+										<g:select id="tipoDado" name="tipoDado" from="${DadoType.list()}"
+								                  optionKey="id" optionValue="descricao" value=""/>
+									</div>
+								</div>
+								
+								<hr class="separator" />
+						
+								<!-- Form actions -->
+								<div class="form-actions">
+									<button type="submit" class="btn btn-icon btn-default glyphicons eye_open"><i></i><g:message code="default.button.read.label" default="Ler Dado"/></button>
+								</div>
+								
+							</g:formRemote>
+						</div>
+					</div>
+				</div>
+				
+				<div class="span6">
+				
+					<!-- Widget -->
+					<div class="widget">
+						<!-- Widget heading -->
+						<div class="widget-head">
+							<h4 class="heading"><g:message code="escravo.registrador.resultado.head.label"/></h4>
+						</div>
+						<!-- // Widget heading END -->
+				
+						<div class="widget-body">
+						
+							<div id="registrador_leitura_resultado">
+							</div>
+						
+						</div>
+					</div>
+				</div>
+				
+			</div>
 		</div>
 	
+	
+			
 	</body>
 </html>

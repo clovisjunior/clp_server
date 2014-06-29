@@ -51,6 +51,10 @@ enum DadoType {
 			FOUR_BYTE_BCD
 		]
 	}
+	
+	static get(Integer id){
+		return values().find{it.id == id}
+	}
 
 	public String descricao(){
 		return descricao

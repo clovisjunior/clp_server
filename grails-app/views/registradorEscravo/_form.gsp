@@ -5,10 +5,10 @@
 
 <div class="control-group">
 	<label class="control-label" for="offset">
-		<g:message code="registradorEscravo.offset.label" default="Offset" />
+		<g:message code="registradorEscravo.endereco.label" default="Endereço" />
 	</label>
 	<div class="controls">
-		<g:textField name="offset" required="" value="${escravoMaquinaInstance?.offset}"/>
+		<g:textField name="endereco" required="" value="${registradorEscravoInstance?.endereco}"/>
 	</div>
 </div>
 

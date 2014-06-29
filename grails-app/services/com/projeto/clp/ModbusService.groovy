@@ -53,7 +53,7 @@ class ModbusService {
 			
 			return escravos
 		}
-		catch(ModbusInitException e){
+		catch(Exception e){
 			return null
 		}
 		finally {
@@ -62,6 +62,25 @@ class ModbusService {
 		
 		return null
 		
+	}
+	
+	def lerDadoRegistrador(RegistradorEscravo registrador){
+		ModbusMaster master = init(registrador?.escravoMaquina?.maquina)
+		
+		try {
+			master.init()
+			
+			return master.getValue(registrador.escravoMaquina.escravoId, registrador.tipo, registrador.endereco, registrador.tipoDado)
+			
+		}
+		catch(Exception e){
+			return e.message
+		}
+		finally {
+			master.destroy()
+		}
+		
+		return null
 	}
 	
 	ModbusMaster init(Maquina maquina){
