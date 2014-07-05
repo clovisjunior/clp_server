@@ -50,7 +50,7 @@
 						<g:sortableColumn property="porta" title="${message(code: 'maquina.porta.label', default: 'Porta')}" />
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"><g:message code="default.table.action.label" default="Ações"/></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -71,6 +71,7 @@
 					
 						<td class="center">
 							<g:link action="edit" id="${maquinaInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+							<g:link action="show" id="${maquinaInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

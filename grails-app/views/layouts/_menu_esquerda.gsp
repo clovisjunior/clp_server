@@ -80,6 +80,13 @@
 					<i></i><span>Alarmes</span>
 				</g:link>
 			</li>
+			
+			<li class="glyphicons flag">
+				<g:link action="index" controller="ocorrenciaAlarme">
+					<i></i><span>Ocorrências</span>
+				</g:link>
+				<span class="count">3</span>
+			</li>
 			</sec:access>
 		</ul>
 		
@@ -95,19 +102,10 @@
 				</a>
 				<ul class="collapse in" id="menu-recent-stats">
 					<li>
-						<a class="glyphicons envelope" href="#"><i></i><span>5	New Emails</span></a>
+						<a class="glyphicons flag" href="#"><i></i><span>4 Ocorrências Abertas</span></a>
 					</li>
 					<li>
-						<a class="glyphicons chat" href="#"><i></i><span>New Message on 19 Jan</span></a>
-					</li>
-					<li>
-						<a class="glyphicons user_add" href="#"><i></i><span>10	Users Subscribed</span></a>
-					</li>
-					<li>
-						<a class="glyphicons cart_in" href="#"><i></i><span>2 Orders worth of &dollar;239</span></a>
-					</li>
-					<li>
-						<a class="glyphicons single circle_plus" href="#"><i></i><span>View	all</span></a>
+						<a class="glyphicons flag" href="#"><i></i><span>6 Ocorrências Fechadas</span></a>
 					</li>
 				</ul>
 			</li>
@@ -116,35 +114,6 @@
 		<div class="clearfix"></div>
 		<div class="separator bottom"></div>
 
-		<!-- Sidebar Stats Widgets -->
-		<div class="widget-sidebar-stats">
-			<strong>3,540</strong> <span>Messages</span> <span
-				class="pull-right sparkline"></span>
-			<div class="clearfix"></div>
-		</div>
-		<div class="widget-sidebar-stats">
-			<strong>2,510,402</strong> <span>Photos</span> <span
-				class="pull-right sparkline"></span>
-			<div class="clearfix"></div>
-		</div>
-		<div class="separator bottom"></div>
-		<!-- // Sidebar Stats Widgets END -->
-
-		<!-- Stats Widget -->
-		<a href=""
-			class="widget-stats widget-stats-2 widget-stats-easy-pie widget-sidebar-stats txt-single">
-			<div data-percent="90" class="easy-pie primary">
-				<span class="value">90</span>%
-			</div> <span class="txt">Completed tasks</span>
-			<div class="clearfix"></div>
-		</a>
-		<!-- // Stats Widget END -->
-
-		<div class="widget-sidebar-stats">
-			<h5>Generic widget</h5>
-			<p>Lorem Ipsum is simply dummy text of the printing and
-				typesetting industry.</p>
-		</div>
 	</div>
 </div>
 <!-- // Sidebar Menu END -->

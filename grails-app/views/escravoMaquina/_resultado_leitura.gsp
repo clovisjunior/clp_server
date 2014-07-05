@@ -23,6 +23,7 @@
 			  class="form-horizontal" style="margin-bottom: 0;">
 	
 	<g:hiddenField name="escravoMaquina.id" value="${registrador?.escravoMaquina?.id}"/>
+	<g:hiddenField name="identificador" value="${registrador?.identificador}"/>
 	<g:hiddenField name="tipo" value="${registrador.tipo}"/>
 	<g:hiddenField name="tipoDado" value="${registrador.tipoDado}"/>
 	<g:hiddenField name="endereco" value="${registrador.endereco}"/>

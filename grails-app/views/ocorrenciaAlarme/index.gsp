@@ -1,10 +1,10 @@
 
-<%@ page import="com.projeto.clp.EscravoMaquina" %>
+<%@ page import="com.projeto.clp.OcorrenciaAlarme" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'escravoMaquina.label', default: 'EscravoMaquina')}" />
+		<g:set var="entityName" value="${message(code: 'ocorrenciaAlarme.label', default: 'OcorrenciaAlarme')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -37,32 +37,36 @@
 				<thead >
 					<tr>
 					
-						<g:sortableColumn property="escravoId" title="${message(code: 'escravoMaquina.escravoId.label', default: 'Escravo Id')}" />
+						<th><g:message code="ocorrenciaAlarme.usuarioMovel.label" default="Usuario Movel" /></th>
 					
-						<g:sortableColumn property="identificador" title="${message(code: 'escravoMaquina.identificador.label', default: 'Identificador')}" />
+						<g:sortableColumn property="motivoAlarme" title="${message(code: 'ocorrenciaAlarme.motivoAlarme.label', default: 'Motivo Alarme')}" />
 					
-						<g:sortableColumn property="descricao" title="${message(code: 'escravoMaquina.descricao.label', default: 'Descricao')}" />
+						<g:sortableColumn property="solucaoAplicada" title="${message(code: 'ocorrenciaAlarme.solucaoAplicada.label', default: 'Solucao Aplicada')}" />
 					
-						<th><g:message code="escravoMaquina.maquina.label" default="Maquina" /></th>
+						<th><g:message code="ocorrenciaAlarme.estado.label" default="Estado" /></th>
+					
+						<th><g:message code="ocorrenciaAlarme.alarme.label" default="Alarme" /></th>
 					
 					
 						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${escravoMaquinaInstanceList}" status="i" var="escravoMaquinaInstance">
+				<g:each in="${ocorrenciaAlarmeInstanceList}" status="i" var="ocorrenciaAlarmeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td>${fieldValue(bean: escravoMaquinaInstance, field: "escravoId")}</td>
+						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "usuarioMovel")}</td>
 					
-						<td>${fieldValue(bean: escravoMaquinaInstance, field: "identificador")}</td>
+						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "motivoAlarme")}</td>
 					
-						<td>${fieldValue(bean: escravoMaquinaInstance, field: "descricao")}</td>
+						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "solucaoAplicada")}</td>
 					
-						<td>${fieldValue(bean: escravoMaquinaInstance, field: "maquina")}</td>
+						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "estado")}</td>
+					
+						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "alarme")}</td>
 					
 						<td class="center">
-							<g:link action="edit" id="${escravoMaquinaInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>							
+							<g:link action="edit" id="${ocorrenciaAlarmeInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>
@@ -71,9 +75,8 @@
 			
 			<div class="separator bottom"></div>
 			
-			<custom:paginate total="${escravoMaquinaInstanceCount ?: 0}"/>
+			<custom:paginate total="${ocorrenciaAlarmeInstanceCount ?: 0}"/>
 			
 		</div>
 	</body>
 </html>
-

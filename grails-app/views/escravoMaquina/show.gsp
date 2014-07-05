@@ -149,6 +149,15 @@
 								</div>
 								
 								<div class="control-group">
+									<label class="control-label" for="identificador">
+										<g:message code="registradorEscravo.identificador.label" default="Identificador" />
+									</label>
+									<div class="controls">
+										<g:textField name="identificador" value="" required=""/>
+									</div>
+								</div>
+								
+								<div class="control-group">
 									<label class="control-label" for="endereco">
 										<g:message code="registradorEscravo.endereco.label" default="Endereco" />
 									</label>

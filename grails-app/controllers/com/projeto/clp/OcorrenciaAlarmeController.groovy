@@ -1,0 +1,104 @@
+package com.projeto.clp
+
+
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
+class OcorrenciaAlarmeController {
+
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond OcorrenciaAlarme.list(params), model:[ocorrenciaAlarmeInstanceCount: OcorrenciaAlarme.count()]
+    }
+
+    def show(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
+        respond ocorrenciaAlarmeInstance
+    }
+
+    def create() {
+        respond new OcorrenciaAlarme(params)
+    }
+
+    @Transactional
+    def save(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
+        if (ocorrenciaAlarmeInstance == null) {
+            notFound()
+            return
+        }
+
+        if (ocorrenciaAlarmeInstance.hasErrors()) {
+            respond ocorrenciaAlarmeInstance.errors, view:'create'
+            return
+        }
+
+        ocorrenciaAlarmeInstance.save flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'ocorrenciaAlarmeInstance.label', default: 'OcorrenciaAlarme'), ocorrenciaAlarmeInstance.id])
+                redirect ocorrenciaAlarmeInstance
+            }
+            '*' { respond ocorrenciaAlarmeInstance, [status: CREATED] }
+        }
+    }
+
+    def edit(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
+        respond ocorrenciaAlarmeInstance
+    }
+
+    @Transactional
+    def update(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
+        if (ocorrenciaAlarmeInstance == null) {
+            notFound()
+            return
+        }
+
+        if (ocorrenciaAlarmeInstance.hasErrors()) {
+            respond ocorrenciaAlarmeInstance.errors, view:'edit'
+            return
+        }
+
+        ocorrenciaAlarmeInstance.save flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'OcorrenciaAlarme.label', default: 'OcorrenciaAlarme'), ocorrenciaAlarmeInstance.id])
+                redirect ocorrenciaAlarmeInstance
+            }
+            '*'{ respond ocorrenciaAlarmeInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def delete(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
+
+        if (ocorrenciaAlarmeInstance == null) {
+            notFound()
+            return
+        }
+
+        ocorrenciaAlarmeInstance.delete flush:true
+
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'OcorrenciaAlarme.label', default: 'OcorrenciaAlarme'), ocorrenciaAlarmeInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    protected void notFound() {
+        request.withFormat {
+            form {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'ocorrenciaAlarmeInstance.label', default: 'OcorrenciaAlarme'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
+    }
+}
