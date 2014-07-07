@@ -1,6 +1,6 @@
 <%@ page import="com.projeto.clp.RegistradorEscravo" %>
-<%@ page import="type.RegistradorType" %>
-<%@ page import="type.DadoType" %>
+<%@ page import="com.projeto.clp.type.RegistradorType" %>
+<%@ page import="com.projeto.clp.type.DadoType" %>
 
 
 <div class="control-group">

@@ -4,24 +4,58 @@
 
 
 <div class="control-group">
-	<label class="control-label" for="usuario">
-		<g:message code="usuarioMovel.usuario.label" default="Usuario" />
+	<label class="control-label" for="username">
+		<g:message code="usuarioMovel.username.label" default="Username" />
 	</label>
 	<div class="controls">
-		<g:textField name="usuario" required="" value="${usuarioMovelInstance?.usuario}"/>
+		<g:textField name="username" required="" value="${usuarioMovelInstance?.username}"/>
 	</div>
 </div>
 
 
 
 <div class="control-group">
-	<label class="control-label" for="senha">
-		<g:message code="usuarioMovel.senha.label" default="Senha" />
+	<label class="control-label" for="password">
+		<g:message code="usuarioMovel.password.label" default="Password" />
 	</label>
 	<div class="controls">
-		<g:field type="password" name="senha" required="" value="${usuarioMovelInstance?.senha}"/>
+		<g:field type="password" name="password" required="" value="${usuarioMovelInstance?.password}"/>
 	</div>
 </div>
+
+
+
+<div class="control-group">
+	<label class="control-label" for="email">
+		<g:message code="usuarioMovel.email.label" default="Email" />
+	</label>
+	<div class="controls">
+		<g:field type="email" name="email" required="" value="${usuarioMovelInstance?.email}"/>
+	</div>
+</div>
+
+
+
+<div class="control-group">
+	<label class="control-label" for="accountExpired">
+		<g:message code="usuarioMovel.accountExpired.label" default="Account Expired" />
+	</label>
+	<div class="controls">
+		<g:checkBox name="accountExpired" value="${usuarioMovelInstance?.accountExpired}" />
+	</div>
+</div>
+
+
+
+<div class="control-group">
+	<label class="control-label" for="accountLocked">
+		<g:message code="usuarioMovel.accountLocked.label" default="Account Locked" />
+	</label>
+	<div class="controls">
+		<g:checkBox name="accountLocked" value="${usuarioMovelInstance?.accountLocked}" />
+	</div>
+</div>
+
 
 
 <div class="control-group">
@@ -34,39 +68,47 @@
 </div>
 
 
+
 <div class="control-group">
 	<label class="control-label" for="dispositivosMoveis">
 		<g:message code="usuarioMovel.dispositivosMoveis.label" default="Dispositivos Moveis" />
 	</label>
-	<div class="controls uniformjs">
-
-		<g:each in="${com.projeto.clp.DispositivoMovel.list()}" var="dispositivoMovel" status="i">
-			<label class="checkbox">
-				<g:checkBox class="checkbox" name="dispositivosMoveis" value="${dispositivoMovel?.id}" checked="${usuarioMovelInstance?.dispositivosMoveis?.contains(dispositivoMovel)}"/>${dispositivoMovel}
-			</label>
-		</g:each>
-	</div>
 	<div class="controls">
-		<g:link controller="dispositivoMovel" action="create" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'dispositivoMovel.label', default: 'Dispositivo Movel')])}</g:link>
+		<g:select name="dispositivosMoveis" from="${com.projeto.clp.DispositivoMovel.list()}" multiple="multiple" optionKey="id" size="5" value="${usuarioMovelInstance?.dispositivosMoveis*.id}" class="many-to-many"/>
 	</div>
 </div>
+
+
+
+<div class="control-group">
+	<label class="control-label" for="enabled">
+		<g:message code="usuarioMovel.enabled.label" default="Enabled" />
+	</label>
+	<div class="controls">
+		<g:checkBox name="enabled" value="${usuarioMovelInstance?.enabled}" />
+	</div>
+</div>
+
+
 
 <div class="control-group">
 	<label class="control-label" for="maquinas">
 		<g:message code="usuarioMovel.maquinas.label" default="Maquinas" />
 	</label>
-	<div class="controls uniformjs">
-
-		<g:each in="${com.projeto.clp.Maquina.list()}" var="maquina" status="i">
-			<label class="checkbox">
-				<g:checkBox class="checkbox" name="maquinas" value="${maquina?.id}" checked="${usuarioMovelInstance?.maquinas?.contains(maquina)}"/>${maquina}
-			</label>
-		</g:each>
-	</div>
 	<div class="controls">
-		<g:link controller="maquina" action="create" params="['departamento.id': usuarioMovelInstance?.departamento?.id]" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> ${message(code: 'default.add.label', args: [message(code: 'maquina.label', default: 'Maquina')])}</g:link>
+		<g:select name="maquinas" from="${com.projeto.clp.Maquina.list()}" multiple="multiple" optionKey="id" size="5" value="${usuarioMovelInstance?.maquinas*.id}" class="many-to-many"/>
 	</div>
 </div>
 
+
+
+<div class="control-group">
+	<label class="control-label" for="passwordExpired">
+		<g:message code="usuarioMovel.passwordExpired.label" default="Password Expired" />
+	</label>
+	<div class="controls">
+		<g:checkBox name="passwordExpired" value="${usuarioMovelInstance?.passwordExpired}" />
+	</div>
+</div>
 
 

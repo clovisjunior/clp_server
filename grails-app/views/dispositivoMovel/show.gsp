@@ -55,6 +55,15 @@
 							</li>
 							</g:if>
 						
+							<g:if test="${dispositivoMovelInstance?.imei}">
+							<li class="fieldcontain">
+								<span id="imei-label" class="property-label"><g:message code="dispositivoMovel.imei.label" default="Imei" /></span>
+								
+									<span class="property-value" aria-labelledby="imei-label"><g:fieldValue bean="${dispositivoMovelInstance}" field="imei"/></span>
+								
+							</li>
+							</g:if>
+						
 						</ol>
 						
 						<hr class="separator" />

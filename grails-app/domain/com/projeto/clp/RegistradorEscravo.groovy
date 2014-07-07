@@ -1,8 +1,5 @@
 package com.projeto.clp
 
-import type.DadoType;
-import type.RegistradorType;
-
 class RegistradorEscravo {
 	
 	EscravoMaquina escravoMaquina

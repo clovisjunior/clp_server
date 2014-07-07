@@ -39,6 +39,8 @@
 					
 						<g:sortableColumn property="descricao" title="${message(code: 'dispositivoMovel.descricao.label', default: 'Descricao')}" />
 					
+						<g:sortableColumn property="imei" title="${message(code: 'dispositivoMovel.imei.label', default: 'Imei')}" />
+					
 					
 						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
 					</tr>
@@ -48,6 +50,8 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td>${fieldValue(bean: dispositivoMovelInstance, field: "descricao")}</td>
+					
+						<td>${fieldValue(bean: dispositivoMovelInstance, field: "imei")}</td>
 					
 						<td class="center">
 							<g:link action="edit" id="${dispositivoMovelInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>

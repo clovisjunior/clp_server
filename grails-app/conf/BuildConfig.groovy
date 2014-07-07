@@ -75,5 +75,8 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.5"
 		
 		compile ":quartz:1.0.2"
+		
+		compile ":spring-security-rest:1.4.0.RC3"
+		
     }
 }

@@ -1,9 +1,6 @@
 package com.projeto.clp
 
-class UsuarioMovel {
-	
-	String usuario
-	String senha
+class UsuarioMovel extends Usuario {
 	
 	Departamento departamento
 	Set maquinas
@@ -16,11 +13,9 @@ class UsuarioMovel {
 					 ]
 
     static constraints = {
-		usuario nullable: false, blank: false, unique: true
-		senha nullalbe: false, blank: false, password: true
     }
 	
 	String toString(){
-		"${usuario} [${departamento?.nome}]"
+		"${username} [${departamento?.nome}]"
 	}
 }

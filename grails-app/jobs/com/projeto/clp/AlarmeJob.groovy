@@ -1,10 +1,7 @@
 package com.projeto.clp
 
-import type.DadoType;
-
-import com.projeto.clp.Alarme;
-import com.projeto.clp.EstadoOcorrenciaAlarme;
-import com.projeto.clp.UsuarioMovel;
+import com.projeto.clp.Alarme
+import com.projeto.clp.type.DadoType
 
 class AlarmeJob {
 

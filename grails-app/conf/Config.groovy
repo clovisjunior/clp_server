@@ -112,6 +112,12 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+	
+	debug  'com.odobo',
+		   'grails.app.controllers.com.odobo',
+		   'grails.app.services.com.odobo',
+		   'org.pac4j',
+		   'org.springframework.security'
 }
 
 
@@ -139,6 +145,28 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/ocorrenciaAlarme/**':		['ROLE_USER'],
 	'/*':            			['ROLE_USER', 'ROLE_ADMIN'],
 	'/login/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/logout/**':				['IS_AUTHENTICATED_ANONYMOUSLY']
+	'/logout/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/api/**':                  ['ROLE_USER_MOVEL']
 ]
 
+grails.plugin.springsecurity.filterChain.chainMap = [
+	'/api/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter',  // Stateless chain
+	'/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'                                          // Traditional chain
+]
+
+grails.plugin.springsecurity.rest.login.active = true
+grails.plugin.springsecurity.rest.login.endpointUrl = '/api/login'
+
+
+grails.plugin.springsecurity.rest.login.useJsonCredentials = true
+grails.plugin.springsecurity.rest.login.usernamePropertyName = 'usuario'
+grails.plugin.springsecurity.rest.login.passwordPropertyName = 'senha'
+
+grails.plugin.springsecurity.rest.token.storage.useGorm = true
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'com.projeto.clp.UsuarioMovelToken'
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
+grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'usuarioMovel'
+
+grails.plugin.springsecurity.rest.token.generation.useSecureRandom = true
+//
+//grails.plugin.springsecurity.providerNames = ['apiAuthenticationProvider', 'daoAuthenticationProvider', 'anonymousAuthenticationProvider', 'rememberMeAuthenticationProvider']

@@ -1,5 +1,5 @@
-<%@ page import="type.RegistradorType" %>
-<%@ page import="type.DadoType" %>
+<%@ page import="com.projeto.clp.type.RegistradorType" %>
+<%@ page import="com.projeto.clp.type.DadoType" %>
 
 <table class="table table-bordered table-condensed table-striped table-vertical-center checkboxs js-table-sortable">
 	<thead >

@@ -46,20 +46,47 @@
 					<div class="row-fluid">
 						<ol class="property-list usuarioMovel">
 						
-							<g:if test="${usuarioMovelInstance?.usuario}">
+							<g:if test="${usuarioMovelInstance?.username}">
 							<li class="fieldcontain">
-								<span id="usuario-label" class="property-label"><g:message code="usuarioMovel.usuario.label" default="Usuario" /></span>
+								<span id="username-label" class="property-label"><g:message code="usuarioMovel.username.label" default="Username" /></span>
 								
-									<span class="property-value" aria-labelledby="usuario-label"><g:fieldValue bean="${usuarioMovelInstance}" field="usuario"/></span>
+									<span class="property-value" aria-labelledby="username-label"><g:fieldValue bean="${usuarioMovelInstance}" field="username"/></span>
 								
 							</li>
 							</g:if>
 						
-							<g:if test="${usuarioMovelInstance?.senha}">
+							<g:if test="${usuarioMovelInstance?.password}">
 							<li class="fieldcontain">
-								<span id="senha-label" class="property-label"><g:message code="usuarioMovel.senha.label" default="Senha" /></span>
+								<span id="password-label" class="property-label"><g:message code="usuarioMovel.password.label" default="Password" /></span>
 								
-									<span class="property-value" aria-labelledby="senha-label"><g:fieldValue bean="${usuarioMovelInstance}" field="senha"/></span>
+									<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${usuarioMovelInstance}" field="password"/></span>
+								
+							</li>
+							</g:if>
+						
+							<g:if test="${usuarioMovelInstance?.email}">
+							<li class="fieldcontain">
+								<span id="email-label" class="property-label"><g:message code="usuarioMovel.email.label" default="Email" /></span>
+								
+									<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${usuarioMovelInstance}" field="email"/></span>
+								
+							</li>
+							</g:if>
+						
+							<g:if test="${usuarioMovelInstance?.accountExpired}">
+							<li class="fieldcontain">
+								<span id="accountExpired-label" class="property-label"><g:message code="usuarioMovel.accountExpired.label" default="Account Expired" /></span>
+								
+									<span class="property-value" aria-labelledby="accountExpired-label"><g:formatBoolean boolean="${usuarioMovelInstance?.accountExpired}" /></span>
+								
+							</li>
+							</g:if>
+						
+							<g:if test="${usuarioMovelInstance?.accountLocked}">
+							<li class="fieldcontain">
+								<span id="accountLocked-label" class="property-label"><g:message code="usuarioMovel.accountLocked.label" default="Account Locked" /></span>
+								
+									<span class="property-value" aria-labelledby="accountLocked-label"><g:formatBoolean boolean="${usuarioMovelInstance?.accountLocked}" /></span>
 								
 							</li>
 							</g:if>
@@ -84,6 +111,15 @@
 							</li>
 							</g:if>
 						
+							<g:if test="${usuarioMovelInstance?.enabled}">
+							<li class="fieldcontain">
+								<span id="enabled-label" class="property-label"><g:message code="usuarioMovel.enabled.label" default="Enabled" /></span>
+								
+									<span class="property-value" aria-labelledby="enabled-label"><g:formatBoolean boolean="${usuarioMovelInstance?.enabled}" /></span>
+								
+							</li>
+							</g:if>
+						
 							<g:if test="${usuarioMovelInstance?.maquinas}">
 							<li class="fieldcontain">
 								<span id="maquinas-label" class="property-label"><g:message code="usuarioMovel.maquinas.label" default="Maquinas" /></span>
@@ -91,6 +127,15 @@
 									<g:each in="${usuarioMovelInstance.maquinas}" var="m">
 									<span class="property-value" aria-labelledby="maquinas-label"><g:link controller="maquina" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
 									</g:each>
+								
+							</li>
+							</g:if>
+						
+							<g:if test="${usuarioMovelInstance?.passwordExpired}">
+							<li class="fieldcontain">
+								<span id="passwordExpired-label" class="property-label"><g:message code="usuarioMovel.passwordExpired.label" default="Password Expired" /></span>
+								
+									<span class="property-value" aria-labelledby="passwordExpired-label"><g:formatBoolean boolean="${usuarioMovelInstance?.passwordExpired}" /></span>
 								
 							</li>
 							</g:if>

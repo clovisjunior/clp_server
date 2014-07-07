@@ -1,9 +1,6 @@
-import java.util.Set;
-
-import type.DadoType;
-import type.RegistradorType;
-
 import com.projeto.clp.*
+import com.projeto.clp.type.DadoType
+import com.projeto.clp.type.RegistradorType
 
 class BootStrap {
 
@@ -11,7 +8,8 @@ class BootStrap {
 		
 		def adminPapel = new Papel(authority: 'ROLE_ADMIN').save(flush: true)
 		def userPapel = new Papel(authority: 'ROLE_USER').save(flush: true)
-  
+		def userMovelPapel = new Papel(authority: 'ROLE_USER_MOVEL').save(flush: true)
+		
 		def administrador = new Administrador(username: 'admin', password: 'admin', email: 'clovisjunior2009@gmail.com')
 		administrador.save(flush: true)
   
@@ -52,6 +50,10 @@ class BootStrap {
 		EstadoOcorrenciaAlarme estado2 = new EstadoOcorrenciaAlarme(descricao: "Fechado")
 		estado2.save flush: true
 		
+		UsuarioMovel usuarioMovel1 = new UsuarioMovel(username: "usuario1", password: "123", email: "clovisjunior2009@gmail.com", departamento: departamento)
+		usuarioMovel1.save flush: true
+		
+		UsuarioPapel.create usuarioMovel1, userMovelPapel, true
 		
     }
     def destroy = {

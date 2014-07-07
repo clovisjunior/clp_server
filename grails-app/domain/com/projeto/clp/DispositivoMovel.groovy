@@ -3,14 +3,14 @@ package com.projeto.clp
 class DispositivoMovel {
 	
 	String descricao
+	String imei
 	
-	static belongsTo = UsuarioMovel
-
     static constraints = {
-		descricao blank:false, nullable: false
+		descricao blank: false, nullable: false
+		imei blank: false, nullable: false
     }
 	
 	String toString(){
-		descricao
+		"${descricao} [${imei}]"
 	}
 }

@@ -1,4 +1,4 @@
-package type
+package com.projeto.clp.type
 
 import com.serotonin.modbus4j.code.RegisterRange;
 

@@ -3,13 +3,14 @@ package com.projeto.clp
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.rest.RestfulController;
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class DepartamentoController {
+class DepartamentoController{
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Departamento.list(params), model:[departamentoInstanceCount: Departamento.count()]
