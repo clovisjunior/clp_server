@@ -25,9 +25,19 @@ class BootStrap {
 		unidadeNegocio.save(flush: true) 
 		
 		Departamento departamento = Departamento.get(1)
-
+		
+		UsuarioMovel usuarioMovel1 = new UsuarioMovel(username: "usuario1", password: "123", email: "clovisjunior2009@gmail.com", departamento: departamento)
+		usuarioMovel1.save flush: true
+		
+		UsuarioPapel.create usuarioMovel1, userMovelPapel, true
+		
 		Maquina maquina = new Maquina(localizacaoFisica: 'Piso L3', ip: '192.168.0.7', modelo: 'XPTO', porta: 502, departamento: departamento, identificador: 'CLP_9019')
 		maquina.save(flush: true)
+		
+		usuarioMovel1.maquinas = []
+		usuarioMovel1.maquinas << maquina
+		
+		usuarioMovel1.save flush: true
 		
 		EscravoMaquina escravoMaquina = new EscravoMaquina(maquina: maquina, escravoId: 1, identificador: "IDX_01", descricao: "Maquiná PPP")
 		escravoMaquina.save flush: true
@@ -50,10 +60,7 @@ class BootStrap {
 		EstadoOcorrenciaAlarme estado2 = new EstadoOcorrenciaAlarme(descricao: "Fechado")
 		estado2.save flush: true
 		
-		UsuarioMovel usuarioMovel1 = new UsuarioMovel(username: "usuario1", password: "123", email: "clovisjunior2009@gmail.com", departamento: departamento)
-		usuarioMovel1.save flush: true
 		
-		UsuarioPapel.create usuarioMovel1, userMovelPapel, true
 		
     }
     def destroy = {

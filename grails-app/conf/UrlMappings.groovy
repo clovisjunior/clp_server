@@ -8,8 +8,19 @@ class UrlMappings {
             }
         }
 		
-		"/api/maquinas"{
+		"/api/maquina"{
 			controller = "apiMaquina"
+			action = "index"
+		}
+		
+		"/api/maquina/$id"{
+			controller = "apiMaquina"
+			action = "escravos"
+		}
+		
+		"/api/maquina/$id/escravo/$idEscravo"{
+			controller = "apiMaquina"
+			action = "registradores"
 		}
 		
         "/"(view:"/index")
