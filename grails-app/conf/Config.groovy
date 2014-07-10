@@ -113,11 +113,11 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 	
-	debug  'com.odobo',
-		   'grails.app.controllers.com.odobo',
-		   'grails.app.services.com.odobo',
-		   'org.pac4j',
-		   'org.springframework.security'
+//	debug  'com.odobo',
+//		   'grails.app.controllers.com.odobo',
+//		   'grails.app.services.com.odobo',
+//		   'org.pac4j',
+//		   'org.springframework.security'
 }
 
 

@@ -10,6 +10,7 @@ class RegistradorEscravo {
 	Integer tipoDado
 	Integer endereco = new Integer(0)
 	String valor
+	Boolean isSomenteLeitura = Boolean.FALSE
 	
 	static belongsTo = [escravoMaquina: EscravoMaquina]
 

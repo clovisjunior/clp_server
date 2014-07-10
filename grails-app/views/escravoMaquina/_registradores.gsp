@@ -12,6 +12,8 @@
 			<g:sortableColumn property="tipo" title="${message(code: 'registradorEscravo.tipo.label', default: 'Tipo')}" />
 		
 			<g:sortableColumn property="tipoDado" title="${message(code: 'registradorEscravo.tipoDado.label', default: 'Tipo Dado')}" />
+
+			<g:sortableColumn property="isSomenteLeitura" title="${message(code: 'registradorEscravo.isSomenteLeitura.label', default: 'Somente Leitura')}" />		
 		
 			<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
 		</tr>
@@ -27,6 +29,8 @@
 			<td>${RegistradorType.get(registradorEscravoInstance?.tipo).descricao}</td>
 			
 			<td>${DadoType.get(registradorEscravoInstance?.tipoDado).descricao}</td>
+
+			<td>${fieldValue(bean: registradorEscravoInstance, field: "isSomenteLeitura")}</td>
 		
 			<td class="center">
 				<g:link action="edit" controller="registradorEscravo" id="${registradorEscravoInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>

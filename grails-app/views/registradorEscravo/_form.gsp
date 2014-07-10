@@ -47,4 +47,14 @@
 	</div>
 </div>
 
+<div class="control-group">
+	<label class="control-label" for="tipoDado">
+		<g:message code="registradorEscravo.isSomenteLeitura.label" default="Somente Leitura" />
+	</label>
+	<div class="controls">
+		<g:select id="isSomenteLeitura" name="isSomenteLeitura" from="${['Sim', 'Não']}"
+			      keys="${[true, false]}" value="${registradorEscravoInstance?.isSomenteLeitura}"/>		
+	</div>
+</div>
+
 

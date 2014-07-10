@@ -185,7 +185,18 @@
 								                  optionKey="id" optionValue="descricao" value=""/>
 									</div>
 								</div>
-								
+
+								<div class="control-group">
+									<label class="control-label" for="tipoDado">
+										<g:message code="registradorEscravo.isSomenteLeitura.label" default="Somente Leitura" />
+									</label>
+									<div class="controls">
+										<g:select id="isSomenteLeitura" name="isSomenteLeitura" from="${['Sim', 'Não']}"
+												  keys="${[1, 0]}"/>
+										
+									</div>
+								</div>
+
 								<hr class="separator" />
 						
 								<!-- Form actions -->

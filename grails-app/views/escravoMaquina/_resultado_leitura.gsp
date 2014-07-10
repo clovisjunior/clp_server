@@ -27,6 +27,7 @@
 	<g:hiddenField name="tipo" value="${registrador.tipo}"/>
 	<g:hiddenField name="tipoDado" value="${registrador.tipoDado}"/>
 	<g:hiddenField name="endereco" value="${registrador.endereco}"/>
+	<g:hiddenField name="isSomenteLeitura" value="${registrador.isSomenteLeitura}"/>
 	
 	<hr class="separator" />
 								
