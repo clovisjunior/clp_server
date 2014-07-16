@@ -12,6 +12,10 @@ import com.serotonin.modbus4j.ip.IpParameters
 
 import grails.transaction.Transactional
 
+import com.serotonin.modbus4j.exception.ModbusInitException
+
+import com.projeto.clp.type.DadoType
+
 import com.projeto.clp.Maquina
 
 @Transactional
@@ -73,7 +77,10 @@ class ModbusService {
 			return master.getValue(registrador.escravoMaquina.escravoId, registrador.tipo, registrador.endereco, registrador.tipoDado)
 			
 		}
-		catch(Exception e){
+		catch(ModbusInitException e){
+			return "Offline"
+		}
+		catch(Exception e){				
 			return e.message
 		}
 		finally {
@@ -81,6 +88,33 @@ class ModbusService {
 		}
 		
 		return null
+	}
+
+	def atualizarValorRegistrador(RegistradorEscravo registrador, Object novoValor){
+		ModbusMaster master = init(registrador?.escravoMaquina?.maquina)
+		
+		try {
+			master.init()
+
+			master.setValue(registrador.escravoMaquina.escravoId, registrador.tipo, 
+							registrador.endereco, 
+							registrador.tipoDado, 
+							getTipoValor(registrador, novoValor));
+
+			return true
+			
+		}
+		catch(ModbusInitException e){
+			return "Offline"
+		}
+		catch(Exception e){			
+			return false
+		}
+		finally {
+			master.destroy()
+		}
+		
+		return false
 	}
 	
 	ModbusMaster init(Maquina maquina){
@@ -97,5 +131,52 @@ class ModbusService {
 		
 		return master
 	}
+
+	def getTipoValor(RegistradorEscravo registrador, Object valor){
+
+		//Inteiros
+		if(registrador.tipoDado == DadoType.TWO_BYTE_INT_UNSIGNED.id
+			|| registrador.tipoDado == DadoType.TWO_BYTE_INT_SIGNED.id
+			|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_UNSIGNED.id
+			|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_SIGNED.id
+			|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_UNSIGNED_SWAPPED.id
+			|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_SIGNED_SWAPPED.id) {
+			
+			valor = valor as Integer
+		
+		}
+		else{
+			//Binario
+			if(registrador.tipoDado == DadoType.BINARY.id) {
+				
+				if(valor == "true" || valor == "TRUE" || valor == "1"){
+					valor = Boolean.TRUE
+				}
+				else{
+					return Boolean.FALSE	
+				}						
+				
+			}
+			else{
+				//Floats
+				if(registrador.tipoDado == DadoType.FOUR_BYTE_FLOAT.id
+					|| registrador.tipoDado == DadoType.FOUR_BYTE_FLOAT_SWAPPED.id
+					|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_UNSIGNED.id
+					|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_SIGNED.id
+					|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_UNSIGNED_SWAPPED.id
+					|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_SIGNED_SWAPPED.id
+					|| registrador.tipoDado == DadoType.EIGHT_BYTE_FLOAT.id
+					|| registrador.tipoDado == DadoType.EIGHT_BYTE_FLOAT_SWAPPED.id){
+					
+					valor = valor as Float
+					
+				}
+			}
+			
+		}
+
+		return valor
+	}
+	
 	
 }

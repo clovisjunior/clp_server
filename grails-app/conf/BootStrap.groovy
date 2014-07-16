@@ -2,9 +2,13 @@ import com.projeto.clp.*
 import com.projeto.clp.type.DadoType
 import com.projeto.clp.type.RegistradorType
 
+import grails.plugin.springsecurity.SpringSecurityUtils
+
 class BootStrap {
 
     def init = { servletContext ->
+
+    	SpringSecurityUtils.registerProvider 'projetoCLPRestAuthenticationProvider'
 		
 		def adminPapel = new Papel(authority: 'ROLE_ADMIN').save(flush: true)
 		def userPapel = new Papel(authority: 'ROLE_USER').save(flush: true)
@@ -31,7 +35,7 @@ class BootStrap {
 		
 		UsuarioPapel.create usuarioMovel1, userMovelPapel, true
 		
-		Maquina maquina = new Maquina(localizacaoFisica: 'Piso L3', ip: '192.168.0.7', modelo: 'XPTO', porta: 502, departamento: departamento, identificador: 'CLP_9019')
+		Maquina maquina = new Maquina(localizacaoFisica: 'Piso L3', ip: 'localhost', modelo: 'XPTO', porta: 502, departamento: departamento, identificador: 'CLP_9019')
 		maquina.save(flush: true)
 		
 		usuarioMovel1.maquinas = []

@@ -22,6 +22,16 @@ class UrlMappings {
 			controller = "apiMaquina"
 			action = "registradores"
 		}
+
+		"/api/maquina/$id/escravo/$idEscravo/registrador/$idRegistrador/novovalor/$valor"{
+			controller = "apiMaquina"
+			action = "atualizarValorRegistrador"
+		}
+
+		"/api/maquina/$id/diariobordo"{
+			controller = "apiMaquina"
+			action = "salvarDiarioBordo"
+		}
 		
         "/"(view:"/index")
 		"500"(view:'/500_error')

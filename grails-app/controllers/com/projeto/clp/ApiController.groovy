@@ -14,20 +14,48 @@ class ApiController  {
 	
 	def login() {
 		try {
-			println ">>>> ${params}"
+
+			println "*" * 100
+			println ">> ${params}"
+			def imei = params.imei
+
 			UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(params.username, params.password);
 			// Authenticate the user
 			def authentication = authenticationManager.authenticate(authRequest);
-			def securityContext = SecurityContextHolder.getContext();
-			securityContext.setAuthentication(authentication);
 
-			// Create a new session and add the security context.
-			def session = request.session;
-			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-			render status:OK
+			def usuarioMovel = UsuarioMovel.findByUsername(params.username)
+
+			if(usuarioMovel){
+
+				boolean hasDispositivo = false
+
+				usuarioMovel.dispositivosMoveis { dispositivo ->
+					if(dispositivo.imei == imei){
+						hasDispositivo = true
+					}
+				}
+
+				if(hasDispositivo){
+
+					def securityContext = SecurityContextHolder.getContext();
+					securityContext.setAuthentication(authentication);
+
+					// Create a new session and add the security context.
+					def session = request.session;
+					session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+					render status:OK
+				}
+				else{
+					render status: FORBIDDEN 
+				}
+
+			}
+			else{
+				render status: FORBIDDEN 
+			}
 		}
 		catch (e){
-			render status:GONE
+			render status: FORBIDDEN
 		}
 	}
     

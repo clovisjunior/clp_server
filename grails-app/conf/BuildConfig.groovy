@@ -46,12 +46,15 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
 		
 		mavenRepo "http://repo.spring.io/milestone/"
+        mavenRepo "https://github.com/slorber/gcm-server-repository/raw/master/releases/"
     }
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
+
+
     }
 
     plugins {
@@ -75,6 +78,7 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.5"
 		
 		compile ":quartz:1.0.2"
+        compile ":android-gcm:0.2"
 		
 		compile ":spring-security-rest:1.4.0.RC3"
 		

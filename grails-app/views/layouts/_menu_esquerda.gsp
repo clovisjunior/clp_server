@@ -68,6 +68,11 @@
 							<span>Máquina</span>
 						</g:link>
 					</li>
+					<li class="">
+						<g:link action="index" controller="diarioBordo">
+							<span>Diário de Bordo</span>
+						</g:link>
+					</li>
 					</sec:access>
 
 				</ul> 

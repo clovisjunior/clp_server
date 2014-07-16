@@ -143,6 +143,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/usuarioMovel/**': 		['ROLE_USER'],
 	'/alarme/**':       		['ROLE_USER'],
 	'/ocorrenciaAlarme/**':		['ROLE_USER'],
+    '/diarioBordo/**':          ['ROLE_USER'],    
 	'/*':            			['ROLE_USER', 'ROLE_ADMIN'],
 	'/login/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/logout/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
@@ -168,5 +169,11 @@ grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 't
 grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'usuarioMovel'
 
 grails.plugin.springsecurity.rest.token.generation.useSecureRandom = true
-//
-//grails.plugin.springsecurity.providerNames = ['apiAuthenticationProvider', 'daoAuthenticationProvider', 'anonymousAuthenticationProvider', 'rememberMeAuthenticationProvider']
+
+grails.plugin.springsecurity.providerNames = ['projetoCLPRestAuthenticationProvider', 'daoAuthenticationProvider', 'anonymousAuthenticationProvider', 'rememberMeAuthenticationProvider']
+
+
+android.gcm.api.key='AIzaSyBOvmmgodYFt-gNoHDLZca-bUQDppu46vU'
+android.gcm.time.to.live=1419200
+android.gcm.delay.'while'.idle=false
+android.gcm.retries=3
