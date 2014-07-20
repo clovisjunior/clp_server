@@ -8,7 +8,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-    	SpringSecurityUtils.registerProvider 'projetoCLPRestAuthenticationProvider'
+    	//SpringSecurityUtils.registerProvider 'projetoCLPRestAuthenticationProvider'
 		
 		def adminPapel = new Papel(authority: 'ROLE_ADMIN').save(flush: true)
 		def userPapel = new Papel(authority: 'ROLE_USER').save(flush: true)
@@ -41,6 +41,19 @@ class BootStrap {
 		usuarioMovel1.maquinas = []
 		usuarioMovel1.maquinas << maquina
 		
+		DispositivoMovel dispositivoMovel = new DispositivoMovel(descricao: "Nexus 4", imei: "123456789")		
+		dispositivoMovel.save(flush: true)
+		
+		DispositivoMovel dispositivoMovel2 = new DispositivoMovel(descricao: "Tablet", imei: "1234567890")
+		dispositivoMovel2.save(flush: true)
+		
+		DispositivoMovel dispositivoMovel3 = new DispositivoMovel(descricao: "Nexus 4", imei: "356489055985191")
+		dispositivoMovel3.save(flush: true)
+		
+		usuarioMovel1.dispositivosMoveis = []
+		usuarioMovel1.dispositivosMoveis << dispositivoMovel
+		usuarioMovel1.dispositivosMoveis << dispositivoMovel3
+		
 		usuarioMovel1.save flush: true
 		
 		EscravoMaquina escravoMaquina = new EscravoMaquina(maquina: maquina, escravoId: 1, identificador: "IDX_01", descricao: "Maquiná PPP")
@@ -63,8 +76,6 @@ class BootStrap {
 		
 		EstadoOcorrenciaAlarme estado2 = new EstadoOcorrenciaAlarme(descricao: "Fechado")
 		estado2.save flush: true
-		
-		
 		
     }
     def destroy = {

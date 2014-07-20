@@ -117,16 +117,22 @@ log4j = {
 //		   'grails.app.controllers.com.odobo',
 //		   'grails.app.services.com.odobo',
 //		   'org.pac4j',
-//		   'org.springframework.security'
+//		   'org.springframework.security',
+//         'com.projeto.clp'
+		   
 }
 
 
 // Added by the Spring Security Core plugin:
+
+grails.plugin.springsecurity.providerNames = ['projetoCLPRestAuthenticationProvider', 'anonymousAuthenticationProvider', 'rememberMeAuthenticationProvider']
+
 grails.plugin.springsecurity.rememberMe.persistent = true
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.projeto.clp.Usuario'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.projeto.clp.UsuarioPapel'
 grails.plugin.springsecurity.authority.className = 'com.projeto.clp.Papel'
 grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.password.algorithm = 'bcrypt'
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/js/**':					['IS_AUTHENTICATED_ANONYMOUSLY'],
@@ -155,22 +161,16 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	'/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'                                          // Traditional chain
 ]
 
+grails.plugin.springsecurity.rest.token.generation.useSecureRandom = true
 grails.plugin.springsecurity.rest.login.active = true
 grails.plugin.springsecurity.rest.login.endpointUrl = '/api/login'
 
-
 grails.plugin.springsecurity.rest.login.useJsonCredentials = true
-grails.plugin.springsecurity.rest.login.usernamePropertyName = 'usuario'
-grails.plugin.springsecurity.rest.login.passwordPropertyName = 'senha'
 
 grails.plugin.springsecurity.rest.token.storage.useGorm = true
 grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'com.projeto.clp.UsuarioMovelToken'
 grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
 grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'usuarioMovel'
-
-grails.plugin.springsecurity.rest.token.generation.useSecureRandom = true
-
-grails.plugin.springsecurity.providerNames = ['projetoCLPRestAuthenticationProvider', 'daoAuthenticationProvider', 'anonymousAuthenticationProvider', 'rememberMeAuthenticationProvider']
 
 
 android.gcm.api.key='AIzaSyBOvmmgodYFt-gNoHDLZca-bUQDppu46vU'
