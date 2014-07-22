@@ -4,10 +4,12 @@ class DispositivoMovel {
 	
 	String descricao
 	String imei
+	String gcmId
 	
     static constraints = {
 		descricao blank: false, nullable: false
 		imei blank: false, nullable: false
+		gcmId blank: true, nullable: true
     }
 	
 	String toString(){

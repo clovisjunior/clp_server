@@ -41,7 +41,7 @@ class BootStrap {
 		usuarioMovel1.maquinas = []
 		usuarioMovel1.maquinas << maquina
 		
-		DispositivoMovel dispositivoMovel = new DispositivoMovel(descricao: "Nexus 4", imei: "123456789")		
+		DispositivoMovel dispositivoMovel = new DispositivoMovel(descricao: "Nexus 4", imei: "000000000000000")		
 		dispositivoMovel.save(flush: true)
 		
 		DispositivoMovel dispositivoMovel2 = new DispositivoMovel(descricao: "Tablet", imei: "1234567890")

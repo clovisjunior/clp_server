@@ -32,6 +32,11 @@ class UrlMappings {
 			controller = "apiMaquina"
 			action = "salvarDiarioBordo"
 		}
+
+		"/api/dispositivo/$imei/gcm"{
+			controller = "apiDispositivo"
+			action = "registrarGCM"
+		}
 		
         "/"(view:"/index")
 		"500"(view:'/500_error')

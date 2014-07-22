@@ -14,12 +14,11 @@ import com.projeto.clp.UsuarioMovel;
 
 class ProjetoCLPRestAuthenticationProvider extends DaoAuthenticationProvider {
 
-	String imei
-
 	@Override
 	Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
 		Boolean isUsuarioMovel = false
+		String imei
 
 		if(UsuarioMovel.findByUsername(authentication.principal)){
 			isUsuarioMovel = true
@@ -29,7 +28,7 @@ class ProjetoCLPRestAuthenticationProvider extends DaoAuthenticationProvider {
 		
 		setPasswordEncoder(new BCryptPasswordEncoder(10))
 		
-		Authentication auth = super.authenticate(authentication);
+		Authentication auth = super.authenticate(authentication)
 
 		if(isUsuarioMovel){
 
