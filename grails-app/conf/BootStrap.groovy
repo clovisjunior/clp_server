@@ -66,10 +66,10 @@ class BootStrap {
 		registrador2.save flush: true
 		
 		Alarme alarme = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador2, minimo: '20', maximo: '30')
-//		alarme.save flush: true
+		alarme.save flush: true
 		
-		Alarme alarme2 = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador, minimo: '0', maximo: '0')
-//		alarme2.save flush: true
+		Alarme alarme2 = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador, minimo: '1', maximo: '1')
+		alarme2.save flush: true
 
 		EstadoOcorrenciaAlarme estado1 = new EstadoOcorrenciaAlarme(descricao: "Aberto")
 		estado1.save flush: true

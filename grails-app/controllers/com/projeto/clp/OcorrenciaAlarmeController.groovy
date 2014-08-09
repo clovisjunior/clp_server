@@ -92,6 +92,12 @@ class OcorrenciaAlarmeController {
         }
     }
 
+    def viewImage() {
+        def foto = Foto.get(params.id)
+        byte[] imagem = foto.imagem
+        response.outputStream << imagem
+    }
+
     protected void notFound() {
         request.withFormat {
             form {

@@ -23,6 +23,15 @@
 	</div>
 </div>
 
+<div class="control-group">
+	<label class="control-label" for="motivoAlarmeTecnico">
+		<g:message code="ocorrenciaAlarme.motivoAlarmeTecnico.label" default="Motivo Alarme Técnico" />
+	</label>
+	<div class="controls">
+		<g:textField name="motivoAlarmeTecnico" required="" value="${ocorrenciaAlarmeInstance?.motivoAlarmeTecnico}"/>
+	</div>
+</div>
+
 
 
 <div class="control-group">
@@ -53,6 +62,18 @@
 	</label>
 	<div class="controls">
 		<g:select id="alarme" name="alarme.id" from="${com.projeto.clp.Alarme.list()}" optionKey="id" required="" value="${ocorrenciaAlarmeInstance?.alarme?.id}" class="many-to-one"/>
+	</div>
+</div>
+
+
+<div class="control-group">
+	<label class="control-label" for="fotos">
+		<g:message code="ocorrenciaAlarme.fotos.label" default="Fotos" />
+	</label>
+	<div class="controls">
+		<g:each in="${ocorrenciaAlarmeInstance?.fotos}" var="foto">
+			<img src="${createLink(controller:'ocorrenciaAlarme', action:'viewImage', id: foto.id)}" width="400"  height="400" />
+		</g:each>
 	</div>
 </div>
 

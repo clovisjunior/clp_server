@@ -37,6 +37,26 @@ class UrlMappings {
 			controller = "apiDispositivo"
 			action = "registrarGCM"
 		}
+
+		"/api/ocorrencia/pendentes"{
+			controller = "apiOcorrencia"
+			action = "pendentes"
+		}
+
+		"/api/ocorrencia/aceitar/$id"{
+			controller = "apiOcorrencia"
+			action = "aceitar"
+		}
+
+		"/api/ocorrencia/caixaEntrada"{
+			controller = "apiOcorrencia"
+			action = "caixaEntrada"
+		}
+
+		"/api/ocorrencia/finalizar/$id"{
+			controller = "apiOcorrencia"
+			action = "finalizar"
+		}	
 		
         "/"(view:"/index")
 		"500"(view:'/500_error')
