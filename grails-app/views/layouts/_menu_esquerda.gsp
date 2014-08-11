@@ -1,7 +1,7 @@
 <!-- Sidebar Menu -->
 <div id="menu" class="hidden-phone hidden-print">
 	<!-- Brand -->
-	<g:link url="${createLink(uri: '/')}" class="appbrand">Projeto CLP <span>outro texto</span></g:link>
+	<g:link url="${createLink(uri: '/')}" class="appbrand">Projeto CLP <span></span></g:link>
 
 	<!-- Scrollable menu wrapper with Maximum height -->
 	<div class="slim-scroll" data-scroll-height="800px">
@@ -15,9 +15,27 @@
 				<img src="${resource(dir: 'common/theme/images', file: 'avatar-style-light.jpg')}" alt="Avatar" /></a> 
 				<span>
 					<ul>
-						<li><a href="" class="glyphicons lock"><i></i>Conta</a></li>
-						<li><a href="" class="glyphicons keys"><i></i>Senha</a></li>
-						<li><a href="" class="glyphicons eject"><i></i>Logout</a></li>
+						<sec:access expression="hasRole('ROLE_ADMIN')">
+						<li>
+							<g:link controller="administrador" action="edit" id="${sec.loggedInUserInfo(field: 'id')}" class="glyphicons lock"><i></i>Conta</g:link>							
+						</li>
+						<li>
+							<g:link controller="administrador" action="edit" id="${sec.loggedInUserInfo(field: 'id')}" class="glyphicons lock"><i></i>Senha</g:link>
+						</li>
+						</sec:access>
+
+						<sec:access expression="hasRole('ROLE_USER')">
+						<li>
+							<g:link controller="entidade" action="edit" id="${sec.loggedInUserInfo(field: 'id')}" class="glyphicons lock"><i></i>Conta</g:link>							
+						</li>
+						<li>
+							<g:link controller="entidade" action="edit" id="${sec.loggedInUserInfo(field: 'id')}" class="glyphicons lock"><i></i>Senha</g:link>
+						</li>
+						</sec:access>
+						<li>
+							<g:link controller="logout" class="glyphicons eject"><i></i>Sair</g:link>
+						</li>
+						
 					</ul>
 				</span>
 		</span>
@@ -41,6 +59,14 @@
 							<span>Entidade</span>
 						</g:link>
 					</li>
+
+					<sec:access expression="hasRole('ROLE_ADMIN')">
+					<li class="">
+						<g:link action="index" controller="administrador">
+							<span>Administradores</span>
+						</g:link>
+					</li>
+					</sec:access>
 					
 					<sec:access expression="hasRole('ROLE_USER')">
 					<li class="">
@@ -67,16 +93,11 @@
 						<g:link action="index" controller="maquina">
 							<span>Máquina</span>
 						</g:link>
-					</li>
-					<li class="">
-						<g:link action="index" controller="diarioBordo">
-							<span>Diário de Bordo</span>
-						</g:link>
-					</li>
+					</li>					
 					</sec:access>
 
 				</ul> 
-				<span class="count">6</span>
+				
 			</li>
 			
 			<sec:access expression="hasRole('ROLE_USER')">
@@ -90,7 +111,10 @@
 				<g:link action="index" controller="ocorrenciaAlarme">
 					<i></i><span>Ocorrências</span>
 				</g:link>
-				<span class="count">3</span>
+
+				<span id="qtdeOcorrenciasAbertaMenu" class="count">
+					${com.projeto.clp.OcorrenciaAlarme.countByEstado(com.projeto.clp.type.EstadoOcorrenciaType.ABERTO)}
+				</span>
 			</li>
 			</sec:access>
 		</ul>
@@ -107,10 +131,10 @@
 				</a>
 				<ul class="collapse in" id="menu-recent-stats">
 					<li>
-						<a class="glyphicons flag" href="#"><i></i><span>4 Ocorrências Abertas</span></a>
+						<a class="glyphicons flag" href="#"><i></i><span>${com.projeto.clp.OcorrenciaAlarme.countByEstado(com.projeto.clp.type.EstadoOcorrenciaType.ABERTO)} Ocorrências Abertas</span></a>
 					</li>
 					<li>
-						<a class="glyphicons flag" href="#"><i></i><span>6 Ocorrências Fechadas</span></a>
+						<a class="glyphicons flag" href="#"><i></i><span>${com.projeto.clp.OcorrenciaAlarme.countByEstado(com.projeto.clp.type.EstadoOcorrenciaType.FECHADO)} Ocorrências Fechadas</span></a>
 					</li>
 				</ul>
 			</li>

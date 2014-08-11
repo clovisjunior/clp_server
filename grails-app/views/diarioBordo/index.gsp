@@ -46,7 +46,7 @@
 						<th><g:message code="diarioBordo.usuarioMovel.label" default="Usuario Movel" /></th>
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"><g:message code="default.table.show.label" default="Ver"/></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,7 +62,7 @@
 						<td>${fieldValue(bean: diarioBordoInstance, field: "usuarioMovel")}</td>
 					
 						<td class="center">
-							<g:link action="edit" id="${diarioBordoInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+							<g:link action="edit" id="${diarioBordoInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

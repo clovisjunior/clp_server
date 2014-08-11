@@ -50,22 +50,41 @@
 							<h3 class="heading"><g:message code="security.login.label" default="Login"/> </h3>
 						</div>
 						<div class="widget-body">
+
+							<!-- Mensagem -->
+							<g:if test="${flash.message}">
+								<div class="alert ${flash.messageTypeClass}">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong><g:message default="Atenção !" code="alert.warning"/></strong> ${flash.message}
+								</div>
+							</g:if>
+							<!-- //END Mensagem -->
 						
 							<!-- Form -->
 							<form action="${postUrl}" method="post" id="loginForm" name="loginForm" autocomplete='off'>
 								<label><g:message code="security.username.label" default="Usuário"/> </label>
 								<input name="j_username" type="text" class="input-block-level" placeholder="${g.message(code: 'security.username.placeholder')}" tabindex="1"/> 
-								<label><g:message code="security.password.labell" default="Senha"/> 
+								<label>
+
+
+								<g:message code="security.password.labell" default="Senha"/> 
+									<!--
 									<a class="password" href=""><g:message code="security.password.forgot" default="Esqueceu a senha?"/></a>
+									-->
 								</label>
+
 								<input name="j_password" type="password" class="input-block-level margin-none" placeholder="${g.message(code: 'security.password.placeholder')}" tabindex="2"/>
 								<div class="separator bottom"></div> 
 								<div class="row-fluid">
+
 									<div class="span8">
 										<div class="uniformjs">
+											<!--
 											<label class="checkbox">
+
 												<input type="checkbox" name="${rememberMeParameter}" id="remember_me" <g:if test='${hasCookie}'>checked='checked'</g:if>><g:message code="security.remember.label" default="Lembre-me"/>
 											</label>
+											-->
 										</div>
 									</div>
 									<div class="span4 center">

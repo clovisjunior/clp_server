@@ -1,23 +1,12 @@
-<!-- Top Menu -->
-<ul class="topnav pull-left tn1 hidden-phone">
 
-	<li class="dropdown dd-1 dd-2">
-		<a href="" data-toggle="dropdown">Notificações <span class="count">3</span></a>
-		<ul class="dropdown-menu pull-left">
-			<li><a href="#" class="glyphicons envelope"><i></i> New	Email</a></li>
-			<li><a href="#" class="glyphicons chat"><i></i> 5 Messages</a></li>
-			<li><a href="#" class="glyphicons conversation"><i></i>	1 New Reply</a></li>
-		</ul>
-	</li>
-
-</ul>
-<!-- // Top Menu END -->
 
 <!-- Top Menu Right -->
 <ul class="topnav pull-right">
 
 	<!-- Dropdown -->
+	<!--
 	<li class="dropdown dd-1 visible-desktop">
+		
 		<a href="" data-toggle="dropdown" class="glyphicons shield"><i></i>Ajuda <span class="caret"></span></a>
 		<ul class="dropdown-menu pull-right">
 
@@ -43,6 +32,7 @@
 				</ul>
 			</li>
 
+
 			<li>
 				<a href="" class="glyphicons settings"><i></i>Some option</a>
 			</li>
@@ -55,6 +45,7 @@
 
 		</ul>
 	</li>
+	-->
 	<!-- // Dropdown END -->
 
 	<!-- Profile / Logout menu -->
@@ -63,9 +54,11 @@
 			<span class="hidden-phone"><sec:loggedInUserInfo field="username"/></span><i></i>
 		</a>
 		<ul class="dropdown-menu pull-right">
+			<!--
 			<li>
 				<a href="#" class="glyphicons cogwheel">Configurações<i></i></a>
 			</li>
+			
 			<li class="profile">
 				<span> 
 					<span class="heading">Perfil
@@ -78,9 +71,11 @@
 				<span class="clearfix"></span>
 				</span>
 			</li>
+			-->
 			<li>
 				<span> 
-					 <g:link controller="logout" class="btn btn-default btn-mini pull-right">Sair</g:link>
+					<a href="#"><sec:loggedInUserInfo field="username"/></a> 
+					<g:link controller="logout" class="btn btn-default btn-mini pull-right">Sair</g:link>
 				</span>
 			</li>
 		</ul>

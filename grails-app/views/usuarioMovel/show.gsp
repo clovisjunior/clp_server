@@ -54,24 +54,7 @@
 								
 							</li>
 							</g:if>
-						
-							<g:if test="${usuarioMovelInstance?.password}">
-							<li class="fieldcontain">
-								<span id="password-label" class="property-label"><g:message code="usuarioMovel.password.label" default="Password" /></span>
-								
-									<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${usuarioMovelInstance}" field="password"/></span>
-								
-							</li>
-							</g:if>
-						
-							<g:if test="${usuarioMovelInstance?.email}">
-							<li class="fieldcontain">
-								<span id="email-label" class="property-label"><g:message code="usuarioMovel.email.label" default="Email" /></span>
-								
-									<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${usuarioMovelInstance}" field="email"/></span>
-								
-							</li>
-							</g:if>
+												
 						
 							<g:if test="${usuarioMovelInstance?.accountExpired}">
 							<li class="fieldcontain">

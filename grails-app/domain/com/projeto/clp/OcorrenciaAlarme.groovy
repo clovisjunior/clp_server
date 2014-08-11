@@ -1,12 +1,14 @@
 package com.projeto.clp
 
+import com.projeto.clp.type.EstadoOcorrenciaType
+
 class OcorrenciaAlarme {
 	
 	String motivoAlarme
 	String solucaoAplicada
 	String motivoAlarmeTecnico
 	UsuarioMovel usuarioMovel
-	EstadoOcorrenciaAlarme estado
+	EstadoOcorrenciaType estado
 	Set fotos
 
 	static belongsTo = [alarme: Alarme]
@@ -21,6 +23,6 @@ class OcorrenciaAlarme {
     }
 
 	String toString(){
-		"Alarme: ${alarme}, Motivo: ${motivoAlarme}, Estado: ${estado}"
+		"Alarme: ${alarme}, Motivo: ${motivoAlarme}, Estado: ${estado?.descricao}"
 	}
 }

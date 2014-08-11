@@ -19,7 +19,7 @@
 		<g:message code="administrador.password.label" default="Password" />
 	</label>
 	<div class="controls">
-		<g:textField name="password" required="" value="${administradorInstance?.password}"/>
+		<g:passwordField name="password" required="" value="${administradorInstance?.password}"/>
 	</div>
 </div>
 

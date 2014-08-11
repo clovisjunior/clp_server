@@ -11,7 +11,7 @@
 			<h2><g:message code="default.edit.label" args="[entityName]" /></h2>
 			
 			<div class="buttons pull-right">
-				<g:link action="index" class="btn btn-default btn-icon glyphicons circle_arrow_left">
+				<g:link action="index" params="['maquina.id': diarioBordoInstance.maquina.id]" class="btn btn-default btn-icon glyphicons circle_arrow_left">
 					<i></i>	<g:message code="default.back.label" default="Voltar"/>
 				</g:link>
 			</div>
@@ -57,15 +57,7 @@
 							<g:render template="form"/>
 						</div>
 						
-						<hr class="separator" />
-				
-						<!-- Form actions -->
-						<div class="form-actions">
-							<button type="submit" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i><g:message code="default.button.update.label" default="Atualizar"/></button>
-							<g:link action="index" class="btn btn-icon btn-default glyphicons circle_remove">
-								<i></i><g:message code="default.button.cancel.label" default="Cancelar"/>
-							</g:link>
-						</div>
+						
 					</div>
 					<!-- // Widget heading END -->
 				</div>

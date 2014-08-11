@@ -1,7 +1,6 @@
 package com.projeto.clp
 
 
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -36,6 +35,10 @@ class AdministradorController {
         }
 
         administradorInstance.save flush:true
+
+        def adminPapel = Papel.findByAuthority('ROLE_ADMIN')
+        
+        UsuarioPapel.create administradorInstance, adminPapel, true
 
         request.withFormat {
             form {

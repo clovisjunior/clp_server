@@ -8,8 +8,6 @@ class BootStrap {
 
     def init = { servletContext ->
 
-    	//SpringSecurityUtils.registerProvider 'projetoCLPRestAuthenticationProvider'
-		
 		def adminPapel = new Papel(authority: 'ROLE_ADMIN').save(flush: true)
 		def userPapel = new Papel(authority: 'ROLE_USER').save(flush: true)
 		def userMovelPapel = new Papel(authority: 'ROLE_USER_MOVEL').save(flush: true)
@@ -69,13 +67,7 @@ class BootStrap {
 		alarme.save flush: true
 		
 		Alarme alarme2 = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador, minimo: '1', maximo: '1')
-		alarme2.save flush: true
-
-		EstadoOcorrenciaAlarme estado1 = new EstadoOcorrenciaAlarme(descricao: "Aberto")
-		estado1.save flush: true
-		
-		EstadoOcorrenciaAlarme estado2 = new EstadoOcorrenciaAlarme(descricao: "Fechado")
-		estado2.save flush: true
+		alarme2.save flush: true		
 		
     }
     def destroy = {

@@ -13,9 +13,7 @@
 			<h2>${entityName}</h2>
 			
 			<div class="buttons pull-right">
-				<g:link action="create" class="btn btn-primary btn-icon glyphicons circle_plus">
-					<i></i>	<g:message code="default.add.label" default="Adicionar" args="[entityName]"/>
-				</g:link>
+				
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -40,15 +38,14 @@
 						<th><g:message code="ocorrenciaAlarme.usuarioMovel.label" default="Usuario Movel" /></th>
 					
 						<g:sortableColumn property="motivoAlarme" title="${message(code: 'ocorrenciaAlarme.motivoAlarme.label', default: 'Motivo Alarme')}" />
-					
-						<g:sortableColumn property="solucaoAplicada" title="${message(code: 'ocorrenciaAlarme.solucaoAplicada.label', default: 'Solucao Aplicada')}" />
+											
 					
 						<th><g:message code="ocorrenciaAlarme.estado.label" default="Estado" /></th>
 					
 						<th><g:message code="ocorrenciaAlarme.alarme.label" default="Alarme" /></th>
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,8 +55,7 @@
 						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "usuarioMovel")}</td>
 					
 						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "motivoAlarme")}</td>
-					
-						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "solucaoAplicada")}</td>
+									
 					
 						<td>${fieldValue(bean: ocorrenciaAlarmeInstance, field: "estado")}</td>
 					
@@ -67,6 +63,8 @@
 					
 						<td class="center">
 							<g:link action="edit" id="${ocorrenciaAlarmeInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+
+							<g:link action="show" id="${ocorrenciaAlarmeInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

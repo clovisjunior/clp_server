@@ -55,15 +55,6 @@
 							</li>
 							</g:if>
 						
-							<g:if test="${administradorInstance?.password}">
-							<li class="fieldcontain">
-								<span id="password-label" class="property-label"><g:message code="administrador.password.label" default="Password" /></span>
-								
-									<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${administradorInstance}" field="password"/></span>
-								
-							</li>
-							</g:if>
-						
 							<g:if test="${administradorInstance?.email}">
 							<li class="fieldcontain">
 								<span id="email-label" class="property-label"><g:message code="administrador.email.label" default="Email" /></span>

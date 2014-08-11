@@ -55,6 +55,8 @@
 					
 						<td class="center">
 							<g:link action="edit" id="${dispositivoMovelInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+
+							<g:link action="show" id="${dispositivoMovelInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

@@ -1,5 +1,7 @@
 package com.projeto.clp.api
 
+import com.projeto.clp.type.EstadoOcorrenciaType
+
 import grails.rest.RestfulController
 import grails.transaction.Transactional
 
@@ -26,9 +28,7 @@ class ApiOcorrenciaController extends RestfulController{
 
 		def ocorrencias = criteriaOcorrencia.list {
 			isNull("usuarioMovel")
-			estado {
-				eq("descricao", "Aberto")
-			}
+			eq("estado", EstadoOcorrenciaType.ABERTO)
 			alarme {
 				'in' ("maquina", maquinas)
 			}
@@ -57,9 +57,7 @@ class ApiOcorrenciaController extends RestfulController{
 
 		def ocorrencias = criteriaOcorrencia.list {
 			eq("usuarioMovel", usuarioMovel)
-			estado {
-				eq("descricao", "Aberto")
-			}
+			eq("estado", EstadoOcorrenciaType.ABERTO)
 			alarme {
 				'in' ("maquina", maquinas)
 			}
@@ -102,14 +100,7 @@ class ApiOcorrenciaController extends RestfulController{
 		
 		def foto = new Foto(imagem: params.file?.decodeBase64())
 
-		EstadoOcorrenciaAlarme estado = EstadoOcorrenciaAlarme.findByDescricao("Fechado")
-		
-		if(!estado){
-			estado = new EstadoOcorrenciaAlarme(descricao: "Fechado")
-			estado.save flush: true
-		}
-
-		ocorrencia.estado = estado
+		ocorrencia.estado = EstadoOcorrenciaType.FECHADO
 		ocorrencia.motivoAlarmeTecnico = params.motivoAlarmeTecnico
 		ocorrencia.solucaoAplicada = params.solucaoAplicada
 		ocorrencia.addToFotos(foto)

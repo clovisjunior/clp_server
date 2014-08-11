@@ -39,10 +39,6 @@
 					
 						<g:sortableColumn property="username" title="${message(code: 'administrador.username.label', default: 'Username')}" />
 					
-						<g:sortableColumn property="password" title="${message(code: 'administrador.password.label', default: 'Password')}" />
-					
-						<g:sortableColumn property="email" title="${message(code: 'administrador.email.label', default: 'Email')}" />
-					
 						<g:sortableColumn property="accountExpired" title="${message(code: 'administrador.accountExpired.label', default: 'Account Expired')}" />
 					
 						<g:sortableColumn property="accountLocked" title="${message(code: 'administrador.accountLocked.label', default: 'Account Locked')}" />
@@ -58,10 +54,6 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td>${fieldValue(bean: administradorInstance, field: "username")}</td>
-					
-						<td>${fieldValue(bean: administradorInstance, field: "password")}</td>
-					
-						<td>${fieldValue(bean: administradorInstance, field: "email")}</td>
 					
 						<td><g:formatBoolean boolean="${administradorInstance.accountExpired}" /></td>
 					

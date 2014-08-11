@@ -39,14 +39,7 @@
 					
 						<g:sortableColumn property="username" title="${message(code: 'usuarioMovel.username.label', default: 'Username')}" />
 					
-						<g:sortableColumn property="password" title="${message(code: 'usuarioMovel.password.label', default: 'Password')}" />
-					
-						<g:sortableColumn property="email" title="${message(code: 'usuarioMovel.email.label', default: 'Email')}" />
-					
-						<g:sortableColumn property="accountExpired" title="${message(code: 'usuarioMovel.accountExpired.label', default: 'Account Expired')}" />
-					
-						<g:sortableColumn property="accountLocked" title="${message(code: 'usuarioMovel.accountLocked.label', default: 'Account Locked')}" />
-					
+												
 						<th><g:message code="usuarioMovel.departamento.label" default="Departamento" /></th>
 					
 					
@@ -58,19 +51,14 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td>${fieldValue(bean: usuarioMovelInstance, field: "username")}</td>
-					
-						<td>${fieldValue(bean: usuarioMovelInstance, field: "password")}</td>
-					
-						<td>${fieldValue(bean: usuarioMovelInstance, field: "email")}</td>
-					
-						<td><g:formatBoolean boolean="${usuarioMovelInstance.accountExpired}" /></td>
-					
-						<td><g:formatBoolean boolean="${usuarioMovelInstance.accountLocked}" /></td>
+											
 					
 						<td>${fieldValue(bean: usuarioMovelInstance, field: "departamento")}</td>
 					
 						<td class="center">
 							<g:link action="edit" id="${usuarioMovelInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+
+							<g:link action="show" id="${usuarioMovelInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

@@ -1,9 +1,8 @@
 package com.projeto.clp
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+
 
 @Transactional(readOnly = true)
 class DiarioBordoController {
@@ -11,8 +10,10 @@ class DiarioBordoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond DiarioBordo.list(params), model:[diarioBordoInstanceCount: DiarioBordo.count()]
+        def maquina = Maquina.get(params.'maquina.id')
+        def list = DiarioBordo.findAllByMaquina(maquina)
+        
+        respond list, model:[diarioBordoInstanceCount: list.size()]
     }
 
     def show(DiarioBordo diarioBordoInstance) {

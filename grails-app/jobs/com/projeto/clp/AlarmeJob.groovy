@@ -24,50 +24,53 @@ class AlarmeJob {
 			def registrador = alarme.registradorEscravo
 			
 			def valor = modbusService.lerDadoRegistrador(registrador)
+
+			if(!"Offline".equals(valor)){
 			
-			//Inteiros
-			if(registrador.tipoDado == DadoType.TWO_BYTE_INT_UNSIGNED.id
-				|| registrador.tipoDado == DadoType.TWO_BYTE_INT_SIGNED.id
-				|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_UNSIGNED.id
-				|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_SIGNED.id
-				|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_UNSIGNED_SWAPPED.id
-				|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_SIGNED_SWAPPED.id) {
-				
-				valor = valor as Integer
-				
-				if(valor < (alarme.minimo as Integer) || valor > (alarme.maximo as Integer)){
-					ocorrenciaService.criarOcorrencia(alarme, valor)
-				}
-			}
-			else{
-				//Binario
-				if(registrador.tipoDado == DadoType.BINARY.id) {
+				//Inteiros
+				if(registrador.tipoDado == DadoType.TWO_BYTE_INT_UNSIGNED.id
+					|| registrador.tipoDado == DadoType.TWO_BYTE_INT_SIGNED.id
+					|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_UNSIGNED.id
+					|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_SIGNED.id
+					|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_UNSIGNED_SWAPPED.id
+					|| registrador.tipoDado == DadoType.FOUR_BYTE_INT_SIGNED_SWAPPED.id) {
 					
-					valor = valor as Boolean
+					valor = valor as Integer
 					
-					if(valor == (alarme.minimo as Boolean)){
+					if(valor < (alarme.minimo as Integer) || valor > (alarme.maximo as Integer)){
 						ocorrenciaService.criarOcorrencia(alarme, valor)
 					}
 				}
 				else{
-					//Floats
-					if(registrador.tipoDado == DadoType.FOUR_BYTE_FLOAT.id
-						|| registrador.tipoDado == DadoType.FOUR_BYTE_FLOAT_SWAPPED.id
-						|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_UNSIGNED.id
-						|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_SIGNED.id
-						|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_UNSIGNED_SWAPPED.id
-						|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_SIGNED_SWAPPED.id
-						|| registrador.tipoDado == DadoType.EIGHT_BYTE_FLOAT.id
-						|| registrador.tipoDado == DadoType.EIGHT_BYTE_FLOAT_SWAPPED.id){
+					//Binario
+					if(registrador.tipoDado == DadoType.BINARY.id) {
 						
-						valor = valor as Float
+						valor = valor as Boolean
 						
-						if(valor < (alarme.minimo as Float) || valor > (alarme.maximo as Float)){
+						if(valor == (alarme.minimo as Boolean)){
 							ocorrenciaService.criarOcorrencia(alarme, valor)
 						}
 					}
+					else{
+						//Floats
+						if(registrador.tipoDado == DadoType.FOUR_BYTE_FLOAT.id
+							|| registrador.tipoDado == DadoType.FOUR_BYTE_FLOAT_SWAPPED.id
+							|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_UNSIGNED.id
+							|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_SIGNED.id
+							|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_UNSIGNED_SWAPPED.id
+							|| registrador.tipoDado == DadoType.EIGHT_BYTE_INT_SIGNED_SWAPPED.id
+							|| registrador.tipoDado == DadoType.EIGHT_BYTE_FLOAT.id
+							|| registrador.tipoDado == DadoType.EIGHT_BYTE_FLOAT_SWAPPED.id){
+							
+							valor = valor as Float
+							
+							if(valor < (alarme.minimo as Float) || valor > (alarme.maximo as Float)){
+								ocorrenciaService.criarOcorrencia(alarme, valor)
+							}
+						}
+					}
+					
 				}
-				
 			}
 			
 		}

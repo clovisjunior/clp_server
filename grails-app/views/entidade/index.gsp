@@ -22,8 +22,8 @@
 		
 		<div class="separator bottom"></div>
 		
-		<div class="innerLR">
-		
+		<div class="innerLR">		
+
 			<!-- Mensagem -->
 			<g:if test="${flash.message}">
 				<div class="alert ${flash.messageTypeClass}">
@@ -58,7 +58,11 @@
 					
 						<td class="center">
 							<g:link action="edit" id="${entidadeInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+
+							<g:link action="show" id="${entidadeInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
+							
 						</td>
+
 					</tr>
 				</g:each>
 				</tbody>

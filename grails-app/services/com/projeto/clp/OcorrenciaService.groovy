@@ -2,6 +2,7 @@ package com.projeto.clp
 
 import grails.transaction.Transactional
 
+import com.projeto.clp.type.EstadoOcorrenciaType
 
 @Transactional
 class OcorrenciaService {
@@ -9,19 +10,12 @@ class OcorrenciaService {
 	def androidGcmService
 	def grailsApplication
 	
-    def synchronized criarOcorrencia(alarme, valor){
+    def synchronized criarOcorrencia(alarme, valor){				
 		
-		EstadoOcorrenciaAlarme estado = EstadoOcorrenciaAlarme.findByDescricao("Aberto")
-		
-		if(!estado){
-			estado = new EstadoOcorrenciaAlarme(descricao: "Aberto")
-			estado.save flush: true
-		}
-		
-		def ocorrencia = OcorrenciaAlarme.findByAlarmeAndEstado(alarme, estado)
+		def ocorrencia = OcorrenciaAlarme.findByAlarmeAndEstado(alarme, EstadoOcorrenciaType.ABERTO)
 		
 		if(!ocorrencia){
-			ocorrencia = new OcorrenciaAlarme(alarme: alarme, motivoAlarme: "Valor [${valor}] - [${alarme.minimo}, ${alarme.maximo}]", estado: estado)
+			ocorrencia = new OcorrenciaAlarme(alarme: alarme, motivoAlarme: "Valor [${valor}] - [${alarme.minimo}, ${alarme.maximo}]", estado: EstadoOcorrenciaType.ABERTO)
 			ocorrencia.save flush: true			
 			sendNotification(ocorrencia, valor)
 		}

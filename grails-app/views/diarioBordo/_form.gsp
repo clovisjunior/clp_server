@@ -8,7 +8,7 @@
 		<g:message code="diarioBordo.dataHora.label" default="Data Hora" />
 	</label>
 	<div class="controls">
-		<g:datePicker name="dataHora" precision="day"  value="${diarioBordoInstance?.dataHora}"  />
+		<g:datePicker name="dataHora" disabled="disabled" precision="day" value="${diarioBordoInstance?.dataHora}"  />
 	</div>
 </div>
 
@@ -19,7 +19,7 @@
 		<g:message code="diarioBordo.descricao.label" default="Descricao" />
 	</label>
 	<div class="controls">
-		<g:textField name="descricao" value="${diarioBordoInstance?.descricao}"/>
+		<g:textField name="descricao" disabled="disabled" value="${diarioBordoInstance?.descricao}"/>
 	</div>
 </div>
 
@@ -43,7 +43,7 @@
 		<g:message code="diarioBordo.maquina.label" default="Maquina" />
 	</label>
 	<div class="controls">
-		<g:select id="maquina" name="maquina.id" from="${com.projeto.clp.Maquina.list()}" optionKey="id" required="" value="${diarioBordoInstance?.maquina?.id}" class="many-to-one"/>
+		<g:select id="maquina" disabled="disabled" name="maquina.id" from="${com.projeto.clp.Maquina.list()}" optionKey="id" required="" value="${diarioBordoInstance?.maquina?.id}" class="many-to-one"/>
 	</div>
 </div>
 
@@ -54,7 +54,7 @@
 		<g:message code="diarioBordo.usuarioMovel.label" default="Usuario Movel" />
 	</label>
 	<div class="controls">
-		<g:select id="usuarioMovel" name="usuarioMovel.id" from="${com.projeto.clp.UsuarioMovel.list()}" optionKey="id" required="" value="${diarioBordoInstance?.usuarioMovel?.id}" class="many-to-one"/>
+		<g:select id="usuarioMovel" disabled="disabled" name="usuarioMovel.id" from="${com.projeto.clp.UsuarioMovel.list()}" optionKey="id" required="" value="${diarioBordoInstance?.usuarioMovel?.id}" class="many-to-one"/>
 	</div>
 </div>
 

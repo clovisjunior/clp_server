@@ -72,6 +72,8 @@
 						<td class="center">
 							<g:link action="edit" id="${maquinaInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
 							<g:link action="show" id="${maquinaInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
+
+							<g:link action="index" controller="diarioBordo" params="['maquina.id': maquinaInstance.id]" class="btn-action glyphicons book_open btn-success"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

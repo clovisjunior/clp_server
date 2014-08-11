@@ -12,9 +12,20 @@ class EntidadeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Entidade.list(params), model:[entidadeInstanceCount: Entidade.count()]
+
+        def usuario = springSecurityService.currentUser
+
+        if(usuario instanceof Administrador){
+            def entidades = usuario.entidades as ArrayList
+            respond entidades, model: [entidadeInstanceCount: entidades.size()]        
+        }
+        else{            
+            redirect action: "edit", id: usuario.id
+        }
+        
     }
 
     def show(Entidade entidadeInstance) {
@@ -40,6 +51,10 @@ class EntidadeController {
 
         entidadeInstance.save flush:true
 
+        def userPapel = Papel.findByAuthority('ROLE_USER')
+        
+        UsuarioPapel.create entidadeInstance, userPapel, true
+
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'entidadeInstance.label', default: 'Entidade'), entidadeInstance.id])
@@ -50,6 +65,7 @@ class EntidadeController {
     }
 
     def edit(Entidade entidadeInstance) {
+        println entidadeInstance
         respond entidadeInstance
     }
 

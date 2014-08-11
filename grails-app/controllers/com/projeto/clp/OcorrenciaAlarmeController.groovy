@@ -1,9 +1,9 @@
 package com.projeto.clp
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+
+import com.projeto.clp.type.EstadoOcorrenciaType
 
 @Transactional(readOnly = true)
 class OcorrenciaAlarmeController {
@@ -19,10 +19,7 @@ class OcorrenciaAlarmeController {
         respond ocorrenciaAlarmeInstance
     }
 
-    def create() {
-        respond new OcorrenciaAlarme(params)
-    }
-
+    
     @Transactional
     def save(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
         if (ocorrenciaAlarmeInstance == null) {
@@ -52,10 +49,13 @@ class OcorrenciaAlarmeController {
 
     @Transactional
     def update(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
+
         if (ocorrenciaAlarmeInstance == null) {
             notFound()
             return
         }
+
+        ocorrenciaAlarmeInstance.estado = EstadoOcorrenciaType.get(params.'estado.id' as Integer)
 
         if (ocorrenciaAlarmeInstance.hasErrors()) {
             respond ocorrenciaAlarmeInstance.errors, view:'edit'
@@ -107,4 +107,5 @@ class OcorrenciaAlarmeController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
 }
