@@ -1,6 +1,6 @@
 import com.projeto.clp.*
 import com.projeto.clp.type.DadoType
-import com.projeto.clp.type.RegistradorType
+import com.projeto.clp.type.*
 
 import grails.plugin.springsecurity.SpringSecurityUtils
 
@@ -17,8 +17,11 @@ class BootStrap {
   
 		UsuarioPapel.create administrador, adminPapel, true
 		
-		Entidade entidade = new Entidade(nome: 'Renault Brasil', username: 'entidade', password: '12345', email: 'clovisjunior2009@gmail.com')
+		Entidade entidade = new Entidade(nome: 'Renault Brasil', username: 'entidade', password: '12345', email: 'clovisjunior2009@gmail.com', administrador: administrador)
 		entidade.save(flush: true)
+
+		administrador.addToEntidades(entidade)
+		administrador.save(flush: true)
 		
 		UsuarioPapel.create entidade, userPapel, true
 		
@@ -63,11 +66,36 @@ class BootStrap {
 		RegistradorEscravo registrador2 = new RegistradorEscravo(escravoMaquina: escravoMaquina, identificador: "Temperatura", tipo: RegistradorType.HOLDING_REGISTER.id, tipoDado: DadoType.TWO_BYTE_INT_UNSIGNED.id, endereco: 0)
 		registrador2.save flush: true
 		
-		Alarme alarme = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador2, minimo: '20', maximo: '30')
+		Alarme alarme = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador2, minimo: '20', maximo: '30', identificador: "Temperatura < 20 ou > 30")
 		alarme.save flush: true
 		
-		Alarme alarme2 = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador, minimo: '1', maximo: '1')
+		Alarme alarme2 = new Alarme(maquina: maquina, escravoMaquina: escravoMaquina, registradorEscravo: registrador, minimo: '1', maximo: '1', identificador: "Luz desligada")
 		alarme2.save flush: true		
+
+		OcorrenciaAlarme ocorrencia1 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date().minus(2), alarme: alarme2)
+		OcorrenciaAlarme ocorrencia2 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date().minus(2), alarme: alarme2)
+		OcorrenciaAlarme ocorrencia3 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.FECHADO, dataAbertura: new Date().minus(2), alarme: alarme2)
+
+		OcorrenciaAlarme ocorrencia4 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date().minus(1), alarme: alarme2)
+		OcorrenciaAlarme ocorrencia5 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date().minus(1), alarme: alarme2)
+		OcorrenciaAlarme ocorrencia6 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.FECHADO, dataAbertura: new Date().minus(1), alarme: alarme2)
+		OcorrenciaAlarme ocorrencia7 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.FECHADO, dataAbertura: new Date().minus(1), alarme: alarme2)
+
+		OcorrenciaAlarme ocorrencia8 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date(), alarme: alarme)
+		OcorrenciaAlarme ocorrencia9 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date(), alarme: alarme)
+		OcorrenciaAlarme ocorrencia10 = new OcorrenciaAlarme(motivoAlarme: "Motivo", solucaoAplicada: "Solucao", motivoAlarmeTecnico: "", usuarioMovel: usuarioMovel1, estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date(), alarme: alarme)
+
+		ocorrencia1.save(flush: true)
+		ocorrencia2.save(flush: true)
+		ocorrencia3.save(flush: true)
+		ocorrencia4.save(flush: true)
+		ocorrencia5.save(flush: true)
+		ocorrencia6.save(flush: true)
+		ocorrencia7.save(flush: true)
+		ocorrencia8.save(flush: true)
+		ocorrencia9.save(flush: true)
+		ocorrencia10.save(flush: true)
+
 		
     }
     def destroy = {

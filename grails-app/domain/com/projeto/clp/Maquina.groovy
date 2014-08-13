@@ -11,10 +11,12 @@ class Maquina {
 	
 	Departamento departamento
 	
-	Set escravos
+	//Set escravos
+	//Set alarmes
 	
 	static belongsTo = [departamento: Departamento]
-	static hasMany = [escravos: EscravoMaquina]
+	static hasMany = [escravos: EscravoMaquina,
+					  alarmes: Alarme]
 
     static constraints = {
 		localizacaoFisica nullable: true, blank: true

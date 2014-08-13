@@ -134,6 +134,7 @@ grails.plugin.springsecurity.authority.className = 'com.projeto.clp.Papel'
 grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
 grails.plugin.springsecurity.password.algorithm = 'bcrypt'
 grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard'
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/js/**':					['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/css/**':					['IS_AUTHENTICATED_ANONYMOUSLY'],
@@ -144,6 +145,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/entidade/**': 			['ROLE_USER', 'ROLE_ADMIN'],    
 	'/maquina/**': 				['ROLE_USER'],
 	'/unidadeDeNegocio/**': 	['ROLE_USER'],
+    '/dashboard/**':            ['ROLE_USER', 'ROLE_ADMIN'],
 	'/escravoMaquina/**': 		['ROLE_USER'],
 	'/registradorEscravo/**':	['ROLE_USER'],
 	'/usuarioMovel/**': 		['ROLE_USER'],

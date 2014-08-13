@@ -108,4 +108,13 @@ class OcorrenciaAlarmeController {
         }
     }
 
+    def ocorrenciaAbertas() {
+
+
+    }
+
+    def ocorrenciasFechadas() {
+        
+    }
+
 }

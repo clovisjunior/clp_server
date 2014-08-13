@@ -57,6 +57,11 @@ class UrlMappings {
 			controller = "apiOcorrencia"
 			action = "finalizar"
 		}	
+
+		"/api/ocorrencia/dashboard"{
+			controller = "apiOcorrencia"
+			action = "dashboard"
+		}
 		
         "/"(view:"/index")
 		"500"(view:'/500_error')

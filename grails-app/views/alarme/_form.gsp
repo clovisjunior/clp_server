@@ -47,3 +47,12 @@
 		<g:textField name="maximo" value="${alarmeInstance?.maximo}"/>
 	</div>
 </div>
+
+<div class="control-group">
+	<label class="control-label" for="identificador">
+		<g:message code="alarme.identificador.label" default="Identificador" />
+	</label>
+	<div class="controls">
+		<g:textField name="identificador" value="${alarmeInstance?.identificador}"/>
+	</div>
+</div>

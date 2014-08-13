@@ -45,12 +45,14 @@
 		<ul class="menu-0">
 
 			<!-- Menu Regular Item -->
-			<li class="glyphicons display active">
-				<a href="#"><i></i><span>Dashboard</span></a>
+			<li id="menu_dashboard" class="glyphicons display">
+				<g:link action="index" controller="dashboard">
+					<i></i><span>Dashboard</span></a>
+				</g:link>
 			</li>
 
 			<!-- Components Submenu Level 1 -->
-			<li class="hasSubmenu glyphicons list">
+			<li id="menu_cadastros" class="hasSubmenu glyphicons list">
 				<a data-toggle="collapse" href="#menu_components"><i></i><span>Cadastros</span></a>
 				<ul class="collapse" id="menu_components">
 
@@ -101,13 +103,13 @@
 			</li>
 			
 			<sec:access expression="hasRole('ROLE_USER')">
-			<li class="glyphicons warning_sign">
+			<li id="menu_alarme" class="glyphicons warning_sign">
 				<g:link action="index" controller="alarme">
 					<i></i><span>Alarmes</span>
 				</g:link>
 			</li>
 			
-			<li class="glyphicons flag">
+			<li id="menu_ocorrencia" class="glyphicons flag">
 				<g:link action="index" controller="ocorrenciaAlarme">
 					<i></i><span>Ocorrências</span>
 				</g:link>
@@ -120,9 +122,10 @@
 		</ul>
 		
 		
-
 		<div class="clearfix"></div>
 		<!-- // Regular Size Menu END -->
+
+		<sec:access expression="hasRole('ROLE_USER')">
 
 		<ul class="menu-1">
 			<li class="hasSubmenu active">
@@ -131,14 +134,20 @@
 				</a>
 				<ul class="collapse in" id="menu-recent-stats">
 					<li>
-						<a class="glyphicons flag" href="#"><i></i><span>${com.projeto.clp.OcorrenciaAlarme.countByEstado(com.projeto.clp.type.EstadoOcorrenciaType.ABERTO)} Ocorrências Abertas</span></a>
+						<g:link action="index" controller="ocorrenciaAlarme" class="glyphicons flag">
+							<i></i><span><ocorrencia:quantidadeAbertas/> Ocorrências Abertas</span>
+						</g:link>						
 					</li>
 					<li>
-						<a class="glyphicons flag" href="#"><i></i><span>${com.projeto.clp.OcorrenciaAlarme.countByEstado(com.projeto.clp.type.EstadoOcorrenciaType.FECHADO)} Ocorrências Fechadas</span></a>
+						<g:link action="index" controller="ocorrenciaAlarme" class="glyphicons flag">
+							<i></i><span><ocorrencia:quantidadeFechadas/> Ocorrências Fechadas</span>
+						</g:link>
 					</li>
 				</ul>
 			</li>
 		</ul>
+		
+		</sec:access>
 
 		<div class="clearfix"></div>
 		<div class="separator bottom"></div>

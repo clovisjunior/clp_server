@@ -73,5 +73,20 @@
 			<custom:paginate total="${entidadeInstanceCount ?: 0}"/>
 			
 		</div>
+
+		<g:javascript>
+
+			$(function(){
+
+				//Setar menu
+				$(".menu-0 > li").each(function(){
+					$(this).removeClass("active");
+				});
+								
+
+			});
+
+		</g:javascript>
+
 	</body>
 </html>

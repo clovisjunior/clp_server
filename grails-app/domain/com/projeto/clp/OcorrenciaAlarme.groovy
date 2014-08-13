@@ -9,6 +9,8 @@ class OcorrenciaAlarme {
 	String motivoAlarmeTecnico
 	UsuarioMovel usuarioMovel
 	EstadoOcorrenciaType estado
+	Date dataAbertura
+	Date dataFechamento
 	Set fotos
 
 	static belongsTo = [alarme: Alarme]
@@ -20,8 +22,9 @@ class OcorrenciaAlarme {
 		motivoAlarmeTecnico nullable: true, blank: true
 		solucaoAplicada blank:true,  nullable: true
 		estado nullable: false 
+		dataFechamento nullable: true
     }
-
+   
 	String toString(){
 		"Alarme: ${alarme}, Motivo: ${motivoAlarme}, Estado: ${estado?.descricao}"
 	}

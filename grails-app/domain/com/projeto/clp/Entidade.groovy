@@ -4,6 +4,8 @@ class Entidade extends Usuario {
 	
 	String nome
 	Set unidadesNegocios
+
+	static belongsTo = [administrador: Administrador]
 	
 	static hasMany = [unidadesNegocios: UnidadeDeNegocio]
 

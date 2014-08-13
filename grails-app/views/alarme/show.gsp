@@ -90,6 +90,15 @@
 								
 							</li>
 							</g:if>
+
+							<g:if test="${alarmeInstance?.identificador}">
+							<li class="fieldcontain">
+								<span id="identificador-label" class="property-label"><g:message code="alarme.identificador.label" default="Identificador" /></span>
+								
+									<span class="property-value" aria-labelledby="identificador-label"><g:fieldValue bean="${alarmeInstance}" field="identificador"/></span>
+								
+							</li>
+							</g:if>
 						
 						</ol>
 						

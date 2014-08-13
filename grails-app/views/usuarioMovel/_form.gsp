@@ -1,14 +1,30 @@
 <%@ page import="com.projeto.clp.UsuarioMovel" %>
 
 
-
-
 <div class="control-group">
 	<label class="control-label" for="username">
 		<g:message code="usuarioMovel.username.label" default="Username" />
 	</label>
 	<div class="controls">
-		<g:textField name="username" disabled="disabled" required="" value="${usuarioMovelInstance?.username}"/>
+		<g:textField name="username" required="" value="${usuarioMovelInstance?.username}"/>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="password">
+		<g:message code="usuarioMovel.password.label" default="Senha" />
+	</label>
+	<div class="controls">
+		<g:passwordField name="password" required="" value="${usuarioMovelInstance?.password}"/>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="email">
+		<g:message code="usuarioMovel.email.label" default="Email" />
+	</label>
+	<div class="controls">
+		<g:textField name="email" required="" value="${usuarioMovelInstance?.email}"/>
 	</div>
 </div>
 

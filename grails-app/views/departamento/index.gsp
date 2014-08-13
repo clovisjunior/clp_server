@@ -68,5 +68,20 @@
 			<custom:paginate total="${departamentoInstanceCount ?: 0}"/>
 			
 		</div>
+
+		<g:javascript>
+
+			$(function(){
+
+				//Setar menu
+				$(".menu-0 > li").each(function(){
+					$(this).removeClass("active");
+				});
+				
+				$(".menu-0 > li[id=menu_cadastros]").addClass("active");
+
+			});
+			
+		</g:javascript>
 	</body>
 </html>

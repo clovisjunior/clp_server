@@ -9,13 +9,14 @@ class OcorrenciaService {
 
 	def androidGcmService
 	def grailsApplication
+	def springSecurityService
 	
     def synchronized criarOcorrencia(alarme, valor){				
 		
 		def ocorrencia = OcorrenciaAlarme.findByAlarmeAndEstado(alarme, EstadoOcorrenciaType.ABERTO)
 		
 		if(!ocorrencia){
-			ocorrencia = new OcorrenciaAlarme(alarme: alarme, motivoAlarme: "Valor [${valor}] - [${alarme.minimo}, ${alarme.maximo}]", estado: EstadoOcorrenciaType.ABERTO)
+			ocorrencia = new OcorrenciaAlarme(alarme: alarme, motivoAlarme: "Valor [${valor}] - [${alarme.minimo}, ${alarme.maximo}]", estado: EstadoOcorrenciaType.ABERTO, dataAbertura: new Date())
 			ocorrencia.save flush: true			
 			sendNotification(ocorrencia, valor)
 		}
@@ -50,4 +51,31 @@ class OcorrenciaService {
 		androidGcmService.sendMessage(messages, deviceToken, 'Alarme', apiKey)	
 	
 	}
+
+	def quantidadeOcorrencias(EstadoOcorrenciaType estado){
+
+		def usuario = springSecurityService.currentUser
+
+		def criteria = OcorrenciaAlarme.createCriteria()
+
+		def qtde = criteria.get {
+			eq("estado", estado)
+			alarme{
+				maquina{
+					departamento{
+						unidadeNegocio{
+							eq("entidade", usuario)
+						}
+					}
+				}
+			}
+			projections {
+				count("id")
+			}
+		}
+
+		return qtde
+
+	}
+	
 }

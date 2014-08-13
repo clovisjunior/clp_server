@@ -65,6 +65,24 @@
 	</div>
 </div>
 
+<div class="control-group">
+	<label class="control-label" for="dataAbertura">
+		<g:message code="ocorrenciaAlarme.dataAbertura.label" default="Data Abertura" />
+	</label>
+	<div class="controls">
+		<g:datePicker name="dataAbertura" readonly="readonly" value="${ocorrenciaAlarmeInstance?.dataAbertura}"  />
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="dataFechamento">
+		<g:message code="ocorrenciaAlarme.dataFechamento.label" default="Data Fechamento" />
+	</label>
+	<div class="controls">
+		<g:datePicker name="dataFechamento" disabled="disabled" value="${ocorrenciaAlarmeInstance?.dataFechamento}"  />
+	</div>
+</div>
+
 
 <div class="control-group">
 	<label class="control-label" for="fotos">
@@ -76,5 +94,7 @@
 		</g:each>
 	</div>
 </div>
+
+
 
 

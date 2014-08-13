@@ -7,15 +7,18 @@ class Alarme {
 	RegistradorEscravo registradorEscravo
 	String minimo
 	String maximo
+	String identificador
 	
-	Set ocorrencias
+	//Set ocorrencias
 	
 	static hasMany = [ocorrencias: OcorrenciaAlarme]
+	static belongsTo = [maquina: Maquina]
 	
     static constraints = {
 		maquina nullable: false
 		registradorEscravo nullable: false 
 		escravoMaquina nullable: false
+		identificador nullable: false
     }
 	
 	String toString(){
