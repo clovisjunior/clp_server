@@ -11,9 +11,6 @@ class Maquina {
 	
 	Departamento departamento
 	
-	//Set escravos
-	//Set alarmes
-	
 	static belongsTo = [departamento: Departamento]
 	static hasMany = [escravos: EscravoMaquina,
 					  alarmes: Alarme]

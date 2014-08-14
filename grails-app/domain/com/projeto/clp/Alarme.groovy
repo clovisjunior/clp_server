@@ -9,8 +9,6 @@ class Alarme {
 	String maximo
 	String identificador
 	
-	//Set ocorrencias
-	
 	static hasMany = [ocorrencias: OcorrenciaAlarme]
 	static belongsTo = [maquina: Maquina]
 	

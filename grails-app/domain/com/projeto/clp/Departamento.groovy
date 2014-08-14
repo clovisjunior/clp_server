@@ -5,9 +5,6 @@ class Departamento {
 	String nome
 	UnidadeDeNegocio unidadeNegocio
 	
-	//Set maquinas
-	//Set usuariosMoveis
-	
 	static belongsTo = [unidadeNegocio: UnidadeDeNegocio]
 	static hasMany = [maquinas: Maquina,
 					  usuariosMoveis: UsuarioMovel,

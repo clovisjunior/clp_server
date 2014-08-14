@@ -57,8 +57,6 @@ class DispositivoMovelController {
 
     def edit(DispositivoMovel dispositivoMovelInstance) {
 
-        println dispositivoMovelInstance.departamento
-
         def departamentos = usuarioService.getDepartamentos(null)
 
         respond dispositivoMovelInstance, model: [departamentos: departamentos]

@@ -7,8 +7,6 @@ class UnidadeDeNegocio {
 	
 	Entidade entidade
 	
-	//Set departamentos
-	
 	static belongsTo = [entidade: Entidade]
 	static hasMany = [departamentos: Departamento]
 
