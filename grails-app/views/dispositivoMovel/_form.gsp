@@ -24,3 +24,12 @@
 </div>
 
 
+<div class="control-group">
+	<label class="control-label" for="departamento">
+		<g:message code="dispositivoMovel.departamento.label" default="Departamento" />
+	</label>
+	<div class="controls">
+		<g:select id="departamento" name="departamento.id" from="${departamentos}" optionKey="id" required="" value="${departamentoInstance?.departamento?.id}" class="many-to-one"/>
+	</div>
+</div>
+

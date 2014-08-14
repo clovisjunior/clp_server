@@ -10,10 +10,24 @@ import grails.transaction.Transactional
 class DepartamentoController{
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def springSecurityService
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Departamento.list(params), model:[departamentoInstanceCount: Departamento.count()]
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade, [params])
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+        
+        respond departamentos, model:[departamentoInstanceList: departamentos, departamentoInstanceCount: departamentos.size()]
     }
 
     def show(Departamento departamentoInstance) {
@@ -21,7 +35,11 @@ class DepartamentoController{
     }
 
     def create() {
-        respond new Departamento(params)
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+
+        respond new Departamento(params), model: [unidadesNegocios: unidadesNegocios]
     }
 
     @Transactional
@@ -48,7 +66,12 @@ class DepartamentoController{
     }
 
     def edit(Departamento departamentoInstance) {
-        respond departamentoInstance
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+
+        respond departamentoInstance, model: [unidadesNegocios: unidadesNegocios]
+    
     }
 
     @Transactional

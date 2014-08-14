@@ -10,9 +10,47 @@ class AlarmeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Alarme.list(params), model:[alarmeInstanceCount: Alarme.count()]
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+
+        def dispositivosMoveis = []
+
+        departamentos?.each {
+            it.dispositivosMoveis?.each { dispotivoMovel ->
+                dispositivosMoveis << dispotivoMovel
+            }
+        }
+
+        def maquinas = []
+
+        departamentos?.each { departamento ->
+            departamento.maquinas?.each { maquina ->
+                maquinas << maquina
+            }
+        }
+
+        def alarmes = []
+
+        maquinas?.each { maquina ->
+            maquinas.alarmes?.each { alarme ->
+                alarmes << alarme
+            }
+        }
+
+        respond alarmes, model:[alarmeInstanceList: alarmes, alarmeInstanceCount: alarmes.size()]
     }
 
     def show(Alarme alarmeInstance) {
@@ -20,7 +58,36 @@ class AlarmeController {
     }
 
     def create() {
-        respond new Alarme(params)
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+
+        def dispositivosMoveis = []
+
+        departamentos?.each {
+            it.dispositivosMoveis?.each { dispotivoMovel ->
+                dispositivosMoveis << dispotivoMovel
+            }
+        }
+
+        def maquinas = []
+
+        departamentos?.each { departamento ->
+            departamento.maquinas?.each { maquina ->
+                maquinas << maquina
+            }
+        }
+
+
+        respond new Alarme(params), model: [maquinas: maquinas]
     }
 
     @Transactional

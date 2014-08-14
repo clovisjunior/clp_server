@@ -10,9 +10,49 @@ class OcorrenciaAlarmeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond OcorrenciaAlarme.list(params), model:[ocorrenciaAlarmeInstanceCount: OcorrenciaAlarme.count()]
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+
+        def dispositivosMoveis = []
+
+        departamentos?.each {
+            it.dispositivosMoveis?.each { dispotivoMovel ->
+                dispositivosMoveis << dispotivoMovel
+            }
+        }
+
+        def maquinas = []
+
+        departamentos?.each { departamento ->
+            departamento.maquinas?.each { maquina ->
+                maquinas << maquina
+            }
+        }
+
+        def ocorrencias = []
+
+        maquinas?.each { maquina ->
+            maquinas.alarmes?.each { alarme ->
+                alarme.ocorrencias?.each { ocorrencia ->
+                    ocorrencias << ocorrencias
+                }                
+            }
+        }
+
+        respond ocorrencias, model:[ocorrenciaAlarmeInstanceList: ocorrencias, ocorrenciaAlarmeInstanceCount: ocorrencias.size()]
     }
 
     def show(OcorrenciaAlarme ocorrenciaAlarmeInstance) {

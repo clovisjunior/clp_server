@@ -20,7 +20,6 @@ class ApiDispositivoController extends RestfulController{
 	}
 
 	def registrarGCM(){
-		
 		String gcmId = params.GCM_ID
 		String imei = params.imei
 		

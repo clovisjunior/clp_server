@@ -5,7 +5,7 @@
 		<g:message code="alarme.maquina.label" default="Maquina" />
 	</label>
 	<div class="controls">
-		<g:select id="maquina" name="maquina.id" from="${com.projeto.clp.Maquina.list()}" 
+		<g:select id="maquina" name="maquina.id" from="${maquinas}" 
 				  optionKey="id" required="" value="${alarmeInstance?.maquina?.id}" class="many-to-one"
 				  noSelection="${['0':'...']}"
 				  onchange="${remoteFunction(action: 'preecherEscravos', controller: 'alarme', update: 'selectEscravoMaquina', params: '\'maquinaId=\' + this.value', onComplete: '$(\'#escravoMaquina\').change();') }"/>

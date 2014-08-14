@@ -10,9 +10,25 @@ class DispositivoMovelController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond DispositivoMovel.list(params), model:[dispositivoMovelInstanceCount: DispositivoMovel.count()]
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def dispositivosMoveis = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamento.dispositivosMoveis?.each { dispositivoMovel ->
+                    dispositivosMoveis << dispositivoMovel
+                }
+            }
+        }
+
+        respond dispositivosMoveis, model:[dispositivoMovelInstanceList: dispositivosMoveis, dispositivoMovelInstanceCount: DispositivoMovel.count()]
     }
 
     def show(DispositivoMovel dispositivoMovelInstance) {
@@ -20,7 +36,19 @@ class DispositivoMovelController {
     }
 
     def create() {
-        respond new DispositivoMovel(params)
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+
+        respond new DispositivoMovel(params), model: [departamentos: departamentos]
     }
 
     @Transactional
@@ -47,7 +75,20 @@ class DispositivoMovelController {
     }
 
     def edit(DispositivoMovel dispositivoMovelInstance) {
-        respond dispositivoMovelInstance
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+
+
+        respond dispositivoMovelInstance, model: [departamentos: departamentos]
     }
 
     @Transactional

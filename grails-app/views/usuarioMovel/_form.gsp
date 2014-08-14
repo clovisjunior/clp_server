@@ -66,7 +66,7 @@
 		<g:message code="usuarioMovel.departamento.label" default="Departamento" />
 	</label>
 	<div class="controls">
-		<g:select id="departamento" name="departamento.id" from="${com.projeto.clp.Departamento.list()}" optionKey="id" required="" value="${usuarioMovelInstance?.departamento?.id}" class="many-to-one"/>
+		<g:select id="departamento" name="departamento.id" from="${departamentos}" optionKey="id" required="" value="${usuarioMovelInstance?.departamento?.id}" class="many-to-one"/>
 	</div>
 </div>
 
@@ -77,7 +77,7 @@
 		<g:message code="usuarioMovel.dispositivosMoveis.label" default="Dispositivos Moveis" />
 	</label>
 	<div class="controls">
-		<g:select name="dispositivosMoveis" from="${com.projeto.clp.DispositivoMovel.list()}" multiple="multiple" optionKey="id" size="5" value="${usuarioMovelInstance?.dispositivosMoveis*.id}" class="many-to-many"/>
+		<g:select name="dispositivosMoveis" from="${dispositivosMoveis}" multiple="multiple" optionKey="id" size="5" value="${usuarioMovelInstance?.dispositivosMoveis*.id}" class="many-to-many"/>
 	</div>
 </div>
 
@@ -87,7 +87,7 @@
 		<g:message code="usuarioMovel.maquinas.label" default="Maquinas" />
 	</label>
 	<div class="controls">
-		<g:select name="maquinas" from="${com.projeto.clp.Maquina.list()}" multiple="multiple" optionKey="id" size="5" value="${usuarioMovelInstance?.maquinas*.id}" class="many-to-many"/>
+		<g:select name="maquinas" from="${maquinas}" multiple="multiple" optionKey="id" size="5" value="${usuarioMovelInstance?.maquinas*.id}" class="many-to-many"/>
 	</div>
 </div>
 

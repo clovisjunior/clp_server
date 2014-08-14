@@ -10,7 +10,8 @@ class Departamento {
 	
 	static belongsTo = [unidadeNegocio: UnidadeDeNegocio]
 	static hasMany = [maquinas: Maquina,
-					  usuariosMoveis: UsuarioMovel]
+					  usuariosMoveis: UsuarioMovel,
+					  dispositivosMoveis: DispositivoMovel]
 
     static constraints = {
 		nome nullable: false, blank: false

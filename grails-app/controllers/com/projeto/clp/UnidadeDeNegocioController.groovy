@@ -10,9 +10,17 @@ class UnidadeDeNegocioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
+
         params.max = Math.min(max ?: 10, 100)
-        respond UnidadeDeNegocio.list(params), model:[unidadeDeNegocioInstanceCount: UnidadeDeNegocio.count()]
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade, [params])
+
+        respond unidadesNegocios, model:[unidadeDeNegocioInstanceCount: unidadesNegocios.size()]
     }
 
     def show(UnidadeDeNegocio unidadeDeNegocioInstance) {
@@ -29,6 +37,17 @@ class UnidadeDeNegocioController {
             notFound()
             return
         }
+
+        def usuario = springSecurityService.currentUser
+
+        usuario.unidadesNegocios = []
+
+        unidadeDeNegocioInstance.entidade = usuario
+        
+
+        usuario.unidadesNegocios << unidadeDeNegocioInstance
+        usuario.save flush: true
+
 
         if (unidadeDeNegocioInstance.hasErrors()) {
             respond unidadeDeNegocioInstance.errors, view:'create'

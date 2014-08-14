@@ -43,12 +43,15 @@ class OcorrenciaService {
 		usuarios.each { usuario ->
 
 			usuario.dispositivosMoveis?.each{ dispositivo ->
-
-				deviceToken << dispositivo.gcmId					
+				if(dispositivo.gcmId){
+					deviceToken << dispositivo.gcmId					
+				}
 			}
 		}
 
-		androidGcmService.sendMessage(messages, deviceToken, 'Alarme', apiKey)	
+		if(deviceToken){
+			androidGcmService.sendMessage(messages, deviceToken, 'Alarme', apiKey)	
+		}
 	
 	}
 

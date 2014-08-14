@@ -80,7 +80,7 @@
 	</label>
 	<div class="controls">
 		<g:select id="departamento" name="departamento.id"
-			from="${com.projeto.clp.Departamento.list()}" optionKey="id"
+			from="${departamentos}" optionKey="id"
 			required="" value="${maquinaInstance?.departamento?.id}"
 			class="many-to-one" />
 	</div>

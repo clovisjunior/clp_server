@@ -10,9 +10,25 @@ class UsuarioMovelController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def springSecurityService
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond UsuarioMovel.list(params), model:[usuarioMovelInstanceCount: UsuarioMovel.count()]
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade, [params])
+        def usuarioMoveis = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamento.usuariosMoveis?.each { usuarioMovel ->
+                    usuarioMoveis << usuarioMovel
+                }
+            }
+        }
+
+        respond usuarioMoveis, model:[usuarioMovelInstanceList: usuarioMoveis, usuarioMovelInstanceCount: usuarioMoveis.size()]
     }
 
     def show(UsuarioMovel usuarioMovelInstance) {
@@ -20,7 +36,36 @@ class UsuarioMovelController {
     }
 
     def create() {
-        respond new UsuarioMovel(params)
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+
+        def dispositivosMoveis = []
+
+        departamentos?.each {
+            it.dispositivosMoveis?.each { dispotivoMovel ->
+                dispositivosMoveis << dispotivoMovel
+            }
+        }
+
+        def maquinas = []
+
+        departamentos?.each { departamento ->
+            departamento.maquinas?.each { maquina ->
+                maquinas << maquina
+            }
+        }
+
+
+        respond new UsuarioMovel(params), model: [departamentos: departamentos, dispositivosMoveis: dispositivosMoveis, maquinas: maquinas]
     }
 
     @Transactional
@@ -37,6 +82,10 @@ class UsuarioMovelController {
 
         usuarioMovelInstance.save flush:true
 
+        def userMovelPapel = Papel.findByAuthority('ROLE_USER_MOVEL')
+
+        UsuarioPapel.create usuarioMovelInstance, userMovelPapel, true
+
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'usuarioMovelInstance.label', default: 'UsuarioMovel'), usuarioMovelInstance.id])
@@ -47,7 +96,35 @@ class UsuarioMovelController {
     }
 
     def edit(UsuarioMovel usuarioMovelInstance) {
-        respond usuarioMovelInstance
+
+        def entidade = springSecurityService.currentUser
+
+        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def departamentos = []
+
+        unidadesNegocios?.each {
+            it.departamentos?.each { departamento ->
+                departamentos << departamento
+            }
+        }
+
+        def dispositivosMoveis = []
+
+        departamentos?.each {
+            it.dispositivosMoveis?.each { dispotivoMovel ->
+                dispositivosMoveis << dispotivoMovel
+            }
+        }
+
+        def maquinas = []
+
+        departamentos?.each { departamento ->
+            departamento.maquinas?.each { maquina ->
+                maquinas << maquina
+            }
+        }
+        
+        respond usuarioMovelInstance, model: [departamentos: departamentos, dispositivosMoveis: dispositivosMoveis, maquinas: maquinas]
     }
 
     @Transactional

@@ -4,6 +4,7 @@ class Entidade extends Usuario {
 	
 	String nome
 	Set unidadesNegocios
+	Administrador administrador
 
 	static belongsTo = [administrador: Administrador]
 	

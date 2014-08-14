@@ -82,20 +82,20 @@
 						</g:link>
 					</li>
 					<li class="">
-						<g:link action="index" controller="usuarioMovel">
-							<span>Usuário Móvel</span>
+						<g:link action="index" controller="maquina">
+							<span>Máquina</span>
 						</g:link>
-					</li>
+					</li>	
 					<li class="">
 						<g:link action="index" controller="dispositivoMovel">
 							<span>Dispositivo Móvel</span>
 						</g:link>
 					</li>
 					<li class="">
-						<g:link action="index" controller="maquina">
-							<span>Máquina</span>
+						<g:link action="index" controller="usuarioMovel">
+							<span>Usuário Móvel</span>
 						</g:link>
-					</li>					
+					</li>
 					</sec:access>
 
 				</ul> 

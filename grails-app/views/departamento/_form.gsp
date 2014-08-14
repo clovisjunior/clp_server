@@ -12,6 +12,15 @@
 	</div>
 </div>
 
+<div class="control-group">
+	<label class="control-label" for="unidadeNegocio">
+		<g:message code="departamento.unidadeNegocio.label" default="Unidade Negocio" />
+	</label>
+	<div class="controls">
+		<g:select id="unidadeNegocio" name="unidadeNegocio.id" from="${unidadesNegocios}" optionKey="id" required="" value="${departamentoInstance?.unidadeNegocio?.id}" class="many-to-one"/>
+	</div>
+</div>
+
 
 
 <div class="control-group">
@@ -29,18 +38,6 @@
 
 	</div>
 </div>
-
-
-
-<div class="control-group">
-	<label class="control-label" for="unidadeNegocio">
-		<g:message code="departamento.unidadeNegocio.label" default="Unidade Negocio" />
-	</label>
-	<div class="controls">
-		<g:select id="unidadeNegocio" name="unidadeNegocio.id" from="${com.projeto.clp.UnidadeDeNegocio.list()}" optionKey="id" required="" value="${departamentoInstance?.unidadeNegocio?.id}" class="many-to-one"/>
-	</div>
-</div>
-
 
 
 <div class="control-group">

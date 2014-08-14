@@ -31,7 +31,6 @@
 </div>
 
 
-
 <div class="control-group">
 	<label class="control-label" for="endereco">
 		<g:message code="unidadeDeNegocio.endereco.label" default="Endereco" />
@@ -40,16 +39,3 @@
 		<g:textField name="endereco" value="${unidadeDeNegocioInstance?.endereco}"/>
 	</div>
 </div>
-
-
-
-<div class="control-group">
-	<label class="control-label" for="entidade">
-		<g:message code="unidadeDeNegocio.entidade.label" default="Entidade" />
-	</label>
-	<div class="controls">
-		<g:select id="entidade" name="entidade.id" from="${com.projeto.clp.Entidade.list()}" optionKey="id" required="" value="${unidadeDeNegocioInstance?.entidade?.id}" class="many-to-one"/>
-	</div>
-</div>
-
-

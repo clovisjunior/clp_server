@@ -16,6 +16,8 @@ class BootStrap {
 		administrador.save(flush: true)
   
 		UsuarioPapel.create administrador, adminPapel, true
+
+		/*
 		
 		Entidade entidade = new Entidade(nome: 'Renault Brasil', username: 'entidade', password: '12345', email: 'clovisjunior2009@gmail.com', administrador: administrador)
 		entidade.save(flush: true)
@@ -95,7 +97,7 @@ class BootStrap {
 		ocorrencia8.save(flush: true)
 		ocorrencia9.save(flush: true)
 		ocorrencia10.save(flush: true)
-
+		*/
 		
     }
     def destroy = {

@@ -38,34 +38,49 @@ class EntidadeController {
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def save(Entidade entidadeInstance) {
         if (entidadeInstance == null) {
             notFound()
             return
         }
 
+        def usuario = Administrador.get(springSecurityService.currentUser?.id)
+        usuario.entidades = []
+
+        
+        entidadeInstance.administrador = usuario
+
+        usuario.entidades << entidadeInstance
+        usuario.save flush: true
+
+        println "> ${entidadeInstance.administrador}"
+
         if (entidadeInstance.hasErrors()) {
+            println entidadeInstance.errors
             respond entidadeInstance.errors, view:'create'
             return
         }
 
+        usuario.save flush: true
         entidadeInstance.save flush:true
 
         def userPapel = Papel.findByAuthority('ROLE_USER')
-        
+
         UsuarioPapel.create entidadeInstance, userPapel, true
 
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'entidadeInstance.label', default: 'Entidade'), entidadeInstance.id])
-                redirect entidadeInstance
+                redirect action: "index"
             }
-            '*' { respond entidadeInstance, [status: CREATED] }
+            '*' { 
+                respond entidadeInstance, [status: CREATED] 
+            }
         }
     }
 
-    def edit(Entidade entidadeInstance) {
-        println entidadeInstance
+    def edit(Entidade entidadeInstance) {        
         respond entidadeInstance
     }
 
