@@ -115,7 +115,7 @@
 				</g:link>
 
 				<span id="qtdeOcorrenciasAbertaMenu" class="count">
-					${com.projeto.clp.OcorrenciaAlarme.countByEstado(com.projeto.clp.type.EstadoOcorrenciaType.ABERTO)}
+					<ocorrencia:quantidadeAbertas/>
 				</span>
 			</li>
 			</sec:access>

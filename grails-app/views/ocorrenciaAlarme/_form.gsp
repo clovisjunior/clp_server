@@ -61,7 +61,7 @@
 		<g:message code="ocorrenciaAlarme.alarme.label" default="Alarme" />
 	</label>
 	<div class="controls">
-		<g:select id="alarme" name="alarme.id" from="${com.projeto.clp.Alarme.list()}" optionKey="id" required="" value="${ocorrenciaAlarmeInstance?.alarme?.id}" class="many-to-one"/>
+		<g:select id="alarme" name="alarme.id" from="${alarmes}" optionKey="id" required="" value="${ocorrenciaAlarmeInstance?.alarme?.id}" class="many-to-one"/>
 	</div>
 </div>
 

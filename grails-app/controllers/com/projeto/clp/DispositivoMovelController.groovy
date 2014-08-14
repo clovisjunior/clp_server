@@ -10,25 +10,15 @@ class DispositivoMovelController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def springSecurityService
+    def usuarioService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+        
+        def dispositivosMoveis = usuarioService.getDispositivosMoveis(params)
+        def dispositivosMoveisCount = usuarioService.getDispositivosMoveisCount()       
 
-        def entidade = springSecurityService.currentUser
-
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def dispositivosMoveis = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamento.dispositivosMoveis?.each { dispositivoMovel ->
-                    dispositivosMoveis << dispositivoMovel
-                }
-            }
-        }
-
-        respond dispositivosMoveis, model:[dispositivoMovelInstanceList: dispositivosMoveis, dispositivoMovelInstanceCount: DispositivoMovel.count()]
+        respond dispositivosMoveis, model:[dispositivoMovelInstanceCount: dispositivosMoveisCount]
     }
 
     def show(DispositivoMovel dispositivoMovelInstance) {
@@ -37,16 +27,7 @@ class DispositivoMovelController {
 
     def create() {
 
-        def entidade = springSecurityService.currentUser
-
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
+        def departamentos = usuarioService.getDepartamentos(null)
 
         respond new DispositivoMovel(params), model: [departamentos: departamentos]
     }
@@ -76,17 +57,9 @@ class DispositivoMovelController {
 
     def edit(DispositivoMovel dispositivoMovelInstance) {
 
-        def entidade = springSecurityService.currentUser
+        println dispositivoMovelInstance.departamento
 
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
-
+        def departamentos = usuarioService.getDepartamentos(null)
 
         respond dispositivoMovelInstance, model: [departamentos: departamentos]
     }

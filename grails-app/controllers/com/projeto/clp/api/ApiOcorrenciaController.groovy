@@ -40,6 +40,9 @@ class ApiOcorrenciaController extends RestfulController{
 			it.alarme.escravoMaquina = null
 			it.alarme.registradorEscravo = null
 			it.alarme.ocorrencias = null
+			it.alarme.maquina.departamento = null
+			it.alarme.maquina.escravos = null
+			it.alarme.maquina.alarmes = null
 		}
 		
 		JSON.use("deep") {
@@ -69,6 +72,9 @@ class ApiOcorrenciaController extends RestfulController{
 			it.alarme.escravoMaquina = null
 			it.alarme.registradorEscravo = null
 			it.alarme.ocorrencias = null
+			it.alarme.maquina.departamento = null
+			it.alarme.maquina.escravos = null
+			it.alarme.maquina.alarmes = null
 		}
 
 		JSON.use("deep") {

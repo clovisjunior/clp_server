@@ -1,11 +1,11 @@
 <table class="table table-bordered table-condensed table-striped table-vertical-center checkboxs js-table-sortable">
 	<thead >
 		<tr>
-			<g:sortableColumn property="escravoId" title="${message(code: 'escravoMaquina.escravoId.label', default: 'Escravo Id')}" />
-		
-			<g:sortableColumn property="identificador" title="${message(code: 'escravoMaquina.identificador.label', default: 'Identificador')}" />
-		
-			<g:sortableColumn property="descricao" title="${message(code: 'escravoMaquina.descricao.label', default: 'Descricao')}" />
+			<th><g:message code="escravoMaquina.escravoId.label" default="Escravo Id"/></th>
+
+			<th><g:message code="escravoMaquina.identificador.label" default="Identificador"/></th>
+
+			<th><g:message code="escravoMaquina.descricao.label" default="Descrição"/></th>
 		
 			<th class="center" colspan="1"><g:message code="default.table.show.label" default="Mostrar"/></th>
 		</tr>

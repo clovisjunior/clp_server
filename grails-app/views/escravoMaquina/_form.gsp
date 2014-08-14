@@ -41,7 +41,7 @@
 		<g:message code="escravoMaquina.maquina.label" default="Maquina" />
 	</label>
 	<div class="controls">
-		<g:select id="maquina" name="maquina.id" from="${com.projeto.clp.Maquina.list()}" optionKey="id" required="" value="${escravoMaquinaInstance?.maquina?.id}" class="many-to-one"/>
+		<g:select id="maquina" name="maquina.id" from="${maquinas}" optionKey="id" required="" value="${escravoMaquinaInstance?.maquina?.id}" class="many-to-one"/>
 	</div>
 </div>
 

@@ -13,6 +13,15 @@
 </div>
 
 
+<div class="control-group">
+	<label class="control-label" for="endereco">
+		<g:message code="unidadeDeNegocio.endereco.label" default="Endereco" />
+	</label>
+	<div class="controls">
+		<g:textField name="endereco" required="" value="${unidadeDeNegocioInstance?.endereco}"/>
+	</div>
+</div>
+
 
 <div class="control-group">
 	<label class="control-label" for="departamentos">
@@ -31,11 +40,3 @@
 </div>
 
 
-<div class="control-group">
-	<label class="control-label" for="endereco">
-		<g:message code="unidadeDeNegocio.endereco.label" default="Endereco" />
-	</label>
-	<div class="controls">
-		<g:textField name="endereco" value="${unidadeDeNegocioInstance?.endereco}"/>
-	</div>
-</div>

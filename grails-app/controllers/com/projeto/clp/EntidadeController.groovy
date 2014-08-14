@@ -54,10 +54,7 @@ class EntidadeController {
         usuario.entidades << entidadeInstance
         usuario.save flush: true
 
-        println "> ${entidadeInstance.administrador}"
-
         if (entidadeInstance.hasErrors()) {
-            println entidadeInstance.errors
             respond entidadeInstance.errors, view:'create'
             return
         }

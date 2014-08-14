@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'unidadeDeNegocio.label', default: 'UnidadeDeNegocio')}" />
+		<g:set var="entityName" value="${message(code: 'unidadeDeNegocio.label', default: 'Unidade de Negócio')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -44,7 +44,7 @@
 						<th><g:message code="unidadeDeNegocio.entidade.label" default="Entidade" /></th>
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,9 +58,9 @@
 						<td>${fieldValue(bean: unidadeDeNegocioInstance, field: "entidade")}</td>
 					
 						<td class="center">
-							<g:link action="edit" id="${unidadeDeNegocioInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+							<g:link action="edit" id="${unidadeDeNegocioInstance.id}" class="btn-action glyphicons pencil btn-success" alt="Editar"><i></i></g:link>
 
-							<g:link action="show" id="${unidadeDeNegocioInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
+							<g:link action="show" id="${unidadeDeNegocioInstance.id}" class="btn-action glyphicons eye_open btn-success" alt="Visualizar"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

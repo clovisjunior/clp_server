@@ -11,6 +11,7 @@ class EscravoMaquinaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
 	def modbusService
+    def usuarioService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -22,7 +23,10 @@ class EscravoMaquinaController {
     }
 
     def create() {
-        respond new EscravoMaquina(params)
+
+        def maquinas = usuarioService.getMaquinas(null)
+
+        respond new EscravoMaquina(params), model: [maquinas: maquinas]
     }
 
     @Transactional
@@ -49,7 +53,9 @@ class EscravoMaquinaController {
     }
 
     def edit(EscravoMaquina escravoMaquinaInstance) {
-        respond escravoMaquinaInstance
+        def maquinas = usuarioService.getMaquinas(null)
+
+        respond escravoMaquinaInstance, model: [maquinas: maquinas]
     }
 
     @Transactional

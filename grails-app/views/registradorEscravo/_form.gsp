@@ -3,6 +3,17 @@
 <%@ page import="com.projeto.clp.type.DadoType" %>
 
 
+
+<div class="control-group">
+	<label class="control-label" for="offset">
+		<g:message code="registradorEscravo.identificador.label" default="Identificador" />
+	</label>
+	<div class="controls">
+		<g:textField name="identificador" required="" value="${registradorEscravoInstance?.identificador}"/>
+	</div>
+</div>
+
+
 <div class="control-group">
 	<label class="control-label" for="offset">
 		<g:message code="registradorEscravo.endereco.label" default="Endereço" />

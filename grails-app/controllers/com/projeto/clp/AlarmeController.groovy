@@ -10,47 +10,15 @@ class AlarmeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def springSecurityService
+    def usuarioService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-        def entidade = springSecurityService.currentUser
+        def alarmes = usuarioService.getAlarmes(params)
+        def alarmesCount = usuarioService.getAlarmesCount()
 
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
-
-        def dispositivosMoveis = []
-
-        departamentos?.each {
-            it.dispositivosMoveis?.each { dispotivoMovel ->
-                dispositivosMoveis << dispotivoMovel
-            }
-        }
-
-        def maquinas = []
-
-        departamentos?.each { departamento ->
-            departamento.maquinas?.each { maquina ->
-                maquinas << maquina
-            }
-        }
-
-        def alarmes = []
-
-        maquinas?.each { maquina ->
-            maquinas.alarmes?.each { alarme ->
-                alarmes << alarme
-            }
-        }
-
-        respond alarmes, model:[alarmeInstanceList: alarmes, alarmeInstanceCount: alarmes.size()]
+        respond alarmes, model:[alarmeInstanceCount: alarmesCount]
     }
 
     def show(Alarme alarmeInstance) {
@@ -59,33 +27,7 @@ class AlarmeController {
 
     def create() {
 
-        def entidade = springSecurityService.currentUser
-
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
-
-        def dispositivosMoveis = []
-
-        departamentos?.each {
-            it.dispositivosMoveis?.each { dispotivoMovel ->
-                dispositivosMoveis << dispotivoMovel
-            }
-        }
-
-        def maquinas = []
-
-        departamentos?.each { departamento ->
-            departamento.maquinas?.each { maquina ->
-                maquinas << maquina
-            }
-        }
-
+        def maquinas = usuarioService.getMaquinas(null)
 
         respond new Alarme(params), model: [maquinas: maquinas]
     }
@@ -114,7 +56,13 @@ class AlarmeController {
     }
 
     def edit(Alarme alarmeInstance) {
-        respond alarmeInstance
+        def maquinas = usuarioService.getMaquinas(null)
+
+        Maquina maquina = alarmeInstance.maquina
+
+        EscravoMaquina escravo = alarmeInstance.escravoMaquina
+
+        respond alarmeInstance, model: [maquinas: maquinas, registradores: escravo?.registradores, escravos: maquina?.escravos]
     }
 
     @Transactional

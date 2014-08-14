@@ -36,6 +36,8 @@
 			<table class="table table-bordered table-condensed table-striped table-vertical-center checkboxs js-table-sortable">
 				<thead >
 					<tr>
+
+						<th><g:message code="alarme.identificador.label" default="Identificador" /></th>
 					
 						<th><g:message code="alarme.maquina.label" default="Maquina" /></th>
 					
@@ -48,13 +50,15 @@
 						<g:sortableColumn property="minimo" title="${message(code: 'alarme.minimo.label', default: 'Minimo')}" />
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"></th>
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${alarmeInstanceList}" status="i" var="alarmeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
+						<td>${fieldValue(bean: alarmeInstance, field: "identificador")}</td>
+						
 						<td>${fieldValue(bean: alarmeInstance, field: "maquina")}</td>
 					
 						<td>${fieldValue(bean: alarmeInstance, field: "registradorEscravo")}</td>

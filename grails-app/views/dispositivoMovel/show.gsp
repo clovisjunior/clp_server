@@ -63,6 +63,15 @@
 								
 							</li>
 							</g:if>
+
+							<g:if test="${dispositivoMovelInstance?.departamento}">
+							<li class="fieldcontain">
+								<span id="departamento-label" class="property-label"><g:message code="dispositivoMovel.departamento.label" default="Departamento" /></span>
+								
+									<span class="property-value" aria-labelledby="departamento-label"><g:fieldValue bean="${dispositivoMovelInstance}" field="departamento"/></span>
+								
+							</li>
+							</g:if>
 						
 						</ol>
 						

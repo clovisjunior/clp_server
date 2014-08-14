@@ -43,7 +43,7 @@
 						<th><g:message code="usuarioMovel.departamento.label" default="Departamento" /></th>
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"></th>
 					</tr>
 				</thead>
 				<tbody>

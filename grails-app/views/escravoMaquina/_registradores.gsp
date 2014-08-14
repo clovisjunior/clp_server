@@ -5,15 +5,15 @@
 	<thead >
 		<tr>
 		
-			<g:sortableColumn property="identificador" title="${message(code: 'registradorEscravo.identificador.label', default: 'Identificador')}" />
+			<th><g:message code="registradorEscravo.identificador.label" default="Identificador"/></th>
 					
-			<g:sortableColumn property="endereco" title="${message(code: 'registradorEscravo.endereco.label', default: 'Endereço')}" />
+			<th><g:message code="registradorEscravo.endereco.label" default="Endereço"/></th>
 		
-			<g:sortableColumn property="tipo" title="${message(code: 'registradorEscravo.tipo.label', default: 'Tipo')}" />
+			<th><g:message code="registradorEscravo.tipo.label" default="Tipo"/></th>
 		
-			<g:sortableColumn property="tipoDado" title="${message(code: 'registradorEscravo.tipoDado.label', default: 'Tipo Dado')}" />
+			<th><g:message code="registradorEscravo.tipoDado.label" default="Tipo Dado"/></th>
 
-			<g:sortableColumn property="isSomenteLeitura" title="${message(code: 'registradorEscravo.isSomenteLeitura.label', default: 'Somente Leitura')}" />		
+			<th><g:message code="registradorEscravo.isSomenteLeitura.label" default="Somente Leitura"/></th>		
 		
 			<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
 		</tr>

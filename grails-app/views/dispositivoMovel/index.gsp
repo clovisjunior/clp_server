@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'dispositivoMovel.label', default: 'DispositivoMovel')}" />
+		<g:set var="entityName" value="${message(code: 'dispositivoMovel.label', default: 'Dispositivo Móvel')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -40,9 +40,11 @@
 						<g:sortableColumn property="descricao" title="${message(code: 'dispositivoMovel.descricao.label', default: 'Descricao')}" />
 					
 						<g:sortableColumn property="imei" title="${message(code: 'dispositivoMovel.imei.label', default: 'Imei')}" />
+
+						<g:sortableColumn property="departamento" title="${message(code: 'dispositivoMovel.departamento.label', default: 'Departamento')}" />
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,11 +54,13 @@
 						<td>${fieldValue(bean: dispositivoMovelInstance, field: "descricao")}</td>
 					
 						<td>${fieldValue(bean: dispositivoMovelInstance, field: "imei")}</td>
+
+						<td>${fieldValue(bean: dispositivoMovelInstance, field: "departamento")}</td>
 					
 						<td class="center">
-							<g:link action="edit" id="${dispositivoMovelInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+							<g:link action="edit" id="${dispositivoMovelInstance.id}" class="btn-action glyphicons pencil btn-success" alt="Editar"><i></i></g:link>
 
-							<g:link action="show" id="${dispositivoMovelInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
+							<g:link action="show" id="${dispositivoMovelInstance.id}" class="btn-action glyphicons eye_open btn-success" alt="Excluir"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

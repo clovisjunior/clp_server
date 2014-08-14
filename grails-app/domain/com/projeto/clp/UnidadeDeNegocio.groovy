@@ -14,6 +14,7 @@ class UnidadeDeNegocio {
 
     static constraints = {
 		nome nullable: false, blank: false
+		endereco nullable: true, blank: true
     }
 	
 	String toString(){

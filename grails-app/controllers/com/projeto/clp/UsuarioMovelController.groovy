@@ -1,7 +1,5 @@
 package com.projeto.clp
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -10,25 +8,15 @@ class UsuarioMovelController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def springSecurityService
+    def usuarioService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-        def entidade = springSecurityService.currentUser
-
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade, [params])
-        def usuarioMoveis = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamento.usuariosMoveis?.each { usuarioMovel ->
-                    usuarioMoveis << usuarioMovel
-                }
-            }
-        }
-
-        respond usuarioMoveis, model:[usuarioMovelInstanceList: usuarioMoveis, usuarioMovelInstanceCount: usuarioMoveis.size()]
+        def usuarioMoveis = usuarioService.getUsuariosMoveis(params)
+        def usuarioMoveisCount = usuarioService.getUsuariosMoveisCount()
+        
+        respond usuarioMoveis, model:[usuarioMovelInstanceCount: usuarioMoveisCount]
     }
 
     def show(UsuarioMovel usuarioMovelInstance) {
@@ -36,34 +24,12 @@ class UsuarioMovelController {
     }
 
     def create() {
+        
+        def departamentos = usuarioService.getDepartamentos(null)
 
-        def entidade = springSecurityService.currentUser
+        def dispositivosMoveis = usuarioService.getDispositivosMoveis(null)
 
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
-
-        def dispositivosMoveis = []
-
-        departamentos?.each {
-            it.dispositivosMoveis?.each { dispotivoMovel ->
-                dispositivosMoveis << dispotivoMovel
-            }
-        }
-
-        def maquinas = []
-
-        departamentos?.each { departamento ->
-            departamento.maquinas?.each { maquina ->
-                maquinas << maquina
-            }
-        }
-
+        def maquinas = usuarioService.getMaquinas(null)
 
         respond new UsuarioMovel(params), model: [departamentos: departamentos, dispositivosMoveis: dispositivosMoveis, maquinas: maquinas]
     }
@@ -97,32 +63,11 @@ class UsuarioMovelController {
 
     def edit(UsuarioMovel usuarioMovelInstance) {
 
-        def entidade = springSecurityService.currentUser
+        def departamentos = usuarioService.getDepartamentos(null)
 
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
+        def dispositivosMoveis = usuarioService.getDispositivosMoveis(null)
 
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
-
-        def dispositivosMoveis = []
-
-        departamentos?.each {
-            it.dispositivosMoveis?.each { dispotivoMovel ->
-                dispositivosMoveis << dispotivoMovel
-            }
-        }
-
-        def maquinas = []
-
-        departamentos?.each { departamento ->
-            departamento.maquinas?.each { maquina ->
-                maquinas << maquina
-            }
-        }
+        def maquinas = usuarioService.getMaquinas(null)
         
         respond usuarioMovelInstance, model: [departamentos: departamentos, dispositivosMoveis: dispositivosMoveis, maquinas: maquinas]
     }

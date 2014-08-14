@@ -42,7 +42,7 @@
 						<th><g:message code="departamento.unidadeNegocio.label" default="Unidade Negocio" /></th>
 					
 					
-						<th class="center" colspan="1"><g:message code="default.table.edit.label" default="Editar"/></th>
+						<th class="center" colspan="1"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,9 +54,9 @@
 						<td>${fieldValue(bean: departamentoInstance, field: "unidadeNegocio")}</td>
 					
 						<td class="center">
-							<g:link action="edit" id="${departamentoInstance.id}" class="btn-action glyphicons pencil btn-success"><i></i></g:link>
+							<g:link action="edit" id="${departamentoInstance.id}" class="btn-action glyphicons pencil btn-success" alt="Editar"><i></i></g:link>
 
-							<g:link action="show" id="${departamentoInstance.id}" class="btn-action glyphicons eye_open btn-success"><i></i></g:link>
+							<g:link action="show" id="${departamentoInstance.id}" class="btn-action glyphicons eye_open btn-success" alt="Visualizar"><i></i></g:link>
 						</td>
 					</tr>
 				</g:each>

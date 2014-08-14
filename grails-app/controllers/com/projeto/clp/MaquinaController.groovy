@@ -12,27 +12,17 @@ class MaquinaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
-	def modbusService
-    def springSecurityService
+	def modbusService    
+    def usuarioService
 	
     def index(Integer max) {
         
         params.max = Math.min(max ?: 10, 100)
 
-        def entidade = springSecurityService.currentUser
+        def maquinas = usuarioService.getMaquinas(params)
+        def maquinasCount = usuarioService.getMaquinasCount()
 
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade, [params])
-        def maquinas = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamento.maquinas?.each { maquina ->
-                    maquinas << maquina
-                }
-            }
-        }
-
-        respond maquinas, model:[maquinaInstanceList: maquinas, maquinaInstanceCount: maquinas.size()]
+        respond maquinas, model:[maquinaInstanceCount: maquinasCount]
     }
 
     def show(Maquina maquinaInstance) {
@@ -41,16 +31,7 @@ class MaquinaController {
 
     def create() {
 
-        def entidade = springSecurityService.currentUser
-
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
+        def departamentos = usuarioService.getDepartamentos(null)
 
         respond new Maquina(params), model: [departamentos: departamentos]
     }
@@ -79,7 +60,10 @@ class MaquinaController {
     }
 
     def edit(Maquina maquinaInstance) {
-        respond maquinaInstance
+
+        def departamentos = usuarioService.getDepartamentos()
+
+        respond maquinaInstance, model: [departamentos: departamentos]
     }
 
     @Transactional

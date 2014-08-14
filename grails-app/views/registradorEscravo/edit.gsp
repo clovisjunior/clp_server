@@ -11,9 +11,6 @@
 			<h2><g:message code="default.edit.label" args="[entityName]" /></h2>
 			
 			<div class="buttons pull-right">
-				<g:link action="index" class="btn btn-default btn-icon glyphicons circle_arrow_left">
-					<i></i>	<g:message code="default.back.label" default="Voltar"/>
-				</g:link>
 			</div>
 			<div class="clearfix"></div>
 		</div>

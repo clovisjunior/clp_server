@@ -10,55 +10,20 @@ class OcorrenciaAlarmeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def springSecurityService
+    def usuarioService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-        def entidade = springSecurityService.currentUser
+        def ocorrencias = usuarioService.getOcorrencias(params)
+        def ocorrenciasCount = usuarioService.getOcorrenciasCount()
 
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
-
-        def dispositivosMoveis = []
-
-        departamentos?.each {
-            it.dispositivosMoveis?.each { dispotivoMovel ->
-                dispositivosMoveis << dispotivoMovel
-            }
-        }
-
-        def maquinas = []
-
-        departamentos?.each { departamento ->
-            departamento.maquinas?.each { maquina ->
-                maquinas << maquina
-            }
-        }
-
-        def ocorrencias = []
-
-        maquinas?.each { maquina ->
-            maquinas.alarmes?.each { alarme ->
-                alarme.ocorrencias?.each { ocorrencia ->
-                    ocorrencias << ocorrencias
-                }                
-            }
-        }
-
-        respond ocorrencias, model:[ocorrenciaAlarmeInstanceList: ocorrencias, ocorrenciaAlarmeInstanceCount: ocorrencias.size()]
+        respond ocorrencias, model:[ocorrenciaAlarmeInstanceCount: ocorrenciasCount]
     }
 
     def show(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
         respond ocorrenciaAlarmeInstance
     }
-
     
     @Transactional
     def save(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
@@ -84,7 +49,10 @@ class OcorrenciaAlarmeController {
     }
 
     def edit(OcorrenciaAlarme ocorrenciaAlarmeInstance) {
-        respond ocorrenciaAlarmeInstance
+
+        def alarmes = usuarioService.getAlarmes(null)
+
+        respond ocorrenciaAlarmeInstance, model: [alarmes: alarmes]
     }
 
     @Transactional

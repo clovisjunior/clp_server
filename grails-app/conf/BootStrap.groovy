@@ -6,20 +6,34 @@ import grails.plugin.springsecurity.SpringSecurityUtils
 
 class BootStrap {
 
+	def administrador = null
+	def adminPapel = null
+	def userPapel = null
+	def userMovelPapel = null
+
     def init = { servletContext ->
 
-		def adminPapel = new Papel(authority: 'ROLE_ADMIN').save(flush: true)
-		def userPapel = new Papel(authority: 'ROLE_USER').save(flush: true)
-		def userMovelPapel = new Papel(authority: 'ROLE_USER_MOVEL').save(flush: true)
+		adminPapel = new Papel(authority: 'ROLE_ADMIN').save(flush: true)
+		userPapel = new Papel(authority: 'ROLE_USER').save(flush: true)
+		userMovelPapel = new Papel(authority: 'ROLE_USER_MOVEL').save(flush: true)
 		
-		def administrador = new Administrador(username: 'admin', password: 'admin', email: 'clovisjunior2009@gmail.com')
+		administrador = new Administrador(username: 'admin', password: 'admin', email: 'clovisjunior2009@gmail.com')
 		administrador.save(flush: true)
   
 		UsuarioPapel.create administrador, adminPapel, true
 
-		/*
+		//createEntidade('Renault Brasil', 'usuario1')
+		//createEntidade('Volvo', 'usuario2')
+		//createEntidade('Audi', 'usuario3')
 		
-		Entidade entidade = new Entidade(nome: 'Renault Brasil', username: 'entidade', password: '12345', email: 'clovisjunior2009@gmail.com', administrador: administrador)
+		
+    }
+    def destroy = {
+    }
+
+    def createEntidade(String nome, String usuarioMovel){
+
+    	Entidade entidade = new Entidade(nome: nome, username: 'entidade', password: '12345', email: 'clovisjunior2009@gmail.com', administrador: administrador)
 		entidade.save(flush: true)
 
 		administrador.addToEntidades(entidade)
@@ -27,18 +41,18 @@ class BootStrap {
 		
 		UsuarioPapel.create entidade, userPapel, true
 		
-		UnidadeDeNegocio unidadeNegocio = new UnidadeDeNegocio(entidade: entidade, endereco: 'BR 277', nome: 'SJP')
+		UnidadeDeNegocio unidadeNegocio = new UnidadeDeNegocio(entidade: entidade, endereco: 'BR 277', nome: "SJP - ${nome}")
 		unidadeNegocio.addToDepartamentos(new Departamento(nome: 'Manuteção Carroçaria'))
 		unidadeNegocio.save(flush: true) 
 		
-		Departamento departamento = Departamento.get(1)
+		Departamento departamento = Departamento.get(Departamento.count())
 		
-		UsuarioMovel usuarioMovel1 = new UsuarioMovel(username: "usuario1", password: "123", email: "clovisjunior2009@gmail.com", departamento: departamento)
+		UsuarioMovel usuarioMovel1 = new UsuarioMovel(username: usuarioMovel, password: "123", email: "clovisjunior2009@gmail.com", departamento: departamento)
 		usuarioMovel1.save flush: true
 		
 		UsuarioPapel.create usuarioMovel1, userMovelPapel, true
 		
-		Maquina maquina = new Maquina(localizacaoFisica: 'Piso L3', ip: 'localhost', modelo: 'XPTO', porta: 502, departamento: departamento, identificador: 'CLP_9019')
+		Maquina maquina = new Maquina(localizacaoFisica: 'Piso L3', ip: 'localhost', modelo: 'XPTO', porta: 502, departamento: departamento, identificador: "CLP_9019 - ${nome}")
 		maquina.save(flush: true)
 		
 		usuarioMovel1.maquinas = []
@@ -97,9 +111,6 @@ class BootStrap {
 		ocorrencia8.save(flush: true)
 		ocorrencia9.save(flush: true)
 		ocorrencia10.save(flush: true)
-		*/
-		
-    }
-    def destroy = {
+
     }
 }

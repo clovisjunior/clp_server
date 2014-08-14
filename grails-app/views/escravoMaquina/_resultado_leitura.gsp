@@ -1,11 +1,9 @@
-
-											  
 <table class="table table-bordered table-condensed table-striped table-vertical-center checkboxs js-table-sortable">
 	<thead >
 		<tr>
-			<g:sortableColumn property="registrador" title="${message(code: 'registradorEscravo.label', default: 'Registrador')}" />
+			<th><g:message code="registradorEscravo.label" default="Registrador"/></th>
 		
-			<g:sortableColumn property="resultado" title="${message(code: 'escravo.registrador.resultado.label', default: 'Resultado')}" />
+			<th><g:message code="escravo.registrador.resultado.label" default="Resultado"/></th>
 		
 		</tr>
 	</thead>

@@ -11,23 +11,15 @@ class DepartamentoController{
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def springSecurityService
+    def usuarioService
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-        def entidade = springSecurityService.currentUser
-
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade, [params])
-        def departamentos = []
-
-        unidadesNegocios?.each {
-            it.departamentos?.each { departamento ->
-                departamentos << departamento
-            }
-        }
+        def departamentos = usuarioService.getDepartamentos(params)
+        def departamentosCount = usuarioService.getDepartamentosCount()
         
-        respond departamentos, model:[departamentoInstanceList: departamentos, departamentoInstanceCount: departamentos.size()]
+        respond departamentos, model:[departamentoInstanceCount: departamentosCount]
     }
 
     def show(Departamento departamentoInstance) {
@@ -35,9 +27,7 @@ class DepartamentoController{
     }
 
     def create() {
-        def entidade = springSecurityService.currentUser
-
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def unidadesNegocios = usuarioService.getUnidadesDeNegocio(null)
 
         respond new Departamento(params), model: [unidadesNegocios: unidadesNegocios]
     }
@@ -66,9 +56,8 @@ class DepartamentoController{
     }
 
     def edit(Departamento departamentoInstance) {
-        def entidade = springSecurityService.currentUser
 
-        def unidadesNegocios = UnidadeDeNegocio.findAllByEntidade(entidade)
+        def unidadesNegocios = usuarioService.getUnidadesDeNegocio(null)
 
         respond departamentoInstance, model: [unidadesNegocios: unidadesNegocios]
     
