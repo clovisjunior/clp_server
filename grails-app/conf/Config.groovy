@@ -155,7 +155,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/*':            			['ROLE_USER', 'ROLE_ADMIN'],
 	'/login/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/logout/**':				['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/api/**':                  ['ROLE_USER_MOVEL']
+	'/api/**':                  ['ROLE_USER_MOVEL']    
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [

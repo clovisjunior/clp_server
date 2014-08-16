@@ -18,6 +18,7 @@ class ApiOcorrenciaController extends RestfulController{
 	
 	def springSecurityService
 
+	@Transactional
     def pendentes() { 
 
     	def usuarioMovel = springSecurityService.currentUser
@@ -51,6 +52,7 @@ class ApiOcorrenciaController extends RestfulController{
 
     }
 
+	@Transactional
     def caixaEntrada() {
     	def usuarioMovel = springSecurityService.currentUser
 		
@@ -82,6 +84,7 @@ class ApiOcorrenciaController extends RestfulController{
 		}
     }
 
+    @Transactional
     def aceitar() {
 
     	def ocorrencia = OcorrenciaAlarme.get(params.id)
@@ -99,6 +102,7 @@ class ApiOcorrenciaController extends RestfulController{
     	
     }
 
+    @Transactional
     def finalizar() {
 
 		def usuarioMovel = springSecurityService.currentUser	
@@ -122,6 +126,7 @@ class ApiOcorrenciaController extends RestfulController{
     	}
 	}
 
+	@Transactional
 	def dashboard() {
 
 		def usuarioMovel = springSecurityService.currentUser

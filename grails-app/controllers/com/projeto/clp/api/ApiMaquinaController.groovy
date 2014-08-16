@@ -54,6 +54,7 @@ class ApiMaquinaController extends RestfulController{
 		respond registradores
 	}
 
+	@Transactional
 	def salvarDiarioBordo() {
 
 		def usuarioMovel = springSecurityService.currentUser	
@@ -71,6 +72,7 @@ class ApiMaquinaController extends RestfulController{
 		respond OK
 	}
 
+	@Transactional
 	def atualizarValorRegistrador() {
 
 		def registrador = RegistradorEscravo.get(params.idRegistrador)

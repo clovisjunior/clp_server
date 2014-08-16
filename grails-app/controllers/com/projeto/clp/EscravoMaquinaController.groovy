@@ -119,6 +119,7 @@ class EscravoMaquinaController {
 		render template: "resultado_leitura", model: [registrador: registrador, resultado: resultado]
 	}
 	
+    @Transactional
 	def adicionarRegistrador() {
 		def registrador = new RegistradorEscravo(params)
 		

@@ -19,6 +19,7 @@ class ApiDispositivoController extends RestfulController{
 		super(DispositivoMovel)
 	}
 
+	@Transactional
 	def registrarGCM(){
 		String gcmId = params.GCM_ID
 		String imei = params.imei
